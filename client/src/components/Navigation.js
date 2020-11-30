@@ -14,23 +14,33 @@ const NavigationAuth = () => {
     <nav className="navigation">
       <ul>
         <li>
-          <NavLink exact to="/" activeClassName="active">
-            Landing
+          <NavLink exact to="/" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            All Backgrounds
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/home" activeClassName="active">
-            Home
+          <NavLink exact to="/home" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            Home Backgrounds
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/account" activeClassName="active">
+          <NavLink exact to="/office" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            office Backgrounds
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/outdoor" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            Outdoor Backgrounds
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/account" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
             Account
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/images" activeClassName="active">
-            Images
+          <NavLink exact to="/uploadimage" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            upload Image
           </NavLink>
         </li>
         <li>
@@ -46,18 +56,33 @@ const NavigationNonAuth = () => {
     <nav className="navigation">
       <ul>
         <li>
-          <NavLink exact to="/" activeClassName="active">
-            Landing
+          <NavLink exact to="/" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            All Backgrounds
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/signup" activeClassName="active">
+          <NavLink exact to="/home" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            Home Backgrounds
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/office" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            office Backgrounds
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/outdoor" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            Outdoor Backgrounds
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/signup" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
             Sign-up
           </NavLink>
         </li>
 
         <li>
-          <NavLink exact to="/signin" activeClassName="active">
+          <NavLink exact to="/signin" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
             Sign-In
           </NavLink>
         </li>

@@ -2,12 +2,12 @@ import React from 'react';
 
 import '../App.css';
 
-const Home = () => {
+const UploadImage = () => {
     return (
         <div>
-            <p>Welcome to Images</p>
+            <p>Welcome to Images page</p>
         </div>
     );
 };
 
-export default Home;
+export default UploadImage;
