@@ -9,7 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import ListImages from './components/ListImages';
 import Images from './ImageList';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 
 function App() {

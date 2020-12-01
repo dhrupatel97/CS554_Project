@@ -16,7 +16,7 @@ class App {
 	}
 	private config(): void {
         const db: string = "mongodb://localhost:27017/Artsy"
-        mongoConnection(db);
+		mongoConnection(db);
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: false }));
 	}
