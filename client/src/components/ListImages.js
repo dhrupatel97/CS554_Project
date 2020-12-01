@@ -4,11 +4,27 @@ import CardColumns from 'react-bootstrap/CardColumns'
 
 
 function ListImages(props) {
+  console.log('INCOMING PROPS IN ListImages.js - ')
+  console.log(props.images)
+  
   return (
-    <div className="layout">  
+    
+    <div className="layout"> 
     <CardColumns>
+      {props.images && props.images.map(re => 
+        <Card>
+          <Card.Img variant='top' src={re.PHOTO_NAME}/>
+          <Card.Footer>
+          <p className="text-right text-muted">@{re.POSTED_BY}</p>
+          </Card.Footer>
+        </Card>
+      )}
+    </CardColumns> 
+
+
+    {/* <CardColumns>
     {
-        props.images.map(re=>
+        props.images.map((re)=>{
           <Card>
             <Card.Img variant="top" src={re.PHOTO_NAME} />
             <Card.Footer>
@@ -22,9 +38,9 @@ function ListImages(props) {
               <p className="text-right text-muted">@{re.POSTED_BY}</p>
             </Card.Footer>
           </Card>
-        )
+        })
     }
-    </CardColumns>
+    </CardColumns> */}
     </div>
   );
 }
