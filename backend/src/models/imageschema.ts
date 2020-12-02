@@ -8,7 +8,6 @@ export interface Image extends Document {
     url: string,
     category : string,
     no_of_likes: number,
-    no_of_dislikes: number,
     comments: Array<Object>
     date : Date
   }
@@ -35,10 +34,6 @@ const ImageSchema = new Schema({
         required: true
     },
     no_of_likes: {
-        type: Number,
-        default: 0
-    },
-    no_of_dislikes: {
         type: Number,
         default: 0
     },
