@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 export class Users {
     public routes(app): void {  
-          app.route('/api/users').post((req: Request, res: Response) => {      
+          app.route('/api/users').post((req: Request, res: Response) => {  
             let user = new UserData(req.body);
             user.save((err: any) => {
                 if (err) {

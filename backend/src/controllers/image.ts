@@ -17,40 +17,50 @@ export class Images {
             })
         });
 
-       
-
         app.route('/api/images').post(
-            multer({dest: 'temp/', limits: { fileSize: 8 * 1024 * 1024 } }).single('image'),
+            multer({ dest: 'temp/', limits: { fileSize: 8 * 1024 * 1024 } }).single('image'),
             (req: Request, res: Response) => {
                 
                 try {
-                    AWS.config.update({   
+                    AWS.config.update({
                         accessKeyId: process.env.AWS_ID,
-                        secretAccessKey: process.env.AWS_SECRETKEY ,
-                        region:'us-east-1'
-                      });
-                    const s3 = new AWS.S3();                  
-                    const mReq  = req as MulterRequest
-                   
+                        secretAccessKey: process.env.AWS_SECRETKEY,
+                        region: process.env.AWS_REGION
+                    });
+                    const s3 = new AWS.S3();
+                    const mReq = req as MulterRequest
+
                     if (mReq && mReq.file) {
-                       
+
                         let params = {
                             ACL: 'public-read',
                             Bucket: process.env.AWS_BUCKET_NAME,
                             Body: fs.createReadStream(mReq.file.path),
                             Key: `useArtsy/${mReq.file.originalname}`
                         };
-                        console.log("BUCEKT NAME ---------------------",process.env.AWS_BUCKET_NAME)
+                        console.log("BUCEKT NAME ---------------------", process.env.AWS_BUCKET_NAME)
                         s3.upload(params, (err, data) => {
-                            
+                            fs.unlinkSync(mReq.file.path)
                             if (err) {
                                 console.log(err)
                                 res.status(500).send(err.message);
                             } else {
                                 if (data) {
                                     const imageUrl = data.Location;
-                                    console.log("Success", imageUrl)
-                                    res.status(200).send(imageUrl)
+                                    const image = {
+                                        name: req.body.name ? req.body.name : '' ,
+                                        category: req.body.category,
+                                        desc: req.body.desc ? req.body.desc : '' ,
+                                        url: imageUrl,
+                                    }
+                                    let imageData = new ImageData(image);
+                                    imageData.save((err: any) => {
+                                        if (err) {
+                                            res.status(400).send(err.message);
+                                        } else {
+                                            res.json(image);
+                                        }
+                                    });
                                 }
                             }
                         })
@@ -62,6 +72,6 @@ export class Images {
                     return res.status(500).json(`Failed to upload image file: ${error}`);
                 }
             });
- 
+
     }
 }
