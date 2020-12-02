@@ -33,30 +33,31 @@ function App() {
   let officeImages=[];
   let homeImages=[];
   let outdoorImages=[];
-  appState.map((re) => {
-    if(re.CATEGORY == 'office'){
-      officeImages.push(re)
-    }
-    if(re.CATEGORY == 'home'){
-      homeImages.push(re)
-    }
-    if(re.CATEGORY == 'outdoor'){
-      outdoorImages.push(re)
-    }
-  })
+  // appState.map((re) => {
+  //   if(re.CATEGORY === 'office'){
+  //     officeImages.push(re)
+  //   }
+  //   if(re.CATEGORY === 'home'){
+  //     homeImages.push(re)
+  //   }
+  //   if(re.CATEGORY === 'outdoor'){
+  //      outdoorImages.push(re)
+  //   }
+  // })
+  
   // appState.map(re=>{
     
-  //   if(re.CATEGORY==="office")
+  //   if(re.category==="office")
   //   {
   //      officeImages.push(re)
   //   }
-  //   else if(re.CATEGORY==="home")
+  //   else if(re.category==="home")
   //   {
-  //     homeImages.push(re)
+  //      homeImages.push(re)
   //   }
-  //   else if(re.CATEGORY==="outdoor")
+  //   else if(re.category==="outdoor")
   //   {
-  //     outdoorImages.push(re)
+  //      outdoorImages.push(re)
   //   }
     
   // })
