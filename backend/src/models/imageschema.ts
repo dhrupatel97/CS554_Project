@@ -2,44 +2,49 @@ import  {  Document } from "mongoose";
 import * as mongoose from "mongoose"
 import  { Schema } from "mongoose";
 export interface Image extends Document {
-    PHOTO_NAME : string,
-    DESCRIPTION: string,
-    POSTED_BY: string,
-    CATEGORY : string,
-    NO_OF_LIKES: number,
-    NO_OF_DISLIKES: number,
-    COMMENTS: Array<Object>
+    image_name: string,
+    desc: string,
+    posted_by: string,
+    url: string,
+    category : string,
+    no_of_likes: number,
+    no_of_dislikes: number,
+    comments: Array<Object>
     date : Date
   }
 
 const ImageSchema = new Schema({
-    
-    PHOTO_NAME: {
+    image_name: {
+        type: String,
+        required: false
+    },
+    desc: {
+        type: String,
+        required: false
+    },
+    posted_by: {
+        type: String,
+        required: false
+    },
+    url: {
         type: String,
         required: true
     },
-    DESCRIPTION: {
+    category: {
         type: String,
         required: true
     },
-    POSTED_BY: {
-        type: String,
-        required: true
-    },
-    CATEGORY: {
-        type: String,
-        required: true
-    },
-    NO_OF_LIKES: {
+    no_of_likes: {
         type: Number,
         default: 0
     },
-    NO_OF_DISLIKES: {
+    no_of_dislikes: {
         type: Number,
         default: 0
     },
-    COMMENTS: {
-        type: Array
+    comments: {
+        type: Array,
+        required: false
     },
     date: {
         type: Date,

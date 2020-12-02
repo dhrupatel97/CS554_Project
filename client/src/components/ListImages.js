@@ -13,9 +13,9 @@ function ListImages(props) {
     <CardColumns>
       {props.images && props.images.map(re => 
         <Card>
-          <Card.Img variant='top' src={re.PHOTO_NAME}/>
+          <Card.Img variant='top' src={re.url}/>
           <Card.Footer>
-          <p className="text-right text-muted">@{re.POSTED_BY}</p>
+          <p className="text-right text-muted">@{re.desc}</p>
           </Card.Footer>
         </Card>
       )}
