@@ -1,5 +1,5 @@
 
-import ImageData from '../models/imageschema'
+import ImageData from '../schema/imageschema'
 export class ImadeDataAccess {
 
     public getAllImages( callback: any){

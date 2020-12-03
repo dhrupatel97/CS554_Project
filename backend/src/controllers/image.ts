@@ -1,5 +1,4 @@
-import ImageData from '../models/imageschema'
-
+import ImageData from '../schema/imageschema'
 import { ImadeDataAccess } from '../data/image';
 import { UserDataAccess } from '../data/user';
 import { Request, Response } from 'express';
@@ -48,12 +47,8 @@ export class Images {
                                 })
                             }
                         });
-                    } )
-
-
-                    
+                    } )                   
         })
-
 
         app.route('/api/images').post(
             multer({ dest: 'temp/', limits: { fileSize: 8 * 1024 * 1024 } }).single('image'),
@@ -111,7 +106,69 @@ export class Images {
                 }
             });
 
-           
+            app.route("/api/images/:id/comments").post(async (req: Request, res: Response) => {
+                try {   
+                  ImageData.findById(req.params.id, (err: any, images: any) => {
+                    if (err) {
+                      res.status(500).send(err);
+                    } else {
+                      if (images === null) {
+                        res.status(404).send("Image for given id not found")
+                      } else {
+                        let commentBody = req.body;
+                        images.comments.push(commentBody)
+                        images.save((err: any) => {
+                          if (err) {
+                            res.status(400).send(err.message);
+                          } else {
+                            res.json(images);
+                          }
+                        });
+                      }        
+                    }
+                  });
+                } catch (err) {
+                  res.status(500).send(err);
+                }
+              })        
+              
+              app.route("/api/images/:imageId/:commentId").delete(async (req: Request, res: Response) => {
+                try {
+                  ImageData.findById(req.params.imageId, (err: any, images: any) => {
+                    if (err) {
+                      res.status(500).send(err);
+                    } else {
+                      if (images === null) {
+                        res.status(404).send("Image for given id not found")
+                      } else {
+          
+                        let comments = images.comments.filter(comment => {
+                          if (comment && comment._id) {
+                            return comment._id.toString() !== req.params.commentId
+                          } else
+                            return true;
+                        });
+                        if(images.comments.length == comments.length){
+                          res.status(404).send("comment id not found")
+                          return
+                        }
+                        images.comments = comments;
+                        images.save((err: any) => {
+                          if (err) {
+                            res.status(400).send(err.message);
+                          } else {
+                            
+                            res.json(images);
+                          }
+                        });
+                      }
+          
+                    }
+                  });
+                } catch (err) {
+                  res.status(500).send(err);
+                }
+              })
 
     }
 }
