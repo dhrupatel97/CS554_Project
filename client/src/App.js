@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from 'react-router-dom';
 import UploadImage from './components/UploadImage';
@@ -8,30 +9,58 @@ import { AuthProvider } from './firebase/Auth';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import ListImages from './components/ListImages';
-import Images from './ImageList';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import Images from './ImageList';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 
 function App() {
+
+  const [appState, setAppState] = useState()
+
+  useEffect(() =>{
+    fetch('/api/images', {
+      accept: 'application/json',
+    }).then(res => res.json())
+      .then(pic => {
+        setAppState(pic)
+        console.log('APP.JS - ')
+        console.log(pic)
+      })
+      .catch(err => console.log(err));
+  }, [])
+
+
   let officeImages=[];
   let homeImages=[];
   let outdoorImages=[];
-  Images.map(re=>{
+  // appState.map((re) => {
+  //   if(re.CATEGORY === 'office'){
+  //     officeImages.push(re)
+  //   }
+  //   if(re.CATEGORY === 'home'){
+  //     homeImages.push(re)
+  //   }
+  //   if(re.CATEGORY === 'outdoor'){
+  //      outdoorImages.push(re)
+  //   }
+  // })
+  
+  // appState.map(re=>{
     
-    if(re.CATEGORY==="office")
-    {
-       officeImages.push(re)
-    }
-    else if(re.CATEGORY==="home")
-    {
-      homeImages.push(re)
-    }
-    else if(re.CATEGORY==="outdoor")
-    {
-      outdoorImages.push(re)
-    }
+  //   if(re.category==="office")
+  //   {
+  //      officeImages.push(re)
+  //   }
+  //   else if(re.category==="home")
+  //   {
+  //      homeImages.push(re)
+  //   }
+  //   else if(re.category==="outdoor")
+  //   {
+  //      outdoorImages.push(re)
+  //   }
     
-  })
+  // })
   return (
     <AuthProvider>
       <Router>
@@ -41,13 +70,10 @@ function App() {
           </header>
           <br />
           <br />
-
-          
-
           <div className='App-body'>
             <Switch>
             <Route exact path="/">
-            <ListImages images={Images}/>
+            <ListImages images={appState}/>
             </Route>
             <Route path="/home">
             <ListImages images={homeImages}/>
@@ -64,8 +90,6 @@ function App() {
             <Route path="/signup" component={SignUp} />
             </Switch>
             <Redirect to="/"/>
-      
-            
           </div>
         </div>
       </Router>
