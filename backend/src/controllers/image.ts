@@ -30,7 +30,7 @@ export class Images {
 
 
     app.route('/api/images/:id/download').get((req: Request, res: Response) => {
-        
+      imageDataAccess.deletePublicFiles();
       ImageData.findById(req.params.id, (err: any, images: any) => {
         
         if (err) {
@@ -63,7 +63,6 @@ export class Images {
                 } else if (wandh === 'small') {
 
                   saveFinal = 'public/' + name + '-small.jpg'
-
                   width = width - (width/2);
                   height = height - (height/2)
                   dimension = width.toString().concat(('x'.concat(height.toString())))
@@ -71,21 +70,21 @@ export class Images {
                 } else if (wandh === 'large') {
                   saveFinal = 'public/' + name + '-large.jpg'
                   
-                  width = width + 200;
+                  width = width * 2;
                   console.log("width large", width)
-                  height = height + 100
+                  height = height * 2
                   dimension = width.toString().concat(('x'.concat(height.toString())))
                 } else if (wandh === 'extra_large') {
                   saveFinal = 'public/' + name + '-extra_large.jpg'
-                  width = width + 500;
-                  height = height - 1000
+                  width = width * 3;
+                  height = height * 3
                   dimension = width.toString().concat(('x'.concat(height.toString())))
                 }              
                  im.convert([downloadName, '-resize', dimension, saveFinal],
                   function (err, stdout) {
                     if (err) throw err;
                     res.sendFile(saveFinal, { root: '.' })
-                    imageDataAccess.deletePublicFiles();
+                    
                   })
               });           
             });
