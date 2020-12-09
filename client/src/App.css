@@ -1,0 +1,192 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #112d32;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #254e58;
+  color: white;
+}
+
+li a:hover:active{
+  background-color: #254e58;
+  color: white;
+}
+
+.active {
+  background-color: #88bdbc;
+  color:#112d32;
+  font-weight: 500;
+}
+
+.layout{
+  margin-left: 5%;
+  margin-right:5%;
+}
+
+.uploadImage{
+  width: 40px;
+  height:40px;
+
+}
+
+.hide{
+  display: none;
+}
+
+.uploadImageBox{
+  margin-top: 10px;
+  margin-left:15%;
+  margin-right:15%;
+  padding-left: 17%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  border: 1px solid black;
+}
+
+.uploadImageBox label{
+  font-size: 1.7rem;
+}
+
+.desc{
+  margin-left: 5%;
+  width:300px;
+
+}
+
+.cat{
+  margin-left: 8.5%;
+}
+
+.key{
+  margin-left: 8%;
+  width:300px;
+}
+
+.img{
+  margin-left: 13%;
+  
+}
+
+.p1{
+  margin-left: 4.5%;
+}
+.p2{
+  margin-left: 9%;
+}
+.p3{
+  margin-left: 4%;
+}
+
+.l1{
+  margin-left: 8%;
+}
+.l2{
+  margin-left:1%;
+}
+
+.uploadImage{
+  margin-left: 20%;
+  margin-top:5%;
+  width:200px;
+  background-color: #88bdbc;
+}
+
+.pwd{
+  margin-left: 20%;
+  margin-top:5%;
+  width:170px;
+  background-color: #88bdbc;
+  
+}
+
+.changePwd{
+  margin-left: 15%;
+  margin-bottom: 6%;
+}
+
+textarea{
+  vertical-align: middle;
+}
+
+.modalButton{
+ cursor: pointer;
+}
+
+.modalImage{
+  margin-left:17%;
+  height:500px;
+  width:500px;
+}
+
+.login{
+
+  margin-left: 4%;
+  margin-top:5%;
+  width:100px;
+  background-color: #88bdbc;
+
+}
+
+.forgot{
+  
+  width:150px;
+  background-color: #88bdbc;
+
+
+}
+
+.loginBox{
+  margin-top: 10px;
+  margin-left:15%;
+  margin-right:15%;
+  padding-left: 25%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  border: 1px solid black;
+}
+
+.loginBox label{
+  font-size: 1.7rem;
+}
+
+.loginBox h1{
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+.s1{
+  margin-left:8%;
+}
+.s2{
+  margin-left:9%;
+}
+.s3{
+  margin-left:2%;
+}
+
+.s4{
+  margin-left:1%;
+}
+.signup{
+
+  margin-left: 13%;
+  margin-top:5%;
+  width:100px;
+  background-color: #88bdbc;
+
+}
