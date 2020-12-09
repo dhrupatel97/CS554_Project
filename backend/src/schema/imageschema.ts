@@ -24,7 +24,7 @@ const CommentSchema: Schema = new Schema({
 const ImageSchema = new Schema({
     image_name: {
         type: String,
-        required: false,
+        required: true,
         set: (v) =>{
             if(typeof v !== 'string'){
               throw new Error("Image name should be of type string")
