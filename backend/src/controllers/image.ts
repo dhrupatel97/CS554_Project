@@ -13,8 +13,7 @@ export class Images {
         const imageDataAccess = new  ImadeDataAccess();
         const userDataAccess = new UserDataAccess();
 
-        app.route('/api/images').get((req: Request, res: Response) => {
-            
+        app.route('/api/images').get((req: Request, res: Response) => {           
             imageDataAccess.getAllImages((err: any, images: any) => {
                 if (err) {
                     res.status(500).send(err);
@@ -24,6 +23,24 @@ export class Images {
             });
         });
 
+        app.route('/api/images/filter').get((req: Request, res: Response) => {  
+          let filter = {}; 
+          if(req.query.keywords){
+            filter["keywords"] = { $in: req.query.keywords }
+          }  
+          if(req.query.category){
+            filter["category"] = { $eq: req.query.category }
+          }      
+          imageDataAccess.getAllImagesByFilter(filter, (err: any, images: any) => {
+              if (err) {
+                  res.status(500).send(err);
+              } else {
+                  res.json(images);
+              }
+          });
+      });
+
+        
         app.route('/api/images/:id/like').patch((req: Request, res: Response) => {
                     const id = req.params.id;
                     const userId = req.body.userId;
@@ -71,7 +88,6 @@ export class Images {
                             Body: fs.createReadStream(mReq.file.path),
                             Key: `useArtsy/${mReq.file.originalname}`
                         };
-                        console.log("BUCEKT NAME ---------------------", process.env.AWS_BUCKET_NAME)
                         s3.upload(params, (err, data) => {
                             fs.unlinkSync(mReq.file.path)
                             if (err) {
@@ -80,11 +96,13 @@ export class Images {
                             } else {
                                 if (data) {
                                     const imageUrl = data.Location;
+                                    console.log(req.body.keywords)
                                     const image = {
                                         name: req.body.name ? req.body.name : '' ,
                                         category: req.body.category,
                                         desc: req.body.desc ? req.body.desc : '' ,
                                         url: imageUrl,
+                                        keywords : req.body.keywords
                                     }
                                     let imageData = new ImageData(image);
                                     imageData.save((err: any) => {
