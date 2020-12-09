@@ -36,7 +36,7 @@ const UploadImage = () => {
         //     category: cate,
         //     url: urL
         //}
-        setPostedBy("tejashree")
+        
         let tempList= temp.split(" ")
         console.log("tempList", tempList)    
          for(let i=0;i<tempList.length;i++)
@@ -54,7 +54,7 @@ const UploadImage = () => {
 
             PHOTO_NAME: image,
             DESCRIPTION: description,
-            POSTEDBY:postedby,
+            POSTED_BY:"tejashree",
             CATEGORY:category,
             NO_OF_LIKES:0,
             NO_OF_DISLIKES:0,

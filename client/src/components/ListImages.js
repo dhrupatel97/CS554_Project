@@ -8,6 +8,8 @@ import MyVerticallyCenteredModal from './Image';
 
 function ListImages(props) {
   let images=[];
+
+  console.log("imgtuype",props.imageType)
  
    if(props.imageType==="home") {
     Images.map(re=>{    
@@ -46,6 +48,8 @@ function ListImages(props) {
     })
     
   }
+
+  console.log(images)
   
   const [modalShow, setModalShow] = React.useState(false);
   const [ID, setId] = React.useState('');
