@@ -6,6 +6,10 @@ export class ImadeDataAccess {
         return ImageData.find( callback );
     }
 
+    public getAllImagesByFilter( filter: any, callback: any){
+        return ImageData.find(filter, callback );
+    }
+
     public updateLike( id: string, isLike: boolean, callback: any){
         let likeQuery: any = {}
 

@@ -82,11 +82,18 @@ const ImageSchema = new Schema({
             return v;
           } 
     },
+    keywords :{
+      type: [String], 
+      required: true,
+      set: (v) =>{
+        if(!Array.isArray(v)){
+          throw new Error("keywords should be an array")
+        }
+        return v;
+      } 
+     
+    } ,
     comments : {type: [CommentSchema], required: false},
-    // comments: {
-    //     type: Array,
-    //     required: false
-    // },
     date: {
         type: Date,
         default: Date.now

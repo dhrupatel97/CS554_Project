@@ -7,6 +7,7 @@ export interface Image extends Document {
     url: string,
     category : string,
     no_of_likes: number,
+    keywords: string[],
     comments:Comment[],
     date : Date
   }
