@@ -1,6 +1,19 @@
 import React, {useState} from 'react';
 import axios from 'axios'
+import firebaseApp from '../firebase/Firebase'
 import '../App.css';
+
+const createToken = async () => {
+    const user = firebaseApp.auth().currentUser;
+    const token = user && (await user.getIdToken());
+    const payloadHeader = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return payloadHeader;
+  }
 
 const UploadImage = () => {
 
@@ -22,8 +35,9 @@ const UploadImage = () => {
         setURL(e.target.value)
     }
 
-    const onUpload = (e) => {
+    const onUpload = async (e) => {
         e.preventDefault()
+        const header = await createToken();
 
         const newImgObj = {
             image_name: imgName,
@@ -32,7 +46,7 @@ const UploadImage = () => {
             url: urL
         }
 
-        axios.post('/api/images', newImgObj)
+        axios.post('/api/images', newImgObj, header)
         .then((res) => {
             console.log(res.data)
         })
