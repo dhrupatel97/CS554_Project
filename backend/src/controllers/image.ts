@@ -74,17 +74,17 @@ export class Images {
                   console.log("width large", width)
                   height = height * 2
                   dimension = width.toString().concat(('x'.concat(height.toString())))
-                } else if (wandh === 'extra_large') {
-                  saveFinal = 'public/' + name + '-extra_large.jpg'
-                  width = width * 3;
-                  height = height * 3
-                  dimension = width.toString().concat(('x'.concat(height.toString())))
-                }              
+                } 
+                // else if (wandh === 'extra_large') {
+                //   saveFinal = 'public/' + name + '-extra_large.jpg'
+                //   width = width * 3;
+                //   height = height * 3
+                //   dimension = width.toString().concat(('x'.concat(height.toString())))
+                // }              
                  im.convert([downloadName, '-resize', dimension, saveFinal],
                   function (err, stdout) {
                     if (err) throw err;
-                    res.sendFile(saveFinal, { root: '.' })
-                    
+                    res.sendFile(saveFinal, { root: '.' })     
                   })
               });           
             });
