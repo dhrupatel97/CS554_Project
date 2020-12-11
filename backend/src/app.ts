@@ -3,6 +3,7 @@ import { Images } from './controllers/image';
 import { Users } from './controllers/user';
 import mongoConnection from "./config/mongoConnection";
 import bodyParser = require('body-parser');
+const decodeIDToken = require('../authenticateToken');
 // import * as dotenv from 'dotenv';
 
 class App {
@@ -24,6 +25,7 @@ class App {
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: false }));
 		this.app.use(express.static('public'));
+		this.app.use(decodeIDToken);
 	}
 }
 
