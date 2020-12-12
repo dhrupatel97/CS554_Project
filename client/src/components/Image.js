@@ -2,9 +2,11 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Images from '../ImageList';
+import download from '../imgs/download.png';
+import like from '../imgs/like.png';
 
 function MyVerticallyCenteredModal(props) {
-
+//add single image backend route , id can be taken from props.id
     let image={};
     let posterName="tejashree";
 
@@ -36,10 +38,11 @@ function MyVerticallyCenteredModal(props) {
          
         </Modal.Body>
         <Modal.Footer>
-        <a href={image.PHOTO_NAME} download="xyz">Click to download</a>
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-      </svg>
+        {/* add the download functionality from backend*/}
+        <a href={image.PHOTO_NAME} target="blank" download="xyz"><img src={download} className="downloadIcon"></img></a>
+        {/* add like functionality from backend */}
+        <img src={like} className="likeIcon"></img>
+     
         </Modal.Footer>
       </Modal>
     );

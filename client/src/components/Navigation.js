@@ -44,11 +44,6 @@ const NavigationAuth = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/uploads" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            My Images
-          </NavLink>
-        </li>
-        <li>
           <SignOutButton />
         </li>
       </ul>

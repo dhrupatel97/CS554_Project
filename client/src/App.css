@@ -190,3 +190,13 @@ textarea{
   background-color: #88bdbc;
 
 }
+
+.downloadIcon{
+  height: 20px;
+  width:20px;
+}
+
+.likeIcon{
+  height:20px;
+  width:20px;
+}

@@ -1,5 +1,4 @@
-let Images=[];
-export default Images=[
+export default Image=[
     {
         ID:1,
         PHOTO_NAME: "https://images.unsplash.com/photo-1552793494-111afe03d0ca?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80",
@@ -58,7 +57,7 @@ export default Images=[
         ID:4,
         PHOTO_NAME: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
         DESCRIPTION:"outdoor image",
-        POSTED_BY: "dhruv",
+        POSTED_BY: "tejashree",
         CATEGORY: "outdoor", 
         NO_OF_LIKES:"5",
         NO_OF_DISLIKES:"2",
@@ -76,7 +75,7 @@ export default Images=[
         ID:5,
         PHOTO_NAME: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
         DESCRIPTION:"office image",
-        POSTED_BY: "meghana",
+        POSTED_BY: "tejashree",
         CATEGORY: "office", 
         NO_OF_LIKES:"5",
         NO_OF_DISLIKES:"2",
@@ -130,7 +129,7 @@ export default Images=[
         ID:8,
         PHOTO_NAME: "https://images.unsplash.com/photo-1549637642-90187f64f420?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1053&q=80",
         DESCRIPTION:"office image",
-        POSTED_BY: "akhil",
+        POSTED_BY: "tejashree",
         CATEGORY: "office", 
         NO_OF_LIKES:"5",
         NO_OF_DISLIKES:"2",

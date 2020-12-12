@@ -29,14 +29,14 @@ const UploadImage = () => {
 
     const onUpload = (e) => {
         e.preventDefault()
-
+//add upload event functionality
         // const newImgObj = {
         //     image_name: imgName,
         //     desc: descp,
         //     category: cate,
         //     url: urL
         //}
-        
+        setPostedBy("tejashree")
         let tempList= temp.split(" ")
         console.log("tempList", tempList)    
          for(let i=0;i<tempList.length;i++)
@@ -54,7 +54,7 @@ const UploadImage = () => {
 
             PHOTO_NAME: image,
             DESCRIPTION: description,
-            POSTED_BY:"tejashree",
+            POSTEDBY:postedby,
             CATEGORY:category,
             NO_OF_LIKES:0,
             NO_OF_DISLIKES:0,
