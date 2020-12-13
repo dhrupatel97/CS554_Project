@@ -6,13 +6,9 @@ import * as multer from 'multer';
 import * as fs from 'fs';
 import * as AWS from 'aws-sdk';
 import { MulterRequest } from '../models/multerreq'
-import { threadId } from 'worker_threads';
 let request = require('request');
 let im = require('imagemagick');
-const path = require('path');
 
-import Upscaler from 'upscaler';
-const upscaler = new Upscaler();
 
 export class Images {
   public routes(app): void {
@@ -70,15 +66,13 @@ export class Images {
                   dimension = width.toString().concat(('x'.concat(height.toString())))
 
                 } else if (wandh === 'large') {
-                  // saveFinal = 'public/' + name + '-large.jpg'
+                  saveFinal = 'public/' + name + '-large.jpg'
                   
-                  // width = width * 2;
-                  // console.log("width large", width)
-                  // height = height * 2
-                  // dimension = width.toString().concat(('x'.concat(height.toString())))
-                  upscaler.upscale(url).then(upscaledImage => {
-                    res.send(upscaledImage); // base64 representation of image src
-                  });
+                  width = width * 2;
+                  console.log("width large", width)
+                  height = height * 2
+                  dimension = width.toString().concat(('x'.concat(height.toString())))
+                  
                 } else if (wandh === 'extra_large') {
                   saveFinal = 'public/' + name + '-extra_large.jpg'
                   width = width * 3;
