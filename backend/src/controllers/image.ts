@@ -6,6 +6,7 @@ import * as multer from 'multer';
 import * as fs from 'fs';
 import * as AWS from 'aws-sdk';
 import { MulterRequest } from '../models/multerreq'
+<<<<<<< HEAD
 import { threadId } from 'worker_threads';
 let request = require('request');
 let im = require('imagemagick');
@@ -13,6 +14,11 @@ const path = require('path');
 
 import Upscaler from 'upscaler';
 const upscaler = new Upscaler();
+=======
+let request = require('request');
+let im = require('imagemagick');
+
+>>>>>>> 9f93b72fe5c701acd472a5c4ae85fc9b11c5b89c
 
 export class Images {
   public routes(app): void {
@@ -70,6 +76,7 @@ export class Images {
                   dimension = width.toString().concat(('x'.concat(height.toString())))
 
                 } else if (wandh === 'large') {
+<<<<<<< HEAD
                   // saveFinal = 'public/' + name + '-large.jpg'
                   
                   // width = width * 2;
@@ -79,6 +86,15 @@ export class Images {
                   upscaler.upscale(url).then(upscaledImage => {
                     res.send(upscaledImage); // base64 representation of image src
                   });
+=======
+                  saveFinal = 'public/' + name + '-large.jpg'
+                  
+                  width = width * 2;
+                  console.log("width large", width)
+                  height = height * 2
+                  dimension = width.toString().concat(('x'.concat(height.toString())))
+                  
+>>>>>>> 9f93b72fe5c701acd472a5c4ae85fc9b11c5b89c
                 } else if (wandh === 'extra_large') {
                   saveFinal = 'public/' + name + '-extra_large.jpg'
                   width = width * 3;
@@ -164,9 +180,15 @@ export class Images {
           });
           const s3 = new AWS.S3();
           const mReq = req as MulterRequest
+<<<<<<< HEAD
 
           if (mReq && mReq.file) {
 
+=======
+
+          if (mReq && mReq.file) {
+
+>>>>>>> 9f93b72fe5c701acd472a5c4ae85fc9b11c5b89c
             let params = {
               ACL: 'public-read',
               Bucket: process.env.AWS_BUCKET_NAME,
@@ -225,6 +247,7 @@ export class Images {
                   res.status(400).send(err.message);
                 } else {
                   res.json(images);
+<<<<<<< HEAD
                 }
               });
             }
@@ -265,6 +288,48 @@ export class Images {
                 }
               });
             }
+=======
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    })
+
+    app.route("/api/images/:imageId/:commentId").delete(async (req: Request, res: Response) => {
+      try {
+        ImageData.findById(req.params.imageId, (err: any, images: any) => {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            if (images === null) {
+              res.status(404).send("Image for given id not found")
+            } else {
+
+              let comments = images.comments.filter(comment => {
+                if (comment && comment._id) {
+                  return comment._id.toString() !== req.params.commentId
+                } else
+                  return true;
+              });
+              if (images.comments.length == comments.length) {
+                res.status(404).send("comment id not found")
+                return
+              }
+              images.comments = comments;
+              images.save((err: any) => {
+                if (err) {
+                  res.status(400).send(err.message);
+                } else {
+
+                  res.json(images);
+                }
+              });
+            }
+>>>>>>> 9f93b72fe5c701acd472a5c4ae85fc9b11c5b89c
 
           }
         });

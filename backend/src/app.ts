@@ -3,7 +3,11 @@ import { Images } from './controllers/image';
 import { Users } from './controllers/user';
 import mongoConnection from "./config/mongoConnection";
 import bodyParser = require('body-parser');
+<<<<<<< HEAD
 const decodeIDToken = require('../authenticateToken');
+=======
+import { decodeIDToken } from '../authenticateToken';
+>>>>>>> 9f93b72fe5c701acd472a5c4ae85fc9b11c5b89c
 // import * as dotenv from 'dotenv';
 
 class App {
