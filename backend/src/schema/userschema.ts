@@ -5,7 +5,6 @@ export interface User extends Document {
     firstName : string,
     lastName : string,
     email : string,
-    password : string,
     likedImages: [string],
     postedImages: [string]
   }
@@ -18,13 +17,9 @@ const UserSchema = new Schema({
     },
     lastName: {
         type: String,
-        required: true
+        required: false
     },
     email: {
-        type: String,
-        required: true
-    },
-    password: {
         type: String,
         required: true
     },
