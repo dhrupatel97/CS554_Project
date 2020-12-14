@@ -84,7 +84,7 @@ const ImageSchema = new Schema({
     },
     keywords :{
       type: [String], 
-      required: true,
+      required: false,
       set: (v) =>{
         if(!Array.isArray(v)){
           throw new Error("keywords should be an array")
