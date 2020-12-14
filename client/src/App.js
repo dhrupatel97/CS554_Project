@@ -9,6 +9,7 @@ import { AuthProvider } from './firebase/Auth';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import ListImages from './components/ListImages';
+import SearchImages from './components/SearchImages';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
@@ -19,13 +20,11 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
-          <header className="App-header">
+        
             <Navigation />
-          </header>
-          <br />
-          <br />
-          <div className='App-body'>
+        
+          
+          
             <Switch>
             <Route exact path="/">
             <ListImages imageType={"All"}/>
@@ -42,6 +41,9 @@ function App() {
             <Route path="/uploads">
             <ListImages imageType={"User-Uploaded"}/>
             </Route>
+            <Route path="/search/:keyword">
+            <SearchImages/>
+            </Route>
             
             
             <PrivateRoute exact path='/uploadimage' component={UploadImage} />
@@ -50,8 +52,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             </Switch>
             <Redirect to="/"/>
-          </div>
-        </div>
+        
       </Router>
     </AuthProvider>
   );

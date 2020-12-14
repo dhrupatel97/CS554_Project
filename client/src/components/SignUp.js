@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { doCreateUserWithEmailAndPassword } from '../firebase/FirebaseFunctions';
 import { AuthContext } from '../firebase/Auth';
 import SocialSignIn from './SocialSignIn';
+import logo from './logo.png'
 
 function SignUp() {
   const { currentUser } = useContext(AuthContext);
@@ -46,72 +47,67 @@ function SignUp() {
   }
 
   return (
-    <div className="loginBox">
-      <h1>Sign up</h1>
-      {pwMatch && <h4 className="error">{pwMatch}</h4>}
-      <form onSubmit={handleSignUp}>
-   
-          <label>
-            Name:
-            </label>
-            <input
-              className="s1"
+    <div class="container">
+      <header>
+        <h1>
+          <a href="#">
+            <img src={logo} alt="Authentic Collection"/>
+          </a>
+        </h1>
+      </header>
+      <h1 class="text-center">Register</h1>
+      <form onSubmit={handleSignUp} class="registration-form">
+        {pwMatch && <h4 className="error">{pwMatch}</h4>}
+        <label class="col-one-half">
+          <span class="label-text">Name</span>
+          <input
               required
               name="displayName"
-              type="text"
-              placeholder="Name"
-            />
-            <br></br>
-          
-        
-          <label>
-            Email:
-            </label>        
-
-            <input
-              className="s2"
+              type="text" class="inputFields"
+              placeholder="Name"/>
+        </label>
+        <label class="col-one-half">
+          <span class="label-text">Email</span>
+          <input
               required
-              name="email"
+              name="email" class="inputFields"
               type="email"
               placeholder="Email"
             />
-            <br></br>
-         
-       
-          <label>
-            Password:
-            </label>
-            <input
-              className="s3"
-              id="passwordOne"
-              name="passwordOne"
+        </label>
+        <br/>
+        <label class="password">
+          <span class="label-text">Password</span>
+          <button class="toggle-visibility" title="toggle password visibility" tabindex="-1">
+            <span class="glyphicon glyphicon-eye-close"></span>
+          </button>
+          <input
+              required
+              id='passwordOne'
+              name="passwordOne" class="inputFields"
               type="password"
               placeholder="Password"
-              required
             />
-            <br></br>
-          
-      
-        
-          <label>
-            Confirm Password:
-            </label>
-            <input
-              className="s4"
-              name="passwordTwo"
+        </label>
+        <br/>
+        <label class="password">
+          <span class="label-text">Confirm Password</span>
+          <button class="toggle-visibility" title="toggle password visibility" tabindex="-1">
+            <span class="glyphicon glyphicon-eye-close"></span>
+          </button>
+          <input
+              required
+              id='passwordTwo'
+              name="passwordTwo" class="inputFields"
               type="password"
               placeholder="Confirm Password"
-              required
             />
-            <br></br>
-          
-        
-        <button id="submitButton" name="submitButton" type="submit" className="signup">
-          Sign Up
-        </button>
+        </label>
+        <br/>
+        <div class="text-center">
+          <button class="submit" name="submitButton">Sign Me Up</button>
+        </div>
       </form>
-      <br />
-      <SocialSignIn />
     </div>
   );
 }
