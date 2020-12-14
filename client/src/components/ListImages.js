@@ -55,15 +55,6 @@ function ListImages(props) {
       images.push(re)
      
   })
-  }else {
-
-    imgData.map(re=>{
-      if(re.posted_by===props.imageType)
-      {
-        images.push(re)
-      }
-    })
-    
   }
   
   const [modalShow, setModalShow] = useState(false);
