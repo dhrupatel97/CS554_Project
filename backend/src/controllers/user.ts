@@ -1,4 +1,4 @@
-import UserData from '../models/userschema'
+import UserData from '../schema/userschema'
 import { Request, Response } from 'express';
 
 export class Users {

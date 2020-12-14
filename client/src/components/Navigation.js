@@ -25,7 +25,7 @@ const NavigationAuth = () => {
         </li>
         <li>
           <NavLink exact to="/office" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            office Backgrounds
+            Office Backgrounds
           </NavLink>
         </li>
         <li>
@@ -40,7 +40,7 @@ const NavigationAuth = () => {
         </li>
         <li>
           <NavLink exact to="/uploadimage" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            upload Image
+            Upload Image
           </NavLink>
         </li>
         <li>

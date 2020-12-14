@@ -6,6 +6,7 @@ import {
   doSignInWithEmailAndPassword,
   doPasswordReset
 } from '../firebase/FirebaseFunctions';
+import firebaseApp from '../firebase/Firebase'
 
 function SignIn() {
   const { currentUser } = useContext(AuthContext);
@@ -15,6 +16,9 @@ function SignIn() {
 
     try {
       await doSignInWithEmailAndPassword(email.value, password.value);
+      const user = firebaseApp.auth().currentUser;
+      const token = user && (await user.getIdToken());
+      console.log(token);
     } catch (error) {
       alert(error);
     }
