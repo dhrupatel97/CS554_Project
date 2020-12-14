@@ -7,7 +7,8 @@ import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/like.png';
 import axios from 'axios'
-import firebaseApp from '../firebase/Firebase'
+import firebaseApp from '../firebase/Firebase';
+import Search from './Search';
 
 function ListImages(props) {
 
@@ -36,6 +37,11 @@ function ListImages(props) {
       }else if( props.imageType === 'User-Uploaded') {
         let header = await createToken();
         header.headers['Content-Type'] = 'application/json'
+       /* axios.post(`/api/images/${id}/comments`,data, header).then((res)=>{
+
+        })*/
+
+        
         axios.get('/api/imagesByUser', header)
           .then((res) => {
             setImgData(res.data)
@@ -98,6 +104,9 @@ function ListImages(props) {
   return (
     
     <div> 
+    <div className="search">
+    <Search/>
+    </div>
     
      <CardColumns>
     {

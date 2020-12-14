@@ -1,3 +1,11 @@
+*{
+  margin:0;
+}
+body 
+{
+  margin: 0;
+
+} 
 ul {
   list-style-type: none;
   margin: 0;
@@ -63,23 +71,28 @@ li a:hover:active{
   font-size: 1.7rem;
 }
 
+.name{
+  margin-left:5% ;
+  width:300px;
+}
 .desc{
-  margin-left: 5%;
+  margin-left: 7%;
   width:300px;
 
 }
 
 .cat{
-  margin-left: 8.5%;
+  margin-left: 10.5%;
+  width:300px;
 }
 
 .key{
-  margin-left: 8%;
+  margin-left: 9%;
   width:300px;
 }
 
 .img{
-  margin-left: 13%;
+  margin-left: 9%;
   
 }
 
@@ -199,4 +212,48 @@ textarea{
 .likeIcon{
   height:20px;
   width:20px;
+}
+
+.search{
+  background-color: #88bdbc;
+  height:150px;
+  margin-top: 0;
+}
+
+.searchInput{
+  margin-left: 500px;
+  margin-top:50px;
+  width:500px;
+  height:50px;
+  
+}
+
+.search1{
+  margin-left:500px;
+  border: 0.5px solid  black;
+  background-color: white;
+  margin-right: 535px;
+  margin-top: 5px;
+  font-size: 1.7rem;
+  color: #112d32 ;
+
+}
+.searchResult{
+  color: #112d32 ;
+  margin-left: 10px;
+}
+
+.searchResult:hover{
+  color: #88bdbc;
+}
+
+.searchTitle{
+margin-left: 600px;
+margin-bottom: 15px;
+color: #112d32;
+}
+
+.upTitle{
+  margin-left:70px;
+  margin-bottom: 5%
 }

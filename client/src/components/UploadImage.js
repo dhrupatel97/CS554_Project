@@ -67,34 +67,40 @@ const UploadImage = () => {
     }
 
     return (
-        <div>
-            <p>Welcome to Upload Images page</p>
+        <div className="uploadImageBox">
+            <h3 className="upTitle">Welcome to Upload Images page</h3>
             <form onSubmit={onUpload}>
                 <label>
                     Image Name:
                 </label>
-                <input type='text' name='image_name' value={imgName} onChange={onChangeImg} placeholder='Add Image Name'/>
+                <input className="name" type='text' name='image_name' value={imgName} onChange={onChangeImg} placeholder='Add Image Name'/>
+                <br></br>
                 <label>
                     Description:
                 </label>
-                <input type='text' name='desc' value={descp} onChange={onChangeDesc} placeholder='Add Image Description'/>
+                <input className="desc" type='text' name='desc' value={descp} onChange={onChangeDesc} placeholder='Add Image Description'/>
+                <br></br>
                 <label>
                     Category:
                 </label>
-                <select name="category" id="category"  value={cate} onChange={onChangeCate}>
+              
+                <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
                 </select>
+                <br></br>
                 <label>
                     Image file:
                 </label>
-                <input type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" onChange ={onChangeFile} single />  
+                <input className="img" type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" onChange ={onChangeFile} single />  
+                <br></br>
                 <label>
                     Keywords:
                 </label>
-                <input type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Add Image Keywords'/>
-                <button type='submit'>Upload</button>
+                <input className="key"  type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Add Image Keywords'/>
+                <br></br>
+                <button type='submit' className="uploadImage">Upload</button>
             </form>
         </div>
       
