@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { doCreateUserWithEmailAndPassword } from '../firebase/FirebaseFunctions';
 import { AuthContext } from '../firebase/Auth';
 import SocialSignIn from './SocialSignIn';
+
 function SignUp() {
   const { currentUser } = useContext(AuthContext);
   const [pwMatch, setPwMatch] = useState('');
@@ -20,6 +21,21 @@ function SignUp() {
         passwordOne.value,
         displayName
       );
+      const bodyValues =  {
+        "firstName" : displayName.value,
+        "email" : email.value
+      }
+      
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyValues),
+        accept: 'application/json'
+      };
+      fetch('/api/users',requestOptions).then(res => {
+        console.log(res);
+        return res.json()
+      }).catch(err => console.log(err));
     } catch (error) {
       alert(error);
     }
