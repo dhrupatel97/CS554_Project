@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as AWS from 'aws-sdk';
 import ImageData from '../schema/imageschema'
 import UserData from '../schema/userschema';
+import { ObjectId } from 'mongodb';
 
 async function s3Upload(mReq, req, callback) {
   AWS.config.update({
@@ -39,14 +40,27 @@ async function s3Upload(mReq, req, callback) {
               desc: req.body.desc ? req.body.desc : '',
               url: imageUrl,
               keywords: req.body.keywords,
-              posted_by: user.firstName
+              posted_by: user.firstName,
+              _id: new ObjectId()
             }
             let imageData = new ImageData(image);
             imageData.save((err: any) => {
               if (err) {
                 callback(400, err.message)
               } else {
-                callback(200, image)
+ 
+                UserData.update({
+                  email: currentUser.email
+                },{
+                  $push : { "postedImages" : image._id.toString()}     
+                },(err: any, user :any)=> {
+                  if(err){
+                    callback(500,err.message);
+                  }else{
+                    callback(200,image)
+                  }
+                });
+                // callback(200, image)
               }
             });
           }
