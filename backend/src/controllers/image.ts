@@ -48,6 +48,26 @@ export class Images {
         }
       });
     });
+
+    app.route('/api/imagesbyuser').get((req: Request, res: Response) => {
+      const currentUser = req['currentUser'];
+      UserData.findOne({
+        email: currentUser.email
+      }, function (err, user) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        const imageIds = user.postedImages;
+      imageDataAccess.getImagesByImageIds(imageIds, (err: any, images: any) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.json(images);
+        }
+      });
+    });
+    });
+
     app.route('/api/images/:id').get((req: Request, res: Response) => {
       ImageData.findById(req.params.id, (err: any, images: any) => {
         if (err) {
