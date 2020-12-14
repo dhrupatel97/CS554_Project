@@ -10,8 +10,8 @@ const createToken = async () => {
     const token = user && (await user.getIdToken());
     const payloadHeader = {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`
       },
     };
     return payloadHeader;
@@ -22,7 +22,7 @@ const UploadImage = () => {
     const [imgName, setImgName] = useState('')
     const [descp, setDesc] = useState('')
     const [cate, setCate] = useState('')
-    const [urL, setURL] = useState('')
+    const [imgFile, setImgFile] = useState()
     
     const onChangeImg = (e) => {
         setImgName(e.target.value)
@@ -33,22 +33,22 @@ const UploadImage = () => {
     const onChangeCate = (e) => {
         setCate(e.target.value)
     }
-    const onChangeURL = (e) => {
-        setURL(e.target.value)
+    const onChangeFile = (e) => {
+        setImgFile(e.target.files[0])
     }
 
     const onUpload = async (e) => {
         e.preventDefault()
-        const header = await createToken();
-
-        const newImgObj = {
-            image_name: imgName,
-            desc: descp,
-            category: cate,
-            url: urL
-        }
-
-        axios.post('/api/images', newImgObj, header)
+        let header = await createToken();
+        header.headers['Content-Type'] = 'multipart/form-data'
+        let data = new FormData() 
+        data.append('image', imgFile)
+        data.append('category', cate)
+        data.append('desc', descp)
+        data.append('image_name',imgName)
+        // data.append('keywords', ['todo'])
+        
+        axios.post('/api/images', data, header)
         .then((res) => {
             console.log(res.data)
         })
@@ -59,7 +59,6 @@ const UploadImage = () => {
         setImgName('')
         setCate('')
         setDesc('')
-        setURL('')
     }
 
     return (
@@ -79,10 +78,10 @@ const UploadImage = () => {
                 </label>
                 <input type='text' name='category' value={cate} onChange={onChangeCate} placeholder='Add Image Category'/>
                 <label>
-                    URL:
+                    Image file:
                 </label>
-                <input type='text' name='url' value={urL} onChange={onChangeURL} placeholder='Add Image URL'/>
-                <button type='submit'>Add Image</button>
+                <input type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" onChange ={onChangeFile} single />                
+                <button type='submit'>Upload</button>
             </form>
         </div>
       
