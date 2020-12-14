@@ -48,6 +48,15 @@ export class Images {
         }
       });
     });
+    app.route('/api/images/:id').get((req: Request, res: Response) => {
+      ImageData.findById(req.params.id, (err: any, images: any) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.json(images);
+        }
+      });
+    });
 
     app.route('/api/images/filter').get((req: Request, res: Response) => {
 
