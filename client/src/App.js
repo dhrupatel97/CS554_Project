@@ -39,9 +39,9 @@ function App() {
             <Route path="/outdoor">
             <ListImages imageType={"Outdoor"}/>
             </Route>
-            <Route path="/uploads">
+            <PrivateRoute path="/uploads">
             <ListImages imageType={"User-Uploaded"}/>
-            </Route>
+            </PrivateRoute>
             <Route path="/search/:keyword">
             <SearchImages keyword={"outdoor"}/>
             </Route>
