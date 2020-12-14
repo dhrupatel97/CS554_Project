@@ -39,7 +39,7 @@ async function s3Upload(mReq, req, callback) {
               category: req.body.category,
               desc: req.body.desc ? req.body.desc : '',
               url: imageUrl,
-              keywords: req.body.keywords,
+              keywords: req.body.keywords ? req.body.keywords.split(",") : '',
               posted_by: user.firstName,
               _id: new ObjectId()
             }
