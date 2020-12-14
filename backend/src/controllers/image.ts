@@ -3,14 +3,9 @@ import { ImadeDataAccess } from '../data/image';
 import { UserDataAccess } from '../data/user';
 import { Request, Response } from 'express';
 import * as multer from 'multer';
-import * as fs from 'fs';
-import * as AWS from 'aws-sdk';
 import { MulterRequest } from '../models/multerreq'
-let request = require('request');
-// let im = require('imagemagick');
 import { s3Upload } from '../utils/upload'
 import { imageResize } from '../utils/imageMagick'
-
 
 export class Images {
   public routes(app): void {
@@ -95,7 +90,7 @@ export class Images {
       multer({ dest: 'temp/', limits: { fileSize: 8 * 1024 * 1024 } }).single('image'),
       (req: Request, res: Response) => {
 
-        try {
+        try {        
           const mReq = req as MulterRequest
           if (mReq && mReq.file) {
             s3Upload(mReq, req, (code, message) => {

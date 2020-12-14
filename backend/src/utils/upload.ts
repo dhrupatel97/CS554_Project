@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as AWS from 'aws-sdk';
 import ImageData from '../schema/imageschema'
+import UserData from '../schema/userschema';
 
 async function s3Upload(mReq, req, callback) {
   AWS.config.update({
@@ -15,32 +16,44 @@ async function s3Upload(mReq, req, callback) {
     Key: `useArtsy/${mReq.file.originalname}`
   };
   const s3 = new AWS.S3();
-  s3.upload(params, (err, data) => {
-    fs.unlinkSync(mReq.file.path)
-    if (err) {
-      console.log(err)
-      callback(500, err.message)
-    } else {
-      if (data) {
-        const imageUrl = data.Location;
-        const image = {
-          image_name: req.body.image_name,
-          category: req.body.category,
-          desc: req.body.desc ? req.body.desc : '',
-          url: imageUrl,
-          keywords: req.body.keywords
-        }
-        let imageData = new ImageData(image);
-        imageData.save((err: any) => {
-          if (err) {
-            callback(400, err.message)
-          } else {
-            callback(200, image)
+  const currentUser = req['currentUser'];
+  console.log(currentUser.email);
+  UserData.findOne({
+    email: currentUser.email
+  }, function(err, user){
+    console.log("User in uplaod", user)
+    if(err){
+      callback(401, err.message)
+    }else{
+      s3.upload(params, (err, data) => {
+        fs.unlinkSync(mReq.file.path)
+        if (err) {
+          console.log(err)
+          callback(500, err.message)
+        } else {
+          if (data) {
+            const imageUrl = data.Location;
+            const image = {
+              image_name: req.body.image_name,
+              category: req.body.category,
+              desc: req.body.desc ? req.body.desc : '',
+              url: imageUrl,
+              keywords: req.body.keywords,
+              posted_by: user.firstName
+            }
+            let imageData = new ImageData(image);
+            imageData.save((err: any) => {
+              if (err) {
+                callback(400, err.message)
+              } else {
+                callback(200, image)
+              }
+            });
           }
-        });
-      }
+        }
+      })
     }
-  })
+  }) 
 }
 
 export { s3Upload };

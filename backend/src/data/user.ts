@@ -1,4 +1,4 @@
-import UserData from '../models/userschema'
+import UserData from '../schema/userschema'
 
 export class UserDataAccess {
     public hasUserLiked( userId: string, photoId: String, callback: any ){

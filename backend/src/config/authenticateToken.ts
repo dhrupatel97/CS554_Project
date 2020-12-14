@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import * as firebaseAccountCredentials from './serviceAccount.json';
+import * as firebaseAccountCredentials from '../../serviceAccount.json';
 
 const serviceAccount = firebaseAccountCredentials as admin.ServiceAccount;
 
@@ -7,7 +7,13 @@ admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: "https://cs554-a8ee8.firebaseio.com"
 });
-
+const permittedEnpoints = [{
+	method: "POST",
+	url: "/api/users"
+}, {
+	method: "GET",
+	url: "/api/images"
+}]
 async function decodeIDToken(req, res, next) {
 	const header = req.headers?.authorization;
 	if (header !== 'Bearer null' && req.headers?.authorization?.startsWith('Bearer ')) {
@@ -15,11 +21,22 @@ async function decodeIDToken(req, res, next) {
 		try {
 			const decodedToken = await admin.auth().verifyIdToken(idToken);
 			req['currentUser'] = decodedToken;
+			next();
 		} catch (err) {
-			console.log(err);
+			res.status(400).send(err.message);
+		}
+	} else {
+		const endpoint = req.originalUrl;
+		const method = req.method;
+		const pe = permittedEnpoints.find(pe => {
+			return (pe.url === endpoint && pe.method === method);
+		})
+		if (pe === undefined) {
+			res.status(401).send("Please sigin to see the data");
+		} else {
+			next();
 		}
 	}
-	next();
 }
 
 export { decodeIDToken };
