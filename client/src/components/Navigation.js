@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import SignOutButton from './SignOut';
 import '../App.css';
@@ -11,87 +11,100 @@ const Navigation = () => {
 
 const NavigationAuth = () => {
   return (
-    <nav className="navigation">
-      <ul>
-        <li>
-          <NavLink exact to="/" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            All Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/home" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Home Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/office" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Office Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/outdoor" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Outdoor Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/uploads" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Uploaded
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/account" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/uploadimage" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Upload Image
-          </NavLink>
-        </li>
-        <li>
-          <SignOutButton />
-        </li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Artsy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <Link exact to="/" class='nav-link' >
+                Home
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/home" class='nav-link'>
+                Home Backgrounds
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/office" class='nav-link'>
+                Office Backgrounds
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/outdoor" class='nav-link'>
+                Outdoor Backgrounds
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/uploads" class='nav-link' >
+                My Photos
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/account" class='nav-link' >
+                Account
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/uploadimage" class='nav-link'  >
+                Upload Image
+              </Link>
+            </li>
+            <li class='nav-item'>
+              <SignOutButton/>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
     </nav>
   );
 };
 
 const NavigationNonAuth = () => {
   return (
-    <nav className="navigation">
-      <ul>
-        <li>
-          <NavLink exact to="/" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            All Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/home" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Home Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/office" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            office Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/outdoor" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Outdoor Backgrounds
-          </NavLink>
-        </li>
-        <li>
-          <NavLink exact to="/signup" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Sign-up
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink exact to="/signin" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
-            Sign-In
-          </NavLink>
-        </li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Artsy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <Link exact to="/" class='nav-link'>
+                Home
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/home" class='nav-link' >
+                Home Backgrounds
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/signup" class='nav-link' >
+                Sign Up
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/signin" class='nav-link'  >
+                Sign In
+              </Link>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
     </nav>
   );
 };

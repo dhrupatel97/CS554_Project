@@ -103,7 +103,7 @@ function ListImages(props) {
 
   return (
     
-    <div> 
+    <div className='container-fluid'> 
     <div className="search">
     <Search/>
     </div>

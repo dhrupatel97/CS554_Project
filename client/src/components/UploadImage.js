@@ -93,7 +93,7 @@ const UploadImage = () => {
                 <label>
                     Image file:
                 </label>
-                <input className="img" type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" onChange ={onChangeFile} single />  
+                <input className="img" type="file" id="myfile" name="myfile" accept="image/png, image/jpg, image/jpeg" onChange ={onChangeFile} single />  
                 <br></br>
                 <label>
                     Keywords:
