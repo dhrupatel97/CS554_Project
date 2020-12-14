@@ -62,7 +62,7 @@ const UploadImage = () => {
         })
 
         setImgName('')
-        setCate('')
+        setCate('Office')
         setDesc('')
     }
 
