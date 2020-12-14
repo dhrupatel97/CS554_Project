@@ -13,6 +13,9 @@ const permittedEnpoints = [{
 }, {
 	method: "GET",
 	url: "/api/images"
+}, {
+	method: "GET",
+	url: "download"
 }]
 async function decodeIDToken(req, res, next) {
 	const header = req.headers?.authorization;
@@ -29,7 +32,7 @@ async function decodeIDToken(req, res, next) {
 		const endpoint = req.originalUrl;
 		const method = req.method;
 		const pe = permittedEnpoints.find(pe => {
-			return (pe.url === endpoint && pe.method === method);
+			return (endpoint.includes(pe.url) && pe.method === method);
 		})
 		if (pe === undefined) {
 			res.status(401).send("Please sigin to see the data");

@@ -28,19 +28,19 @@ function App() {
           <div className='App-body'>
             <Switch>
             <Route exact path="/">
-            <ListImages imageType={"all"}/>
+            <ListImages imageType={"All"}/>
             </Route>
             <Route path="/home">
-            <ListImages imageType={"home"}/>
+            <ListImages imageType={"Home"}/>
             </Route>
             <Route path="/office">
-            <ListImages imageType={"office"}/>
+            <ListImages imageType={"Office"}/>
             </Route>
             <Route path="/outdoor">
-            <ListImages imageType={"outdoor"}/>
+            <ListImages imageType={"Outdoor"}/>
             </Route>
             <Route path="/uploads">
-            <ListImages imageType={userName}/>
+            <ListImages imageType={"User-Uploaded"}/>
             </Route>
             
             

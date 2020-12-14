@@ -18,11 +18,9 @@ async function s3Upload(mReq, req, callback) {
   };
   const s3 = new AWS.S3();
   const currentUser = req['currentUser'];
-  console.log(currentUser.email);
   UserData.findOne({
     email: currentUser.email
   }, function(err, user){
-    console.log("User in uplaod", user)
     if(err){
       callback(401, err.message)
     }else{

@@ -15,13 +15,7 @@ export class Images {
     const userDataAccess = new UserDataAccess();
 
     app.route('/api/images/:id/download').get((req: Request, res: Response) => {
-      const currentUser = req['currentUser'];
-      UserData.findOne({
-        email: currentUser.email
-      }, function (err, user) {
-        if (err) {
-          res.status(500).send(err);
-        }
+      
         imageDataAccess.deletePublicFiles();
         ImageData.findById(req.params.id, (err: any, images: any) => {
           if (err) {
@@ -36,7 +30,6 @@ export class Images {
             }
           }
         });
-      })
     });
 
     app.route('/api/images').get((req: Request, res: Response) => {
@@ -49,7 +42,7 @@ export class Images {
       });
     });
 
-    app.route('/api/imagesbyuser').get((req: Request, res: Response) => {
+    app.route('/api/imagesByUser').get((req: Request, res: Response) => {
       const currentUser = req['currentUser'];
       UserData.findOne({
         email: currentUser.email
@@ -78,8 +71,7 @@ export class Images {
       });
     });
 
-    app.route('/api/images/filter').get((req: Request, res: Response) => {
-
+    app.route('/api/imagesByFilter').get((req: Request, res: Response) => {
       let filter = {};
       if (req.query.keywords) {
         filter["keywords"] = { $in: req.query.keywords }
@@ -89,6 +81,7 @@ export class Images {
       }
       imageDataAccess.getAllImagesByFilter(filter, (err: any, images: any) => {
         if (err) {
+          console.log( err );
           res.status(500).send(err);
         } else {
           res.json(images);
@@ -111,7 +104,6 @@ export class Images {
             if (err) {
               res.status(500).send(err);
             } else {
-              console.log("patch hasUserliked", data)
               userDataAccess.updateLikedImage(user._id, id, data);
 
               ImageData.findById(id, (err: any, images: any) => {
