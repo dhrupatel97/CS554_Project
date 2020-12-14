@@ -1,6 +1,7 @@
 export default Image=[
     {
         ID:1,
+        image_name:"name1",
         PHOTO_NAME: "https://images.unsplash.com/photo-1552793494-111afe03d0ca?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80",
         DESCRIPTION:"office image",
         POSTED_BY: "tejashree",
@@ -19,6 +20,7 @@ export default Image=[
     },
     {
         ID:2,
+        image_name:"name2",
         PHOTO_NAME: "https://images.unsplash.com/photo-1566836610593-62a64888a216?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=970&q=80",
         DESCRIPTION:"home image",
         POSTED_BY: "tejashree",
@@ -37,6 +39,7 @@ export default Image=[
     },
     {
         ID:3,
+        image_name:"name3",
         PHOTO_NAME: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
         DESCRIPTION:"outdoor image",
         POSTED_BY: "tejashree",
@@ -55,6 +58,7 @@ export default Image=[
     },
     {
         ID:4,
+        image_name:"name4",
         PHOTO_NAME: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
         DESCRIPTION:"outdoor image",
         POSTED_BY: "tejashree",
@@ -73,6 +77,7 @@ export default Image=[
     },
     {
         ID:5,
+        image_name:"name5",
         PHOTO_NAME: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
         DESCRIPTION:"office image",
         POSTED_BY: "tejashree",
@@ -91,6 +96,7 @@ export default Image=[
     },
     {
         ID:6,
+        image_name:"name6",
         PHOTO_NAME: "https://images.unsplash.com/photo-1443397646383-16272048780e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=967&q=80",
         DESCRIPTION:"outdoor image",
         POSTED_BY: "tejashree",
@@ -109,6 +115,7 @@ export default Image=[
     },
     {
         ID:7,
+        image_name:"name7",
         PHOTO_NAME: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
         DESCRIPTION:"home image",
         POSTED_BY: "tejashree",
@@ -127,6 +134,7 @@ export default Image=[
     },
     {
         ID:8,
+        image_name:"name8",
         PHOTO_NAME: "https://images.unsplash.com/photo-1549637642-90187f64f420?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1053&q=80",
         DESCRIPTION:"office image",
         POSTED_BY: "tejashree",
@@ -145,6 +153,7 @@ export default Image=[
     },
     {
         ID:9,
+        image_name:"name9",
         PHOTO_NAME: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80",
         DESCRIPTION:"home image",
         POSTED_BY: "tejashree",
@@ -163,6 +172,7 @@ export default Image=[
     },
     {
         ID:10,
+        image_name:"name10",
         PHOTO_NAME: "https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1078&q=80",
         DESCRIPTION:"outdoor image",
         POSTED_BY: "tejashree",

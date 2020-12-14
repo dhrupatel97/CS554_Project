@@ -9,47 +9,26 @@ import like from '../imgs/like.png';
 import Search from './Search';
 
 
-function ListImages(props) {
-  let images=[];
-  //add get all images route and replace the Images.map function with the api 
- 
-   if(props.imageType==="home") {
-    Images.map(re=>{    
-      if(re.CATEGORY==="home")
-      {
-         images.push(re)
-       }   
-     })
-  }else if(props.imageType==="outdoor") {
-    Images.map(re=>{    
-      if(re.CATEGORY==="outdoor")
-      {
-         images.push(re)
-       }   
-     })
-  }else if(props.imageType==="office") {
-    Images.map(re=>{    
-      if(re.CATEGORY==="office")
-      {
-         images.push(re)
-       }   
-     })
-  }else if(props.imageType==="all") {
-    Images.map(re=>{    
-      
-      images.push(re)
-     
-  })
-  }else {
+function SearchImages(props) {
+let temp=window.location.pathname.split("/");
+let keyword=temp[2]  
+let images=[];
 
-    Images.map(re=>{
-      if(re.POSTED_BY===props.imageType)
-      {
-        images.push(re)
-      }
-    })
-    
-  }
+Images.map(re=>{
+  re.KEYWORDS.map(res=>{
+    if (res===keyword)
+    {
+      images.push(re)
+    }
+
+
+
+  })
+})
+
+
+ 
+ console.log("ia", images)   
   
   const [modalShow, setModalShow] = React.useState(false);
   const [ID, setId] = React.useState('');
@@ -59,10 +38,13 @@ function ListImages(props) {
     setId(id)
   }
   
+
   return (
     
     <div> 
-    <Search/>
+    
+  <h1>"{keyword}" Backgrounds</h1>
+  
      <CardColumns>
     {
         images.map(re=>{
@@ -97,4 +79,4 @@ function ListImages(props) {
     </div>
   );}
 
-export default ListImages;
+export default SearchImages;

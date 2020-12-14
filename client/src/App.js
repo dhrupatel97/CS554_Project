@@ -9,6 +9,7 @@ import { AuthProvider } from './firebase/Auth';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import ListImages from './components/ListImages';
+import SearchImages from './components/SearchImages';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path="/outdoor">
             <ListImages imageType={"outdoor"}/>
+            </Route>
+            <Route path="/search/:keyword">
+            <SearchImages keyword={"outdoor"}/>
             </Route>
             <Route path="/uploads">
             <ListImages imageType={userName}/>
