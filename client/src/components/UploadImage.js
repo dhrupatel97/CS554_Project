@@ -23,6 +23,7 @@ const UploadImage = () => {
     const [descp, setDesc] = useState('')
     const [cate, setCate] = useState('')
     const [imgFile, setImgFile] = useState()
+    const [keywords, setKeywords] = useState('')
     
     const onChangeImg = (e) => {
         setImgName(e.target.value)
@@ -30,6 +31,10 @@ const UploadImage = () => {
     const onChangeDesc = (e) => {
         setDesc(e.target.value)
     }
+    const onChangeKeywords = (e) => {
+        setKeywords(e.target.value)
+    }
+
     const onChangeCate = (e) => {
         setCate(e.target.value)
     }
@@ -46,7 +51,7 @@ const UploadImage = () => {
         data.append('category', cate)
         data.append('desc', descp)
         data.append('image_name',imgName)
-        // data.append('keywords', ['todo'])
+        data.append('keywords', keywords)
         
         axios.post('/api/images', data, header)
         .then((res) => {
@@ -76,11 +81,19 @@ const UploadImage = () => {
                 <label>
                     Category:
                 </label>
-                <input type='text' name='category' value={cate} onChange={onChangeCate} placeholder='Add Image Category'/>
+                <select name="category" id="category"  value={cate} onChange={onChangeCate}>
+                    <option value="Office">Office</option>
+                    <option value="Home">Home</option>
+                    <option value="Outdoor">Outdoor</option>
+                </select>
                 <label>
                     Image file:
                 </label>
-                <input type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" onChange ={onChangeFile} single />                
+                <input type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" onChange ={onChangeFile} single />  
+                <label>
+                    Keywords:
+                </label>
+                <input type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Add Image Keywords'/>
                 <button type='submit'>Upload</button>
             </form>
         </div>
