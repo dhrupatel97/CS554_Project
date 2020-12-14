@@ -9,58 +9,13 @@ import { AuthProvider } from './firebase/Auth';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import ListImages from './components/ListImages';
-//import Images from './ImageList';
+
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 
 function App() {
+  let userName="tejashree"
 
-  const [appState, setAppState] = useState()
-
-  useEffect(() =>{
-    fetch('/api/images', {
-      accept: 'application/json',
-    }).then(res => res.json())
-      .then(pic => {
-        setAppState(pic)
-        console.log('APP.JS - ')
-        console.log(pic)
-      })
-      .catch(err => console.log(err));
-  }, [])
-
-
-  let officeImages=[];
-  let homeImages=[];
-  let outdoorImages=[];
-  // appState.map((re) => {
-  //   if(re.CATEGORY === 'office'){
-  //     officeImages.push(re)
-  //   }
-  //   if(re.CATEGORY === 'home'){
-  //     homeImages.push(re)
-  //   }
-  //   if(re.CATEGORY === 'outdoor'){
-  //      outdoorImages.push(re)
-  //   }
-  // })
-  
-  // appState.map(re=>{
-    
-  //   if(re.category==="office")
-  //   {
-  //      officeImages.push(re)
-  //   }
-  //   else if(re.category==="home")
-  //   {
-  //      homeImages.push(re)
-  //   }
-  //   else if(re.category==="outdoor")
-  //   {
-  //      outdoorImages.push(re)
-  //   }
-    
-  // })
   return (
     <AuthProvider>
       <Router>
@@ -73,17 +28,22 @@ function App() {
           <div className='App-body'>
             <Switch>
             <Route exact path="/">
-            <ListImages images={appState}/>
+            <ListImages imageType={"all"}/>
             </Route>
             <Route path="/home">
-            <ListImages images={homeImages}/>
+            <ListImages imageType={"home"}/>
             </Route>
             <Route path="/office">
-            <ListImages images={officeImages}/>
+            <ListImages imageType={"office"}/>
             </Route>
             <Route path="/outdoor">
-            <ListImages images={outdoorImages}/>
+            <ListImages imageType={"outdoor"}/>
             </Route>
+            <Route path="/uploads">
+            <ListImages imageType={userName}/>
+            </Route>
+            
+            
             <PrivateRoute exact path='/uploadimage' component={UploadImage} />
             <PrivateRoute path="/account" component={Account} />
             <Route path="/signin" component={SignIn} />

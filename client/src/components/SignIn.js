@@ -40,37 +40,42 @@ function SignIn() {
     return <Redirect to="/home" />;
   }
   return (
-    <div>
-      <h1>Log in</h1>
+    <div className="loginBox">
+      <h1 >Log in</h1>
       <form onSubmit={handleLogin}>
-        <div className="form-group">
+        
           <label>
             Email:
+            </label>  
             <input
-              className="form-control"
+              className="l1"
               name="email"
               id="email"
               type="email"
               placeholder="Email"
               required
             />
-          </label>
-        </div>
-        <div className="form-group">
+            <br></br>
+          
+        
+        
           <label>
             Password:
+            </label>
             <input
-              className="form-control"
+              className="l2"
               name="password"
               type="password"
               placeholder="Password"
               required
             />
-          </label>
-        </div>
-        <button type="submit">Log in</button>
+            <br></br>
+            
+          
+       
+        <button type="submit" className="login">Log in</button>
 
-        <button className="forgotPassword" onClick={passwordReset}>
+        <button className="forgotPassword" onClick={passwordReset} className="forgot">
           Forgot Password
         </button>
       </form>

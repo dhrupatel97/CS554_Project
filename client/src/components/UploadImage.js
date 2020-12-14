@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Images from '../ImageList';
+
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase'
 import '../App.css';
@@ -83,6 +85,7 @@ const UploadImage = () => {
                 <button type='submit'>Add Image</button>
             </form>
         </div>
+      
     );
 };
 

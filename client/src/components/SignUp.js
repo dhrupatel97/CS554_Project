@@ -46,60 +46,67 @@ function SignUp() {
   }
 
   return (
-    <div>
+    <div className="loginBox">
       <h1>Sign up</h1>
       {pwMatch && <h4 className="error">{pwMatch}</h4>}
       <form onSubmit={handleSignUp}>
-        <div className="form-group">
+   
           <label>
             Name:
+            </label>
             <input
-              className="form-control"
+              className="s1"
               required
               name="displayName"
               type="text"
               placeholder="Name"
             />
-          </label>
-        </div>
-        <div className="form-group">
+            <br></br>
+          
+        
           <label>
             Email:
+            </label>        
+
             <input
-              className="form-control"
+              className="s2"
               required
               name="email"
               type="email"
               placeholder="Email"
             />
-          </label>
-        </div>
-        <div className="form-group">
+            <br></br>
+         
+       
           <label>
             Password:
+            </label>
             <input
-              className="form-control"
+              className="s3"
               id="passwordOne"
               name="passwordOne"
               type="password"
               placeholder="Password"
               required
             />
-          </label>
-        </div>
-        <div className="form-group">
+            <br></br>
+          
+      
+        
           <label>
             Confirm Password:
+            </label>
             <input
-              className="form-control"
+              className="s4"
               name="passwordTwo"
               type="password"
               placeholder="Confirm Password"
               required
             />
-          </label>
-        </div>
-        <button id="submitButton" name="submitButton" type="submit">
+            <br></br>
+          
+        
+        <button id="submitButton" name="submitButton" type="submit" className="signup">
           Sign Up
         </button>
       </form>
