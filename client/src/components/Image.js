@@ -4,21 +4,45 @@ import Button from 'react-bootstrap/Button';
 import Images from '../ImageList';
 import download from '../imgs/download.png';
 import like from '../imgs/like.png';
+import axios from 'axios'
+import firebaseApp from '../firebase/Firebase'
 
 function MyVerticallyCenteredModal(props) {
 //add single image backend route , id can be taken from props.id
-    let image={};
-    let posterName="tejashree";
+  const handleDownload = (id, size) => {
+    window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
+  }
 
-    Images.map(re=>{
-        if(re.ID===props.id)
-        {
-            image=re
-        }
+  const createToken = async () => {
+    const user = firebaseApp.auth().currentUser;
+    const token = user && (await user.getIdToken());
+    const payloadHeader = {
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`
+      },
+    };
+    return payloadHeader;
+  }
+
+  const handleLike = async (id) => {
+    let header = await createToken();
+    header.headers['Content-Type'] = 'application/json'
+    console.log(id)
+
+    axios.patch(`/api/images/${id}/like`, {}, header)
+    .then((res) => {
+        console.log(res.data)
     })
+    .catch((err) => {
+        // TODO Can redirect to login page 
+        // TODO Dhruv
+        alert( "Please sign in" );
+        console.log(err)
+    })
+   
+  }
 
-    
-    
     return (
       <Modal
         {...props}
@@ -28,20 +52,20 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            <p>@{image.POSTED_BY}</p>
+            <p>@{props.image.image_name}</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         
           
-          <img className="modalImage" variant="top" src={image.PHOTO_NAME} />
+          <img className="modalImage" variant="top" alt="img" src={props.image.url} />
          
         </Modal.Body>
         <Modal.Footer>
         {/* add the download functionality from backend*/}
-        <a href={image.PHOTO_NAME} target="blank" download="xyz"><img src={download} className="downloadIcon"></img></a>
+        <button onClick={ () => handleDownload( props.image._id, "default")}><img src={download} className="downloadIcon"></img></button>
         {/* add like functionality from backend */}
-        <img src={like} className="likeIcon"></img>
+        <button onClick={ () => handleLike( props.image._id)}><img src={like} className="likeIcon"></img></button>
      
         </Modal.Footer>
       </Modal>

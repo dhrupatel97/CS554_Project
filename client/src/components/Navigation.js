@@ -34,6 +34,11 @@ const NavigationAuth = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink exact to="/uploads" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
+            Uploaded
+          </NavLink>
+        </li>
+        <li>
           <NavLink exact to="/account" activeClassName="active" style={{ textDecoration: 'none', color:'white' }}>
             Account
           </NavLink>

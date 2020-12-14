@@ -7,10 +7,8 @@ export class UserDataAccess {
                 throw( err )
             } else {
                 if( data && data.likedImages &&  Array.isArray(data.likedImages) && data.likedImages.includes( photoId) ){
-                    console.log( "hasUserliked", false)
                     callback( false );
                 } else {
-                    console.log( "hasUserliked", true)
                     callback( true );
                 }
             }

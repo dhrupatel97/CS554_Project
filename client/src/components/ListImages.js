@@ -12,12 +12,12 @@ import firebaseApp from '../firebase/Firebase'
 function ListImages(props) {
 
   const [imgData, setImgData] = useState([])
+  const [liked, setLike] = useState(false);
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
     const token = user && (await user.getIdToken());
     const payloadHeader = {
       headers: {
-        // 'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`
       },
     };
@@ -25,69 +25,55 @@ function ListImages(props) {
   }
 
   useEffect(() =>{
-    fetch('/api/images', {
-      accept: 'application/json',
-    }).then(res => res.json())
-      .then(pic => {
-        setImgData(pic)
-        console.log('ListImages.js - ')
-        console.log(pic)
+    async function loadImages(){
+      if( props.imageType === "All") {
+        fetch('/api/images', {
+          accept: 'application/json',
+        }).then(res => res.json())
+          .then(pic => {
+            setImgData(pic)
+          }).catch(err => console.log(err));
+      }else if( props.imageType === 'User-Uploaded') {
+        let header = await createToken();
+        header.headers['Content-Type'] = 'application/json'
+        axios.get('/api/imagesByUser', header)
+          .then((res) => {
+            setImgData(res.data)
+        })
+        .catch((err) => {
+          // TODO Can redirect to login page 
+          // TODO Dhruv
+          alert( "Please sign in" );
+          console.log(err)
+        })
+      }else {
+        let header = await createToken();
+        header.headers['Content-Type'] = 'application/json'
+        axios.get(`/api/imagesByFilter?category=${props.imageType}`, header)
+          .then((res) => {
+            setImgData(res.data)
+        })
+        .catch((err) => {
+          // TODO Can redirect to login page 
+          // TODO Dhruv
+          alert( "Please sign in" );
+          console.log(err)
       })
-      .catch(err => console.log(err));
-  }, [])
-
-  let images=[];
-  //add get all images route and replace the Images.map function with the api 
- 
-   if(props.imageType==="home") {
-    imgData.map(re=>{    
-      if(re.category==="home")
-      {
-         images.push(re)
-       }   
-     })
-  }else if(props.imageType==="outdoor") {
-    imgData.map(re=>{    
-      if(re.category==="outdoor")
-      {
-         images.push(re)
-       }   
-     })
-  }else if(props.imageType==="office") {
-    imgData.map(re=>{    
-      if(re.category==="office")
-      {
-         images.push(re)
-       }   
-     })
-  }else if(props.imageType==="all") {
-    imgData.map(re=>{    
-      
-      images.push(re)
-     
-  })
+    }
   }
-  
+  loadImages();
+  }, [props, liked])
+
   const [modalShow, setModalShow] = useState(false);
-  const [ID, setId] = useState('');
+  const [modalImage, setModalImage] = useState('');
   
-  function modal(id){
+  function modal(image){
     setModalShow(true)
-    setId(id)
+    setModalImage(image)
   }
 
-  const handleDownload = (id) => {
-    //e.preventDefault();
-    console.log(id)
-    fetch(`/api/images/${id}/download`, {
-      accept: 'application/json',
-    }).then(res => res.json())
-      .then(pic => {
-        //setImgData(pic)
-        //console.log('ListImages.js - ')
-        console.log(id)
-      })
-      .catch(err => console.log(err));
+  const handleDownload = (id, size) => {
+    window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
   }
  
   const handleLike = async (id) => {
@@ -98,8 +84,12 @@ function ListImages(props) {
     axios.patch(`/api/images/${id}/like`, {}, header)
     .then((res) => {
         console.log(res.data)
+        setLike( !liked )
     })
     .catch((err) => {
+        // TODO Can redirect to login page 
+        // TODO Dhruv
+        alert( "Please sign in" );
         console.log(err)
     })
    
@@ -117,19 +107,27 @@ function ListImages(props) {
           return(         
           <Card>
             
-          <a className=" modalButton" onClick={() => modal(re._id)} >
+          <a className="modalButton" onClick={() => modal(re)} >
             <Card.Img variant="top" src={re.url} />
             </a>
             <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        id={ID}/>
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              image={modalImage}
+            />
          
             <Card.Footer>
             {/*add download functionality from backend */}
-            <button onClick={ () => handleDownload(re._id) }> <img src={download} className="downloadIcon"></img> </button>
+            {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
+            <button onClick={ () => handleDownload(re._id, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+
+            
             {/*add like functionality from backend */}
-            <button onClick={ () => handleLike(re._id) }> <img src={like} className="likeIcon"></img> </button>
+            <button onClick={ () => handleLike(re._id) }> <img src={like} alt="Like" className="likeIcon"></img> </button>
+            
+            <div> { re.no_of_likes } </div>
             {/* <img src={like} className="likeIcon"></img> */}
        
               {/* <p className="text-right text-muted">@{re.POSTED_BY}</p> */} 
