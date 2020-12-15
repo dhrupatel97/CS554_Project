@@ -39,7 +39,6 @@ function ListImages(props) {
         let header = await createToken();
         header.headers['Content-Type'] = 'application/json'
        /* axios.post(`/api/images/${id}/comments`,data, header).then((res)=>{
-
         })*/
 
         
@@ -110,7 +109,7 @@ function ListImages(props) {
 }
   return (
     
-    <div className='container-fluid'> 
+    <div className='container'> 
     <div className="search">
     <Search/>
     </div>

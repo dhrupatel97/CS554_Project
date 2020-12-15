@@ -36,18 +36,18 @@ function SignUp() {
       fetch('/api/users',requestOptions).then(res => {
         console.log(res);
         return res.json()
-      }).catch(err => console.log(err));
+      }).catch((err) => console.log(err));
     } catch (error) {
       alert(error);
     }
   };
 
   if (currentUser) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/" />;
   }
 
   return (
-    <div class="container">
+    <div class="container-upload">
       <header>
         <h1>
           <a href="#">
@@ -56,6 +56,7 @@ function SignUp() {
         </h1>
       </header>
       <h1 class="text-center">Register</h1>
+      <br/><br/>
       <form onSubmit={handleSignUp} class="registration-form">
         {pwMatch && <h4 className="error">{pwMatch}</h4>}
         <label class="col-one-half">
@@ -106,6 +107,7 @@ function SignUp() {
         <br/>
         <div class="text-center">
           <button class="submit" name="submitButton">Sign Me Up</button>
+          <SocialSignIn/>
         </div>
       </form>
     </div>

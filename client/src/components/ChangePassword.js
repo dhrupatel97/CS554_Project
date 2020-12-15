@@ -34,57 +34,61 @@ function ChangePassword() {
   };
   if (currentUser.providerData[0].providerId === 'password') {
     return (
-      <div className="uploadImageBox">
+      <div class="container-upload">
         {pwMatch && <h4 className="error">{pwMatch}</h4>}
-        <h2 className="changePwd">Change Password</h2>
-        <form onSubmit={submitForm}>          
+        <h2 class="text-center">Change Password</h2>
+        <form onSubmit={submitForm} class="registration-form">          
             <label>
-              Current Password:
-              </label>
+            <span class="label-text">Current Password</span>
+            
               <input
-                className="p1" 
+                className="inputFields"
                 name="currentPassword"
                 id="currentPassword"
                 type="password"
                 placeholder="Current Password"
                 required
               />
+                </label>
               <br></br>
             
          
 
           
             <label>
-              New Password:
-              </label>
+            <span class="label-text">New Password</span>
+             
               <input
-                className="p2" 
+                className="inputFields"
                 name="newPasswordOne"
                 id="newPasswordOne"
                 type="password"
                 placeholder="Password"
                 required
               />
+               </label>
               <br></br>
             
           
           
             <label>
-              Confirm Password:
-              </label>
+            <span class="label-text">Confirm Password</span>
+            
               <input
-                className="p3" 
+                className="inputFields"
                 name="newPasswordTwo"
                 id="newPasswordTwo"
                 type="password"
                 placeholder="Confirm Password"
                 required
               />
+                </label>
               <br></br>
             
           
-
-          <button type="submit" className="pwd">Change Password</button>
+          <div class='text-center'>
+            <button type="submit" class="submit">Change Password</button>
+          </div>
         </form>
         <br />
       </div>
