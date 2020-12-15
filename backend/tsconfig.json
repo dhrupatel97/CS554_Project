@@ -6,7 +6,9 @@
         "pretty": true,
         "target": "es6",
         "outDir": "./dist",
-        "baseUrl": "./src"
+        "baseUrl": "./src",
+        "strict": false,
+        "skipLibCheck": true
     },
     "include": [
         "src/**/*.ts"
