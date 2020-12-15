@@ -7,7 +7,6 @@
         "target": "es6",
         "outDir": "./dist",
         "baseUrl": "./src",
-        "strict": false,
         "skipLibCheck":true
     },
     "include": [
