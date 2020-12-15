@@ -10,8 +10,8 @@
     "client": "npm start --prefix ../client",
     "server": "ts-node ./src/server.ts",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "prod": "npm run build && npm start",
-    "start": "node ./dist/server.js",
+    "prod": "concurrently \"npm run build && npm start\" \"npm run client\"",
+    "start": "node ./dist/src/server.js",
     "watch": "nodemon --exec ts-node -- ./src/server.ts"
   },
   "author": "Dhruv, Akhil, Meghana, Tejashree",
