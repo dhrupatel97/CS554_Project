@@ -21,7 +21,7 @@ const UploadImage = () => {
 
     const [imgName, setImgName] = useState('')
     const [descp, setDesc] = useState('')
-    const [cate, setCate] = useState('')
+    const [cate, setCate] = useState('Office')
     const [imgFile, setImgFile] = useState()
     const [keywords, setKeywords] = useState('')
     
@@ -62,7 +62,7 @@ const UploadImage = () => {
         })
 
         setImgName('')
-        setCate('Office')
+        setCate('')
         setDesc('')
     }
 
@@ -84,8 +84,8 @@ const UploadImage = () => {
                     Category:
                 </label>
               
-                <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
-                    <option value="Office">Office</option>
+                <select  className="cat" name="category" id="category" value={cate} onChange={onChangeCate}>
+                    <option value="Office" selected>Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
                 </select>
