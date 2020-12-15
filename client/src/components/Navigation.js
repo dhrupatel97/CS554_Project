@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import SignOutButton from './SignOut';
 import '../App.css';
+import logo from './logo.png'
 
 const Navigation = () => {
   const { currentUser } = useContext(AuthContext);
@@ -13,17 +14,12 @@ const NavigationAuth = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Artsy</a>
+        <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <Link exact to="/" class='nav-link' >
-                Home
-              </Link>
-            </li>
             <li class="nav-item">
               <Link exact to="/home" class='nav-link'>
                 Home Backgrounds
@@ -79,13 +75,18 @@ const NavigationNonAuth = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Link exact to="/" class='nav-link'>
-                Home
+              <Link exact to="/home" class='nav-link'>
+                Home Backgrounds
               </Link>
             </li>
             <li class="nav-item">
-              <Link exact to="/home" class='nav-link' >
-                Home Backgrounds
+              <Link exact to="/office" class='nav-link'>
+                Office Backgrounds
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link exact to="/outdoor" class='nav-link'>
+                Outdoor Backgrounds
               </Link>
             </li>
             <li class="nav-item">

@@ -103,52 +103,47 @@ function ListImages(props) {
 
   return (
     
-    <div className='container-fluid'> 
-    <div className="search">
-    <Search/>
-    </div>
-    
-     <CardColumns>
-    {
-        imgData.map(re=>{
-          console.log(re)
-          
-          return(         
-          <Card>
-            
-          <a className="modalButton" onClick={() => modal(re)} >
-            <Card.Img variant="top" src={re.url} />
-            </a>
-            <MyVerticallyCenteredModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              image={modalImage}
-            />
-         
-            <Card.Footer>
-            {/*add download functionality from backend */}
-            {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
-            <button onClick={ () => handleDownload(re._id, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+    <div className='container'> 
+      <div className="search">
+      <Search/>
+      </div>
+      
+      <CardColumns>
+      {
+          imgData.map(re=>{
+            console.log(re)
+            return(  
 
+              <Card>
+                <a className="modalButton" onClick={() => modal(re)}>
+                  <Card.Img variant="top" src={re.url} />
+                </a>
+
+                <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  image={modalImage}
+                />
+
+                <Card.Footer>
+                {/*add download functionality from backend */}
+                {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
+                <button onClick={ () => handleDownload(re._id, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+                <button onClick={ () => handleDownload(re._id, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+                <button onClick={ () => handleDownload(re._id, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+
+                  
+                {/*add like functionality from backend */}
+                <button onClick={ () => handleLike(re._id) }> <img src={like} alt="Like" className="likeIcon"></img>{ re.no_of_likes }</button>
+                  
+                {/* <img src={like} className="likeIcon"></img> */}
             
-            {/*add like functionality from backend */}
-            <button onClick={ () => handleLike(re._id) }> <img src={like} alt="Like" className="likeIcon"></img> </button>
-            
-            <div> { re.no_of_likes } </div>
-            {/* <img src={like} className="likeIcon"></img> */}
-       
-              {/* <p className="text-right text-muted">@{re.POSTED_BY}</p> */} 
-        </Card.Footer>      
-          </Card>
-          
-        
-        )})
-  
-    }
- 
-  </CardColumns> 
+                <p className="text-right text-muted">@{re.posted_by}</p> 
+                </Card.Footer>      
+              </Card>
+          )})
+      }
+    </CardColumns> 
     </div>
   );}
 
