@@ -4,6 +4,7 @@ import { Users } from './controllers/user';
 import mongoConnection from "./config/mongoConnection";
 import bodyParser = require('body-parser');
 import { decodeIDToken } from './config/authenticateToken';
+import * as cors from  'cors'
 // import * as dotenv from 'dotenv';
 
 class App {
@@ -15,10 +16,11 @@ class App {
 		this.app = express();
         this.config();
         this.imageRoutes.routes(this.app);
-        this.userRoutes.routes(this.app);
+		this.userRoutes.routes(this.app);
         // dotenv.config();
 	}
 	private config(): void {
+		this.app.use(cors());
         this.app.use(bodyParser.json())
         const db: string = "mongodb://localhost:27017/Artsy"
 		mongoConnection(db);
@@ -26,6 +28,7 @@ class App {
 		this.app.use(express.urlencoded({ extended: false }));
 		this.app.use(express.static('public'));
 		this.app.use(decodeIDToken);
+		
 	}
 }
 
