@@ -21,7 +21,7 @@ const UploadImage = () => {
 
     const [imgName, setImgName] = useState('')
     const [descp, setDesc] = useState('')
-    const [cate, setCate] = useState('')
+    const [cate, setCate] = useState('Office')
     const [imgFile, setImgFile] = useState()
     const [keywords, setKeywords] = useState('')
     const [alert, setAlert] = useState(false)
@@ -65,7 +65,7 @@ const UploadImage = () => {
         })
 
         setImgName('')
-        setCate('Office')
+        setCate('')
         setDesc('')
     }
 
@@ -84,10 +84,11 @@ const UploadImage = () => {
                     <input class="inputFields" type='text' name='desc' value={descp} onChange={onChangeDesc} placeholder='Add Image Description'/>
                 </label>
                 <br></br>
+
                 <label>
                     <span class="label-text">Choose Category</span>
-                    <select  class="inputFields" name="category" id="category"  value={cate} onChange={onChangeCate}>
-                        <option value="Office">Office</option>
+                    <select  className="inputFields" name="category" id="category" value={cate} onChange={onChangeCate}>
+                        <option value="Office" selected>Office</option>
                         <option value="Home">Home</option>
                         <option value="Outdoor">Outdoor</option>
                     </select>
