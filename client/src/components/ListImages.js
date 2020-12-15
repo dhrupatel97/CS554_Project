@@ -9,6 +9,7 @@ import like from '../imgs/like.png';
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
+const FileDownload = require( 'js-file-download');
 
 function ListImages(props) {
 
@@ -78,8 +79,11 @@ function ListImages(props) {
     setModalImage(image)
   }
 
-  const handleDownload = (id, size) => {
-    window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
+  const handleDownload = (id, name, size) => {
+    axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+      const fileName = "artsy-" + name + "-" + size + ".jpg"
+      FileDownload( response.data, fileName);
+    } )
   }
  
   const handleLike = async (id) => {
@@ -128,9 +132,9 @@ function ListImages(props) {
             <Card.Footer>
             {/*add download functionality from backend */}
             {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
-            <button onClick={ () => handleDownload(re._id, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, re.image_name, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, re.image_name, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, re.image_name, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
 
             
             {/*add like functionality from backend */}
