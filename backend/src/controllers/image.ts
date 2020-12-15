@@ -16,7 +16,7 @@ export class Images {
 
     app.route('/api/images/:id/download').get((req: Request, res: Response) => {
       
-        imageDataAccess.deletePublicFiles();
+        // imageDataAccess.deletePublicFiles();
         ImageData.findById(req.params.id, (err: any, images: any) => {
           if (err) {
             res.status(500).send(err);
