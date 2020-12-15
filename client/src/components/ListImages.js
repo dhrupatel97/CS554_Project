@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Images from '../ImageList';
-import Button from 'react-bootstrap/Button';
+import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/like.png';
@@ -104,7 +104,10 @@ function ListImages(props) {
     })
    
   }
+  const onChangeSize = (e, id, image) => {
 
+    handleDownload(id, image, e.target.value)
+}
   return (
     
     <div className='container-fluid'> 
@@ -131,10 +134,21 @@ function ListImages(props) {
          
             <Card.Footer>
             {/*add download functionality from backend */}
-            {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
-            <button onClick={ () => handleDownload(re._id, re.image_name, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            {/* TODO Dhruv, Tejashree add style to */}
+            
+            <button>
+                <select  className="cat" name="category" id="category" onChange={ (e) => onChangeSize(e, re._id, re.image_name)} >
+                    <option selected disabled>Download</option>
+                    <option value="small"  > Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                </select>
+            </button>
+            
+
+            {/* <button onClick={ () => handleDownload(re._id, re.image_name, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
             <button onClick={ () => handleDownload(re._id, re.image_name, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, re.image_name, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, re.image_name, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button> */}
 
             
             {/*add like functionality from backend */}

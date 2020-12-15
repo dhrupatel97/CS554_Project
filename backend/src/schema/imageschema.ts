@@ -4,7 +4,7 @@ import {Image} from '../models/imagesModel'
 
 const CommentSchema: Schema = new Schema({
     name: { type: String, required: true,
-      set: (v) =>{
+      set: (v : string) =>{
         if(typeof v !== 'string'){
           throw new Error("Name in comment should be of type string")
         }
@@ -12,7 +12,7 @@ const CommentSchema: Schema = new Schema({
       } 
     },
     comment:{ type: String, required: true,
-      set: (v) =>{
+      set: (v: string) =>{
         if(typeof v !== 'string'){
           throw new Error("Comment should be of type string")
         }
@@ -25,7 +25,7 @@ const ImageSchema = new Schema({
     image_name: {
         type: String,
         required: true,
-        set: (v) =>{
+        set: (v: string) =>{
             if(typeof v !== 'string'){
               throw new Error("Image name should be of type string")
             }
@@ -35,7 +35,7 @@ const ImageSchema = new Schema({
     desc: {
         type: String,
         required: false,
-        set: (v) =>{
+        set: (v : string) =>{
             if(typeof v !== 'string'){
               throw new Error("Description should be of type string")
             }
@@ -45,7 +45,7 @@ const ImageSchema = new Schema({
     posted_by: {
         type: String,
         required: false,
-        set: (v) =>{
+        set: (v : string) =>{
             if(typeof v !== 'string'){
               throw new Error("Posted by should be of type string")
             }
@@ -55,7 +55,7 @@ const ImageSchema = new Schema({
     url: {
         type: String,
         required: true,
-        set: (v) =>{
+        set: (v : string) =>{
             if(typeof v !== 'string'){
               throw new Error("URL should be of type string")
             }
@@ -65,7 +65,7 @@ const ImageSchema = new Schema({
     category: {
         type: String,
         required: true,
-        set: (v) =>{
+        set: (v : string) =>{
             if(typeof v !== 'string'){
               throw new Error("Category should be of type string")
             }
@@ -75,7 +75,7 @@ const ImageSchema = new Schema({
     no_of_likes: {
         type: Number,
         default: 0,
-        set: (v) =>{
+        set: (v : number) =>{
             if(typeof v !== 'number'){
               throw new Error("No of likes passed should be of type string")
             }
@@ -85,7 +85,7 @@ const ImageSchema = new Schema({
     keywords :{
       type: [String], 
       required: false,
-      set: (v) =>{
+      set: (v: any) =>{
         if(!Array.isArray(v)){
           throw new Error("keywords should be an array")
         }
