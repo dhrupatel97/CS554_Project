@@ -52,7 +52,7 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            <p>@{props.image.image_name}</p>
+            <p>{props.image.image_name}</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

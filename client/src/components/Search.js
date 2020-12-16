@@ -16,13 +16,25 @@ function Search() {
       
   };
   React.useEffect(() => {
- 
-      let list1=[];
+
+    async function loadImages(){
+    
+        fetch('/api/images', {
+          accept: 'application/json',
+        }).then(res => res.json())
+          .then(pic => {
+            setImages(pic)
+          }).catch(err => console.log(err));      
       
-    setImages(Images)  
+  }
+  loadImages();
+ 
+  let list1=[];
+      
+ 
 
     Imgs.map(re=>{
-      re.KEYWORDS.map(res=>
+      re.keywords.map(res=>
         list1.push(res))
     })
   
