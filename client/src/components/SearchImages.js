@@ -1,19 +1,18 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
+import Images from '../ImageList';
+import Button from 'react-bootstrap/Button';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/like.png';
+import Search from './Search';
 import firebaseApp from '../firebase/Firebase';
 import axios from 'axios';
 
 
 function SearchImages(props) {
-let temp=window.location.pathname.split("/");
-let keyword=temp[2]  
-let images=[];
-const [Imgs, setImages] = React.useState([]);
-const [liked, setLike] = useState(false);
+  const [liked, setLike] = React.useState(false);
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
     const token = user && (await user.getIdToken());
@@ -24,35 +23,75 @@ const [liked, setLike] = useState(false);
     };
     return payloadHeader;
   }
+// let temp=window.location.pathname.split("/");
+// let keyword=temp[3]  
+let image=[];
+const [img, setImg] = React.useState([])
+const [Images, setImages] = React.useState([])
 
-React.useEffect(() => {
+
+  const [key, setKey]= React.useState('')
+
+React.useEffect(() =>{
+  let temp=window.location.pathname.split("/");
+  setKey(temp[3])  
+// let keyword=temp[3]  
+let image=[];
   async function loadImages(){
-  
+    
       fetch('/api/images', {
         accept: 'application/json',
       }).then(res => res.json())
         .then(pic => {
-          setImages(pic)
-        }).catch(err => console.log(err));      
-    
-}
-loadImages();
-Imgs.map(re=>{
+          setImg(pic)
+        }).catch(err => console.log(err));    
+      }
+loadImages()
+
+img.map(re=>{
   re.keywords.map(res=>{
-    if (res===keyword)
+    if(res===key)
     {
-      images.push(re)
-    }
-    })
+    image.push(re)
+    }}
+
+  )
+  
 })
+
+setImages(image)
+
+
 
 },[])
 
+const handleDownload = (id, size) => {
+  window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
+}
+
+const handleLike = async (id) => {
+  let header = await createToken();
+  header.headers['Content-Type'] = 'application/json'
+  console.log(id)
+
+  axios.patch(`/api/images/${id}/like`, {}, header)
+  .then((res) => {
+      console.log(res.data)
+      setLike( !liked )
+  })
+  .catch((err) => {
+      // TODO Can redirect to login page 
+      // TODO Dhruv
+      alert( "Please sign in" );
+      console.log(err)
+  })
  
- console.log("ia", images)   
+}
+
+  
   
   const [modalShow, setModalShow] = React.useState(false);
-  const [modalImage, setModalImage] =React.useState('');
+  const [modalImage, setModalImage] = React.useState('');
   const [ID, setId] = React.useState('');
   
   function modal(image){
@@ -60,39 +99,15 @@ Imgs.map(re=>{
     setModalImage(image)
   }
 
-  const handleDownload = (id, size) => {
-    window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
-  }
- 
-  const handleLike = async (id) => {
-    let header = await createToken();
-    header.headers['Content-Type'] = 'application/json'
-    console.log(id)
-
-    axios.patch(`/api/images/${id}/like`, {}, header)
-    .then((res) => {
-        console.log(res.data)
-        setLike( !liked )
-    })
-    .catch((err) => {
-        // TODO Can redirect to login page 
-        // TODO Dhruv
-        alert( "Please sign in" );
-        console.log(err)
-    })
-   
-  }
-  
-
   return (
     
     <div> 
     
-  <h2 className="searchTitle">{keyword} backgrounds</h2>
+  <h2 className="searchTitle">{key} backgrounds</h2>
   
   <CardColumns>
   {
-      images.map(re=>{
+      Images && Images.map(re=>{
         console.log(re)
         
         return(         

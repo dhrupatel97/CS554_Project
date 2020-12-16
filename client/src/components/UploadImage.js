@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Images from '../ImageList';
 
-import axios from 'axios'
+import axios from 'axios';
 import firebaseApp from '../firebase/Firebase'
 import '../App.css';
 
@@ -64,6 +64,7 @@ const UploadImage = () => {
         setImgName('')
         setCate('Office')
         setDesc('')
+        setKeywords('')
     }
 
     return (

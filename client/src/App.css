@@ -127,13 +127,31 @@ textarea{
 .modalButton{
  cursor: pointer;
 }
-
+*/
 .modalImage{
   margin-left:17%;
-  height:500px;
-  width:500px;
+  height:400px;
+  width:400px;
+}
+.row{
+
+	width:100%;
+}
+.colLeft{
+	float: left;
+	width:40%;
+
+}
+.colRight{
+	padding-left: 10%;
+	width:60%;
+	
+}
+.commentBox{
+	width:530px;
 }
 
+/*
 .login{
 
   margin-left: 4%;
