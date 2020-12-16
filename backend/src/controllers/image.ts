@@ -159,6 +159,7 @@ export class Images {
                 res.status(404).send("Image for given id not found")
               } else {
                 let commentBody = req.body;
+                commentBody.name = user.firstName;
                 images.comments.push(commentBody)
                 images.save((err: any) => {
                   if (err) {
