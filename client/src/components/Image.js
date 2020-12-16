@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Images from '../ImageList';
 import download from '../imgs/download.png';
-import like from '../imgs/like.png';
+import like from '../imgs/notfill.svg';
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase'
 import DisplayComments from './DisplayComments';
@@ -39,7 +39,7 @@ function MyVerticallyCenteredModal(props) {
     .catch((err) => {
         // TODO Can redirect to login page 
         // TODO Dhruv
-        alert( "Please sign in" );
+        alert( "Please Sign In" );
         console.log(err)
     })
    
@@ -61,19 +61,25 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+<<<<<<< HEAD
         <div className="row">
           <div className="colLeft"><img className="modalImage" variant="top" alt="img" src={props.image.url} /></div>
           <div className="colRight"><DisplayComments data={props.image.comments}/><SubmitComment id={props.image._id}/></div>
           </div>
           
          
+=======
+          <img class='img-fluid' alt="img" src={props.image.url} />
+>>>>>>> 22dd065cc7352b3f16d7a4aab39ae05008be5208
         </Modal.Body>
         
         <Modal.Footer>
         {/* add the download functionality from backend*/}
         <button onClick={ () => handleDownload( props.image._id, "default")}><img src={download} className="downloadIcon"></img></button>
         {/* add like functionality from backend */}
-        <button onClick={ () => handleLike( props.image._id)}><img src={like} className="likeIcon"></img></button>
+        <div class='like'><i class='material-icons' onClick={ () => handleLike( props.image._id)}>favorite</i></div>
+        <div>{props.image.no_of_likes}</div>
+        {/* <button onClick={ () => handleLike( props.image._id)}><img src={like} className="likeIcon"></img></button> */}
      
         </Modal.Footer>
       </Modal>

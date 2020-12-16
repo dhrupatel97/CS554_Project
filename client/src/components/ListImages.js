@@ -5,10 +5,16 @@ import Images from '../ImageList';
 import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
+<<<<<<< HEAD
 import like from '../imgs/like.png';
 import axios from 'axios';
+=======
+import like from '../imgs/notfill.svg';
+import axios from 'axios'
+>>>>>>> 22dd065cc7352b3f16d7a4aab39ae05008be5208
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
+import fill from '../imgs/fill.svg'
 const FileDownload = require( 'js-file-download');
 
 function ListImages(props) {
@@ -98,7 +104,7 @@ function ListImages(props) {
     .catch((err) => {
         // TODO Can redirect to login page 
         // TODO Dhruv
-        alert( "Please sign in" );
+        alert( "Please Sign In" );
         console.log(err)
     })
    
@@ -108,65 +114,40 @@ function ListImages(props) {
     handleDownload(id, image, e.target.value)
 }
   return (
-    
-    <div className='container'> 
-    <div className="search">
-    <Search/>
-    </div>
-    
-     <CardColumns>
-    {
-        imgData.map(re=>{
-          console.log(re)
-          
-          return(         
-          <Card>
-            
-          <a className="modalButton" onClick={() => modal(re)} >
-            <Card.Img variant="top" src={re.url} />
-            </a>
-            <MyVerticallyCenteredModal
+    <div class='container'>
+      {imgData.map(re => {
+        return (
+          <div class='card'>
+             <a className="modalButton" onClick={() => modal(re)} >
+               <img class='gallery-img' src={re.url} />
+              </a>
+              <MyVerticallyCenteredModal
               show={modalShow}
               onHide={() => setModalShow(false)}
               image={modalImage}
-            />
-         
-            <Card.Footer>
-            {/*add download functionality from backend */}
-            {/* TODO Dhruv, Tejashree add style to */}
-            
-            <button>
-                <select  className="cat" name="category" id="category" onChange={ (e) => onChangeSize(e, re._id, re.image_name)} >
-                    <option selected disabled>Download</option>
-                    <option value="small"  > Small</option>
-                    <option value="default">Default</option>
-                    <option value="large">Large</option>
-                </select>
-            </button>
-            
-
-            {/* <button onClick={ () => handleDownload(re._id, re.image_name, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, re.image_name, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, re.image_name, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button> */}
-
-            
-            {/*add like functionality from backend */}
-            <button onClick={ () => handleLike(re._id) }> <img src={like} alt="Like" className="likeIcon"></img> </button>
-            
-            <div> { re.no_of_likes } </div>
-            {/* <img src={like} className="likeIcon"></img> */}
-       
-              {/* <p className="text-right text-muted">@{re.POSTED_BY}</p> */} 
-        </Card.Footer>      
-          </Card>
-          
-        
-        )})
-  
-    }
- 
-  </CardColumns> 
+              />
+              <div class='like-count'>
+                { re.no_of_likes }
+              </div>
+              <div class='like-button'>
+               <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
+              </div>
+              <div class='download-button'>
+                <i class='material-icons md-48' >arrow_circle_down</i>
+              </div>
+              <div class='overlay'>@{re.posted_by}</div>
+          </div>
+        )
+      })}
     </div>
+     //           <button>
+    //               <select  className="cat" name="category" id="category" onChange={ (e) => onChangeSize(e, re._id, re.image_name)} >
+    //                   <option selected disabled>Download</option>
+    //                   <option value="small"  > Small</option>
+    //                   <option value="default">Default</option>
+    //                   <option value="large">Large</option>
+    //               </select>
+    //           </button>
   );}
 
 export default ListImages;

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { doCreateUserWithEmailAndPassword } from '../firebase/FirebaseFunctions';
 import { AuthContext } from '../firebase/Auth';
 import SocialSignIn from './SocialSignIn';
-import logo from './logo.png'
+import logo from '../imgs/logo.png'
 
 function SignUp() {
   const { currentUser } = useContext(AuthContext);
@@ -47,7 +47,7 @@ function SignUp() {
   }
 
   return (
-    <div class="container-upload">
+    <div class="container-box">
       <header>
         <h1>
           <a href="#">
