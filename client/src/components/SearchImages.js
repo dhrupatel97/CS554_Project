@@ -47,7 +47,7 @@ let image=[];
         }).catch(err => console.log(err));    
       }
 loadImages()
-
+//this logic
 img.map(re=>{
   re.keywords.map(res=>{
     if(res===key)

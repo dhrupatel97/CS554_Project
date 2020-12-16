@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/like.png';
-import axios from 'axios'
+import axios from 'axios';
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
 
