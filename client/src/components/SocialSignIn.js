@@ -20,11 +20,6 @@ const SocialSignIn = () => {
         alt="google signin"
         src= {googleSiginImg}
       />
-      <img
-        onClick={() => socialSignOn('facebook')}
-        alt="facebook signin"
-        src={facebookSigninImg}
-      />
       <div class="fb-login-button" data-size="small" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div>
     </div>
   );

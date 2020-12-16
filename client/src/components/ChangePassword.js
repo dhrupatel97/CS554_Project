@@ -34,7 +34,7 @@ function ChangePassword() {
   };
   if (currentUser.providerData[0].providerId === 'password') {
     return (
-      <div class="container-upload">
+      <div class="container-box">
         {pwMatch && <h4 className="error">{pwMatch}</h4>}
         <h2 class="text-center">Change Password</h2>
         <form onSubmit={submitForm} class="registration-form">          

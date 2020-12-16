@@ -5,7 +5,7 @@ import Images from '../ImageList';
 import Button from 'react-bootstrap/Button';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
-import like from '../imgs/like.png';
+import like from '../imgs/notfill.svg';
 import Search from './Search';
 
 
