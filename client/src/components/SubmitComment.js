@@ -27,7 +27,7 @@ import firebaseApp from '../firebase/Firebase';
 
         const onUpload = async (e) => {
             
-            e.preventDefault()
+            //e.preventDefault()
             let header = await createToken();
             header.headers['Content-Type'] = 'application/json'
             let data= {

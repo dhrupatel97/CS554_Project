@@ -8,7 +8,7 @@ function Account() {
     <div>
   
       <ChangePassword />
-      <SignOutButton />
+      {/* <SignOutButton /> */}
     </div>
   );
 }

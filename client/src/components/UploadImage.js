@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Images from '../ImageList';
-
-import axios from 'axios';
+import {Alert} from 'react-bootstrap'
+import axios from 'axios'
 import firebaseApp from '../firebase/Firebase'
 import '../App.css';
 
@@ -21,9 +21,10 @@ const UploadImage = () => {
 
     const [imgName, setImgName] = useState('')
     const [descp, setDesc] = useState('')
-    const [cate, setCate] = useState('')
+    const [cate, setCate] = useState('Office')
     const [imgFile, setImgFile] = useState()
     const [keywords, setKeywords] = useState('')
+    const [alert, setAlert] = useState(false)
     
     const onChangeImg = (e) => {
         setImgName(e.target.value)
@@ -56,52 +57,57 @@ const UploadImage = () => {
         axios.post('/api/images', data, header)
         .then((res) => {
             console.log(res.data)
+            setAlert(true)
         })
         .catch((err) => {
             console.log(err)
+            setAlert(false)
         })
 
         setImgName('')
-        setCate('Office')
+        setCate('')
         setDesc('')
         setKeywords('')
     }
 
     return (
-        <div className="uploadImageBox">
-            <h3 className="upTitle">Welcome to Upload Images page</h3>
-            <form onSubmit={onUpload}>
+        <div className="container-upload">
+            {alert ? <Alert variant='success'>Successfully Uploaded</Alert> : null}
+            <h3 className="text-center">Welcome to Upload Images page</h3>
+            <form onSubmit={onUpload} class="registration-form">
                 <label>
-                    Image Name:
+                    <span class="label-text">Add Image Name</span>
+                    <input class="inputFields" type='text' name='image_name' value={imgName} onChange={onChangeImg} placeholder='Add Image Name'/>
                 </label>
-                <input className="name" type='text' name='image_name' value={imgName} onChange={onChangeImg} placeholder='Add Image Name'/>
                 <br></br>
                 <label>
-                    Description:
+                    <span class="label-text">Add Image Description</span>
+                    <input class="inputFields" type='text' name='desc' value={descp} onChange={onChangeDesc} placeholder='Add Image Description'/>
                 </label>
-                <input className="desc" type='text' name='desc' value={descp} onChange={onChangeDesc} placeholder='Add Image Description'/>
+                <br></br>
+
+                <label>
+                    <span class="label-text">Choose Category</span>
+                    <select  className="inputFields" name="category" id="category" value={cate} onChange={onChangeCate}>
+                        <option value="Office" selected>Office</option>
+                        <option value="Home">Home</option>
+                        <option value="Outdoor">Outdoor</option>
+                    </select>
+                </label>
                 <br></br>
                 <label>
-                    Category:
+                    <span class="label-text">Choose a File</span>
+                    <input class="inputFields" type="file" id="myfile" name="myfile" accept="image/png, image/jpg, image/jpeg" onChange ={onChangeFile} single />  
                 </label>
-              
-                <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
-                    <option value="Office">Office</option>
-                    <option value="Home">Home</option>
-                    <option value="Outdoor">Outdoor</option>
-                </select>
                 <br></br>
                 <label>
-                    Image file:
+                    <span class="label-text">Set Keywords</span>
+                    <input class="inputFields"  type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Add Image Keywords'/>
                 </label>
-                <input className="img" type="file" id="myfile" name="myfile" accept="image/png, image/jpg, image/jpeg" onChange ={onChangeFile} single />  
                 <br></br>
-                <label>
-                    Keywords:
-                </label>
-                <input className="key"  type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Add Image Keywords'/>
-                <br></br>
-                <button type='submit' className="uploadImage">Upload</button>
+                <div class='text-centre'>
+                    <button type='submit' class='submit'>Upload</button>
+                </div>
             </form>
         </div>
       

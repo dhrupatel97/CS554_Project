@@ -22,9 +22,6 @@ function App() {
       <Router>
         
             <Navigation />
-        
-          
-          
             <Switch>
             <Route exact path="/">
             <ListImages imageType={"All"}/>

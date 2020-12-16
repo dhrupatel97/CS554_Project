@@ -16,7 +16,7 @@ export class Images {
 
     app.route('/api/images/:id/download').get((req: Request, res: Response) => {
       
-        imageDataAccess.deletePublicFiles();
+        // imageDataAccess.deletePublicFiles();
         ImageData.findById(req.params.id, (err: any, images: any) => {
           if (err) {
             res.status(500).send(err);
@@ -159,6 +159,7 @@ export class Images {
                 res.status(404).send("Image for given id not found")
               } else {
                 let commentBody = req.body;
+                commentBody.name = user.firstName;
                 images.comments.push(commentBody)
                 images.save((err: any) => {
                   if (err) {

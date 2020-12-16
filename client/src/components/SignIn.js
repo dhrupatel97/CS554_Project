@@ -7,6 +7,7 @@ import {
   doPasswordReset
 } from '../firebase/FirebaseFunctions';
 import firebaseApp from '../firebase/Firebase'
+import logo from './logo.png'
 
 function SignIn() {
   const { currentUser } = useContext(AuthContext);
@@ -40,48 +41,49 @@ function SignIn() {
     return <Redirect to="/home" />;
   }
   return (
-    <div className="loginBox">
-      <h1 >Log in</h1>
-      <form onSubmit={handleLogin}>
-        
-          <label>
-            Email:
-            </label>  
+    <div class="container-upload">
+      <header>
+        <h1>
+          <a href="#">
+            <img src={logo} alt="Authentic Collection"/>
+          </a>
+        </h1>
+      </header>
+      <h1 class="text-center">Log In</h1>
+      <form onSubmit={handleLogin} class="registration-form">
+        <label>
+          <span class="label-text">Email</span>
             <input
-              className="l1"
+              className="inputFields"
               name="email"
               id="email"
               type="email"
               placeholder="Email"
               required
             />
-            <br></br>
-          
-        
-        
-          <label>
-            Password:
-            </label>
+        </label>
+        <br/>
+        <label class="password">
+          <span class="label-text">Password</span>
+          <button class="toggle-visibility" title="toggle password visibility" tabindex="-1">
+            <span class="glyphicon glyphicon-eye-close"></span>
+          </button>
             <input
-              className="l2"
+              className="inputFields"
               name="password"
               type="password"
               placeholder="Password"
               required
             />
-            <br></br>
-            
-          
-       
-        <button type="submit" className="login">Log in</button>
-
-        <button className="forgotPassword" onClick={passwordReset} className="forgot">
-          Forgot Password
-        </button>
+        </label>
+        <br/>
+        <br/>
+        <div class="text-center">
+          <button class="submit" name="submitButton">Log In</button>
+          <button onClick={passwordReset} className="submit">Forgot Password</button>
+          <SocialSignIn/>
+        </div>
       </form>
-
-      <br />
-      <SocialSignIn />
     </div>
   );
 }

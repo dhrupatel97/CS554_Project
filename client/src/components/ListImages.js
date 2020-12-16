@@ -2,13 +2,14 @@ import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Images from '../ImageList';
-import Button from 'react-bootstrap/Button';
+import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/like.png';
 import axios from 'axios';
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
+const FileDownload = require( 'js-file-download');
 
 function ListImages(props) {
 
@@ -38,7 +39,6 @@ function ListImages(props) {
         let header = await createToken();
         header.headers['Content-Type'] = 'application/json'
        /* axios.post(`/api/images/${id}/comments`,data, header).then((res)=>{
-
         })*/
 
         
@@ -78,8 +78,11 @@ function ListImages(props) {
     setModalImage(image)
   }
 
-  const handleDownload = (id, size) => {
-    window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
+  const handleDownload = (id, name, size) => {
+    axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+      const fileName = "artsy-" + name + "-" + size + ".jpg"
+      FileDownload( response.data, fileName);
+    } )
   }
  
   const handleLike = async (id) => {
@@ -100,10 +103,13 @@ function ListImages(props) {
     })
    
   }
+  const onChangeSize = (e, id, image) => {
 
+    handleDownload(id, image, e.target.value)
+}
   return (
     
-    <div className='container-fluid'> 
+    <div className='container'> 
     <div className="search">
     <Search/>
     </div>
@@ -127,10 +133,21 @@ function ListImages(props) {
          
             <Card.Footer>
             {/*add download functionality from backend */}
-            {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
-            <button onClick={ () => handleDownload(re._id, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-            <button onClick={ () => handleDownload(re._id, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            {/* TODO Dhruv, Tejashree add style to */}
+            
+            <button>
+                <select  className="cat" name="category" id="category" onChange={ (e) => onChangeSize(e, re._id, re.image_name)} >
+                    <option selected disabled>Download</option>
+                    <option value="small"  > Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                </select>
+            </button>
+            
+
+            {/* <button onClick={ () => handleDownload(re._id, re.image_name, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, re.image_name, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
+            <button onClick={ () => handleDownload(re._id, re.image_name, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button> */}
 
             
             {/*add like functionality from backend */}
