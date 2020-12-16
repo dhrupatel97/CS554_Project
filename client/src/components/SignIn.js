@@ -7,7 +7,7 @@ import {
   doPasswordReset
 } from '../firebase/FirebaseFunctions';
 import firebaseApp from '../firebase/Firebase'
-import logo from './logo.png'
+import logo from '../imgs/logo.png'
 
 function SignIn() {
   const { currentUser } = useContext(AuthContext);
@@ -38,10 +38,10 @@ function SignIn() {
     }
   };
   if (currentUser) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/" />;
   }
   return (
-    <div class="container-upload">
+    <div class="container-box">
       <header>
         <h1>
           <a href="#">
