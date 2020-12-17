@@ -257,14 +257,18 @@ html {
 .gallery-img {
 	position: absolute;
 	top: 0;
-	height: 110%;
+	height: 100%;
 	width: 100%;
+	object-fit: cover;
 	transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .card:hover {
 	transform: scale(1.035, 1.035);
 	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+.overlay-top {
+	opacity: 0;
 }
 
 .overlay {
@@ -286,6 +290,10 @@ html {
 }
 
 .card:hover .overlay {
+	opacity: 1;
+}
+
+.card:hover .overlay-top {
 	opacity: 1;
 }
 
