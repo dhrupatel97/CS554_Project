@@ -374,8 +374,13 @@ html {
 	align-items: center;
 }
 
-.comment-box{
+.comments{
 	overflow: scroll;
+	height: 15rem;
+}
+
+.modal-image{
+	height: 15rem;
 }
 
 

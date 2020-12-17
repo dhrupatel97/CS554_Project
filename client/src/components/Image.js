@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import {Container, Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Images from '../ImageList';
 import download from '../imgs/download.png';
@@ -59,19 +60,26 @@ function MyVerticallyCenteredModal(props) {
       <Modal
         {...props}
         size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
+        aria-labelledby="example-modal-sizes-title-lg"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id="example-modal-sizes-title-lg">
             <p>{props.image.image_name}</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        
-         <img class='img-fluid' alt="img" src={props.image.url} />    
-       <DisplayComments data={props.image.comments}/><SubmitComment id={props.image._id}/>
-       
+          <Container>
+            <Row>
+              <Col xs={12} md={8}>
+                <img class='img-fluid' alt="img" src={props.image.url} />  
+              </Col>
+              <Col xs={6} md={4}>
+                <div><DisplayComments data={props.image.comments}/></div>
+              </Col>
+              <SubmitComment id={props.image._id}/>
+            </Row>
+          </Container>
         </Modal.Body>
         <Modal.Footer>
         <DropdownButton
@@ -86,11 +94,8 @@ function MyVerticallyCenteredModal(props) {
                   <Dropdown.Item eventKey="large">Large</Dropdown.Item>
               
                 </DropdownButton>
-        {/* add like functionality from backend */}
         <div class='like'><i class='material-icons' onClick={ () => handleLike( props.image._id)}>favorite</i></div>
-        <div>{props.image.no_of_likes}</div>
-        {/* <button onClick={ () => handleLike( props.image._id)}><img src={like} className="likeIcon"></img></button> */}
-     
+        <div>{props.image.no_of_likes}</div>     
         </Modal.Footer>
       </Modal>
     );

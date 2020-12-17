@@ -9,10 +9,10 @@ import Search from './Search';
 
 const Navigation = () => {
   const { currentUser } = useContext(AuthContext);
-  return <div>{currentUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>;
+  return <div>{currentUser ? <NavigationAuth user={currentUser}/> : <NavigationNonAuth />}</div>;
 };
 
-const NavigationAuth = () => {
+const NavigationAuth = (props) => {
 
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,19 +49,24 @@ const NavigationAuth = () => {
               </Link>
             </li>
             <li class="nav-item">
-              <Link exact to="/account" class='nav-link' >
-                Account
-              </Link>
-            </li>
-            <li class="nav-item">
               <Link exact to="/uploadimage" class='nav-link'  >
                 Upload Image
               </Link>
             </li>
-            <li class='nav-item'>
-              <SignOutButton/>
-            </li>
           </ul>
+          <ul class='navbar-nav nav justify-content-end'>
+            <li class="nav-item">
+                  <p class='nav-link'>Welcome</p>
+              </li>
+              <li class="nav-item">
+                <Link exact to="/account" class='nav-link' >
+                  Account
+                </Link>
+              </li>
+              <li class="nav-item">
+              <SignOutButton/>
+              </li>
+            </ul>
         </div>
       </div>
     </nav>
@@ -98,6 +103,8 @@ const NavigationNonAuth = () => {
               
                 </DropdownButton>
                 </li>
+          </ul>
+          <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
               <Link exact to="/signup" class='nav-link' >
                 Sign Up
@@ -109,11 +116,6 @@ const NavigationNonAuth = () => {
               </Link>
             </li>
           </ul>
-          {/* <form class="d-flex">
-            <Search/>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form> */}
         </div>
       </div>
     </nav>
