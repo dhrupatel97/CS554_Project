@@ -30,14 +30,18 @@ async function s3Upload(mReq, req, callback) {
           console.log(err)
           callback(500, err.message)
         } else {
-          if (data) {
+          if (data) { 
+            const keywords = req.body.keywords.split(",").map(key => {
+              let trimmed = key.trim()
+             return trimmed
+           })
             const imageUrl = data.Location;
             const image = {
               image_name: req.body.image_name,
               category: req.body.category,
               desc: req.body.desc ? req.body.desc : '',
               url: imageUrl,
-              keywords: req.body.keywords ? req.body.keywords.split(",") : [],
+              keywords: req.body.keywords ? keywords : [],
               posted_by: user.firstName,
               _id: new ObjectId()
             }
