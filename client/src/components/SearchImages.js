@@ -29,12 +29,15 @@ function SearchImages(props) {
 
 const [img, setImg] = React.useState([])
 const [Images, setImages] = React.useState([])
+const [key, setKey] = React.useState([])
+
 
 
 React.useEffect(() =>{
   let temp=window.location.pathname.split("/");
   const catTemp = temp[2]
   const  keyTemp = temp[3]
+  setKey(keyTemp)
   async function loadImages(keyTemp, catTemp){
     
       fetch('/api/images', {
