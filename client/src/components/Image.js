@@ -1,6 +1,11 @@
 
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal';
+import {Container, Row, Col} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Images from '../ImageList';
+import download from '../imgs/download.png';
+import like from '../imgs/notfill.svg';
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import DisplayComments from './DisplayComments';
@@ -74,19 +79,26 @@ function MyVerticallyCenteredModal(props) {
       <Modal
         {...props}
         size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
+        aria-labelledby="example-modal-sizes-title-lg"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id="example-modal-sizes-title-lg">
             <p>{props.image.image_name}</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        
-         <img class='img-fluid' alt="img" src={props.image.url} />    
-       <DisplayComments data={displayComments}/><SubmitComment id={props.image._id} comments={setComments}/>
-       
+          <Container>
+            <Row>
+              <Col xs={12} md={8}>
+                <img class='img-fluid' alt="img" src={props.image.url} />  
+              </Col>
+              <Col xs={6} md={4}>
+                <div><DisplayComments data={displayComments}/></div>
+              </Col>
+              <SubmitComment id={props.image._id}  comments={setComments}/>
+            </Row>
+          </Container>
         </Modal.Body>
         <Modal.Footer>
         <DropdownButton

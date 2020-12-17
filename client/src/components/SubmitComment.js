@@ -46,16 +46,13 @@ import firebaseApp from '../firebase/Firebase';
   
       return (
       <div>
-      <form onSubmit={addComment}>
-      <br></br>
-      <label >
-          Add Comment
-      </label>
-      <textarea className="commentBox" type='text' name='comment' value={comment} onChange={onChangeComment} placeholder='Add comment'/>
-      <br></br>
-      <button type='submit' className="uploadImage">Submit</button>
-      </form>
-        
+        <form class="registration-form" onSubmit={addComment}>
+          <br/>
+          <label >
+          <textarea className="commentBox" type='text' name='comment' value={comment} onChange={onChangeComment} placeholder=' Add comment'/>
+          </label>
+          <button type='submit' className="submit">Submit</button>
+        </form>
       </div>
       );
     }
