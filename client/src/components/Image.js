@@ -5,7 +5,9 @@ import Images from '../ImageList';
 import download from '../imgs/download.png';
 import like from '../imgs/notfill.svg';
 import axios from 'axios'
-import firebaseApp from '../firebase/Firebase'
+import firebaseApp from '../firebase/Firebase';
+import DisplayComments from './DisplayComments';
+import SubmitComment from './SubmitComment';
 
 function MyVerticallyCenteredModal(props) {
 //add single image backend route , id can be taken from props.id
@@ -46,7 +48,7 @@ function MyVerticallyCenteredModal(props) {
     return (
       <Modal
         {...props}
-        size="lg"
+        size="xl"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -56,7 +58,13 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img class='img-fluid' alt="img" src={props.image.url} />
+        <div className="row">
+        <div className="colLeft"> <img class='img-fluid' alt="img" src={props.image.url} /></div>    
+        <div className="colRight"><DisplayComments data={props.image.comments}/><SubmitComment id={props.image._id}/></div>
+        </div>
+         
+          
+          
         </Modal.Body>
         <Modal.Footer>
         {/* add the download functionality from backend*/}

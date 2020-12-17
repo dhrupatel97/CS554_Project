@@ -8,21 +8,37 @@ function Search() {
   const [searchResults, setSearchResults] = React.useState([]);
   const [Imgs, setImages] = React.useState([]);
   const [isNull, setNull] = React.useState(false);
+  const [cate, setCate] = React.useState('all')
 
   
-  const handleChange = e => {
-   
-      setSearchTerm(e.target.value);
-      
+  const handleChangeSearchIp = e => {   
+      setSearchTerm(e.target.value);      
   };
-  React.useEffect(() => {
- 
-      let list1=[];
-      
-    setImages(Images)  
 
+  const onChangeCate = (e) => {
+    setCate(e.target.value)
+}
+
+  React.useEffect(() => {
+
+    async function loadImages(){
+    
+        fetch('/api/images', {
+          accept: 'application/json',
+        }).then(res => res.json())
+          .then(pic => {
+            setImages(pic)
+          }).catch(err => console.log(err));      
+      
+  }
+  loadImages();
+ 
+  let list1=[];
+      
+ 
+    
     Imgs.map(re=>{
-      re.KEYWORDS.map(res=>
+      re.keywords.map(res=>
         list1.push(res))
     })
   
@@ -57,17 +73,27 @@ function Search() {
         placeholder="Search Backgrounds"
         value={searchTerm}
         className="searchInput"
-        onChange={handleChange}
+        onChange={handleChangeSearchIp}
         style={{ textDecoration: 'none' }}      
 
       />
+      <label>
+                    Category:
+                </label>
+              
+                <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
+                    <option value="all">All</option>
+                    <option value="Office">Office</option>
+                    <option value="Home">Home</option>
+                    <option value="Outdoor">Outdoor</option>
+                </select>
       <div className="search1">
    
     
       
         {searchResults.map(item => (
           <div>
-          <Link to={`/search/${item}`} style={{ textDecoration: 'none' }}>  
+          <Link to={`/search/${cate}/${item}`} style={{ textDecoration: 'none' }}>  
             
             <p className="searchResult">{item}</p>
           </Link>

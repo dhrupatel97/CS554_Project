@@ -38,7 +38,7 @@ function App() {
             <Route path="/uploads">
             <ListImages imageType={"User-Uploaded"}/>
             </Route>
-            <Route path="/search/:keyword">
+            <Route path="/search/:category/:keyword">
             <SearchImages/>
             </Route>
             

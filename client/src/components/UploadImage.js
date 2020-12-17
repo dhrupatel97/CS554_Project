@@ -67,6 +67,7 @@ const UploadImage = () => {
         setImgName('')
         setCate('')
         setDesc('')
+        setKeywords('')
     }
 
     return (

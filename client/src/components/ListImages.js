@@ -110,6 +110,7 @@ function ListImages(props) {
 }
   return (
     <div class='container'>
+    <Search/>
       {imgData.map(re => {
         return (
           <div class='card'>

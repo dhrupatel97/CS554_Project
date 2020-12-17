@@ -339,3 +339,17 @@ html {
 	color: white;
 	cursor: pointer;
 }
+
+.row{
+	width:100%;
+}
+
+.colLeft{
+	width: 50%;
+	float: left;
+}
+
+.colRight{
+	width:40%;
+	float: right;
+}
