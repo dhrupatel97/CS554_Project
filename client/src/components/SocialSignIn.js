@@ -1,13 +1,31 @@
 import React from 'react';
 import { doSocialSignIn } from '../firebase/FirebaseFunctions';
 import googleSiginImg from '../imgs/btn_google_signin.png';
-import facebookSigninImg from '../imgs/btn_facebook_signin.png'
+import firebaseApp from '../firebase/Firebase'
 
 const SocialSignIn = () => {
   const socialSignOn = async (provider) => {
     try {
       await doSocialSignIn(provider);
-    } catch (error) {
+      const user = firebaseApp.auth().currentUser;
+      const token = user && (await user.getIdToken());
+      const bodyValues =  {
+        "firstName" : user.displayName,
+        "email" : user.email
+      }
+      
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyValues),
+        accept: 'application/json'
+      };
+      fetch('/api/users',requestOptions).then(res => {
+        console.log(res);
+        return res.json()
+      }).catch((err) => console.log(err));
+    } 
+     catch (error) {
       alert(error);
     }
   };
@@ -20,7 +38,6 @@ const SocialSignIn = () => {
         alt="google signin"
         src= {googleSiginImg}
       />
-      <div class="fb-login-button" data-size="small" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div>
     </div>
   );
 };
