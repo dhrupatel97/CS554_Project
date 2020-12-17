@@ -54,7 +54,7 @@ setKey(keyTemp)
         }).catch(err => console.log(err));    
       }
   loadImages(keyTemp)
-},[props])
+},[props, liked])
 
 const handleDownload = (id, name, size) => {
   axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
