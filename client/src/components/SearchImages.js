@@ -1,14 +1,15 @@
 import React from 'react';
+import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Images from '../ImageList';
-import Button from 'react-bootstrap/Button';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/notfill.svg';
 import Search from './Search';
 import firebaseApp from '../firebase/Firebase';
 import axios from 'axios';
+const FileDownload = require( 'js-file-download');
 
 
 function SearchImages(props) {
@@ -36,6 +37,7 @@ React.useEffect(() =>{
   let temp=window.location.pathname.split("/");
   const  keyTemp = temp[3]
 // let keyword=temp[3]  
+setKey(keyTemp)
   async function loadImages(keyTemp){
     
       fetch('/api/images', {
@@ -52,10 +54,17 @@ React.useEffect(() =>{
         }).catch(err => console.log(err));    
       }
   loadImages(keyTemp)
-},[props])
+},[props, liked])
 
-const handleDownload = (id, size) => {
-  window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
+const handleDownload = (id, name, size) => {
+  axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+    const fileName = "artsy-" + name + "-" + size + ".jpg"
+    FileDownload( response.data, fileName);
+  } )
+}
+const handleSelect = ( e, id, image) => {
+  console.log( "Selected , " , e );
+  handleDownload(id, image, e)
 }
 
 const handleLike = async (id) => {
@@ -71,7 +80,7 @@ const handleLike = async (id) => {
   .catch((err) => {
       // TODO Can redirect to login page 
       // TODO Dhruv
-      alert( "Please sign in" );
+      alert( "Please Sign In" );
       console.log(err)
   })
  
@@ -89,52 +98,49 @@ const handleLike = async (id) => {
   }
 
   return (
-    
     <div> 
-    
-  <h2 className="searchTitle">{key} backgrounds</h2>
-  
-  <CardColumns>
-  {
-      Images && Images.map(re=>{
-        console.log(re)
-        
-        return(         
-        <Card>
-          
-        <a className="modalButton" onClick={() => modal(re)} >
-          <Card.Img variant="top" src={re.url} />
-          </a>
-          <MyVerticallyCenteredModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            image={modalImage}
-          />
-       
-          <Card.Footer>
-          {/*add download functionality from backend */}
-          {/* TODO Dhruv, Tejashree can you please make it one button and give user the option to pick up different sizes */}
-          <button onClick={ () => handleDownload(re._id, 'default') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-          <button onClick={ () => handleDownload(re._id, 'small') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-          <button onClick={ () => handleDownload(re._id, 'large') }> <img src={download} alt="Download" className="downloadIcon"></img> </button>
-
-          
-          {/*add like functionality from backend */}
-          <button onClick={ () => handleLike(re._id) }> <img src={like} alt="Like" className="likeIcon"></img> </button>
-          
-          <div> { re.no_of_likes } </div>
-          {/* <img src={like} className="likeIcon"></img> */}
-     
-            {/* <p className="text-right text-muted">@{re.POSTED_BY}</p> */} 
-      </Card.Footer>      
-        </Card>
-        
-      
-      )})
-
-  }
-
-</CardColumns> 
+    <h2 className="searchTitle">{key} Backgrounds</h2>
+    <div class='container-list'>
+        {Images && Images.map(re => {
+          return (
+            <div class='card'>
+              <a className="modalButton" onClick={() => modal(re)} >
+                <img class='gallery-img' src={re.url} />
+                </a>
+                <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                image={modalImage}
+                />
+                <div class='like-count'>
+                  { re.no_of_likes }
+                </div>
+                <div class='like-button'>
+                <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
+                </div>
+                {/* <div class='download-button'>
+                  <i class='material-icons md-48' >arrow_circle_down</i>
+                </div> */}
+                <div class = "overlay-top">
+                
+                  <DropdownButton
+                    alignRight
+                    title = "Download"
+                    variant="secondary"
+                    id="dropdown-menu-align-right"
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
+                  >
+                    <Dropdown.Item eventKey="small">Small</Dropdown.Item>
+                    <Dropdown.Item eventKey="default">Default</Dropdown.Item>
+                    <Dropdown.Item eventKey="large">Large</Dropdown.Item>
+                
+                  </DropdownButton>
+                </div>
+                <div class='overlay'>@{re.posted_by}</div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   );}
 
