@@ -5,13 +5,8 @@ import Images from '../ImageList';
 import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
-<<<<<<< HEAD
-import like from '../imgs/like.png';
-import axios from 'axios';
-=======
 import like from '../imgs/notfill.svg';
 import axios from 'axios'
->>>>>>> 22dd065cc7352b3f16d7a4aab39ae05008be5208
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
 import fill from '../imgs/fill.svg'
@@ -115,6 +110,7 @@ function ListImages(props) {
 }
   return (
     <div class='container'>
+    <Search/>
       {imgData.map(re => {
         return (
           <div class='card'>
