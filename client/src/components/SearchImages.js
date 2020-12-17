@@ -1,12 +1,6 @@
 import React from 'react';
-import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
-import Images from '../ImageList';
+import  {DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
-import download from '../imgs/download.png';
-import like from '../imgs/notfill.svg';
-import Search from './Search';
 import firebaseApp from '../firebase/Firebase';
 import axios from 'axios';
 const FileDownload = require( 'js-file-download');
@@ -90,7 +84,6 @@ const handleLike = async (id) => {
   
   const [modalShow, setModalShow] = React.useState(false);
   const [modalImage, setModalImage] = React.useState('');
-  const [ID, setId] = React.useState('');
   
   function modal(image){
     setModalShow(true)
