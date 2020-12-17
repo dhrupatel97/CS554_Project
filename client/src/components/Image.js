@@ -8,12 +8,11 @@ import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import DisplayComments from './DisplayComments';
 import SubmitComment from './SubmitComment';
+import {DropdownButton, Dropdown} from 'react-bootstrap';
+const FileDownload = require( 'js-file-download');
 
 function MyVerticallyCenteredModal(props) {
 //add single image backend route , id can be taken from props.id
-  const handleDownload = (id, size) => {
-    window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
-  }
 
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
@@ -44,6 +43,17 @@ function MyVerticallyCenteredModal(props) {
     })
    
   }
+  const handleDownload = (id, name, size) => {
+    axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+      const fileName = "artsy-" + name + "-" + size + ".jpg"
+      FileDownload( response.data, fileName);
+    } )
+  }
+
+  const handleSelect = ( e, id, image) => {
+    console.log( "Selected , " , e );
+    handleDownload(id, image, e)
+  }
 
     return (
       <Modal
@@ -67,8 +77,18 @@ function MyVerticallyCenteredModal(props) {
           
         </Modal.Body>
         <Modal.Footer>
-        {/* add the download functionality from backend*/}
-        <button onClick={ () => handleDownload( props.image._id, "default")}><img src={download} className="downloadIcon"></img></button>
+        <DropdownButton
+                  alignRight
+                  title = "Download"
+                  variant="secondary"
+                  id="dropdown-menu-align-right"
+                  onSelect={(e) => handleSelect(e,props.image._id, props.image.image_name)}
+                >
+                  <Dropdown.Item eventKey="small">Small</Dropdown.Item>
+                  <Dropdown.Item eventKey="default">Default</Dropdown.Item>
+                  <Dropdown.Item eventKey="large">Large</Dropdown.Item>
+              
+                </DropdownButton>
         {/* add like functionality from backend */}
         <div class='like'><i class='material-icons' onClick={ () => handleLike( props.image._id)}>favorite</i></div>
         <div>{props.image.no_of_likes}</div>

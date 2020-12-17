@@ -1,14 +1,15 @@
 import React from 'react';
+import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Images from '../ImageList';
-import Button from 'react-bootstrap/Button';
 import MyVerticallyCenteredModal from './Image';
 import download from '../imgs/download.png';
 import like from '../imgs/notfill.svg';
 import Search from './Search';
 import firebaseApp from '../firebase/Firebase';
 import axios from 'axios';
+const FileDownload = require( 'js-file-download');
 
 
 function SearchImages(props) {
@@ -55,8 +56,15 @@ setKey(keyTemp)
   loadImages(keyTemp)
 },[props])
 
-const handleDownload = (id, size) => {
-  window.open(`http://localhost:4000/api/images/${id}/download?size=${size}`, "_blank") 
+const handleDownload = (id, name, size) => {
+  axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+    const fileName = "artsy-" + name + "-" + size + ".jpg"
+    FileDownload( response.data, fileName);
+  } )
+}
+const handleSelect = ( e, id, image) => {
+  console.log( "Selected , " , e );
+  handleDownload(id, image, e)
 }
 
 const handleLike = async (id) => {
@@ -110,8 +118,23 @@ const handleLike = async (id) => {
                 <div class='like-button'>
                 <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
                 </div>
-                <div class='download-button'>
+                {/* <div class='download-button'>
                   <i class='material-icons md-48' >arrow_circle_down</i>
+                </div> */}
+                <div class = "overlay-top">
+                
+                  <DropdownButton
+                    alignRight
+                    title = "Download"
+                    variant="secondary"
+                    id="dropdown-menu-align-right"
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
+                  >
+                    <Dropdown.Item eventKey="small">Small</Dropdown.Item>
+                    <Dropdown.Item eventKey="default">Default</Dropdown.Item>
+                    <Dropdown.Item eventKey="large">Large</Dropdown.Item>
+                
+                  </DropdownButton>
                 </div>
                 <div class='overlay'>@{re.posted_by}</div>
             </div>

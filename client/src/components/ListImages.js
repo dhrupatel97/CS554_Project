@@ -134,23 +134,19 @@ function ListImages(props) {
                 <div class='like-button'>
                 <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
                 </div>
-                {/* <div class='download-button'>
-                  <i class='material-icons md-48' >arrow_circle_down</i>
-                </div> */}
                 <div class = "overlay-top">
+                  <DropdownButton
+                    alignRight
+                    title = "Download"
+                    variant="secondary"
+                    id="dropdown-menu-align-right"
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
+                  >
+                    <Dropdown.Item eventKey="small">Small</Dropdown.Item>
+                    <Dropdown.Item eventKey="default">Default</Dropdown.Item>
+                    <Dropdown.Item eventKey="large">Large</Dropdown.Item>
                 
-                <DropdownButton
-                  alignRight
-                  title = "Download"
-                  variant="secondary"
-                  id="dropdown-menu-align-right"
-                  onSelect={(e) => handleSelect(e, re._id, re.image_name)}
-                >
-                  <Dropdown.Item eventKey="small">Small</Dropdown.Item>
-                  <Dropdown.Item eventKey="default">Default</Dropdown.Item>
-                  <Dropdown.Item eventKey="large">Large</Dropdown.Item>
-              
-                </DropdownButton>
+                  </DropdownButton>
                 </div>
                 <div class='overlay'>@{re.posted_by}</div>
             </div>
