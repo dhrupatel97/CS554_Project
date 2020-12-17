@@ -58,7 +58,7 @@ function MyVerticallyCenteredModal(props) {
     return (
       <Modal
         {...props}
-        size="xl"
+        size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -68,13 +68,10 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <div className="row">
-        <div className="colLeft"> <img class='img-fluid' alt="img" src={props.image.url} /></div>    
-        <div className="colRight"><DisplayComments data={props.image.comments}/><SubmitComment id={props.image._id}/></div>
-        </div>
-         
-          
-          
+        
+         <img class='img-fluid' alt="img" src={props.image.url} />    
+       <DisplayComments data={props.image.comments}/><SubmitComment id={props.image._id}/>
+       
         </Modal.Body>
         <Modal.Footer>
         <DropdownButton

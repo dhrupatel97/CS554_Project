@@ -374,6 +374,10 @@ html {
 	align-items: center;
 }
 
+.comment-box{
+	overflow: scroll;
+}
+
 
 /* .search-result{
 	height: 50px;
