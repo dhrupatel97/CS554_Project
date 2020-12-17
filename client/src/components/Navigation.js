@@ -9,10 +9,10 @@ import Search from './Search';
 
 const Navigation = () => {
   const { currentUser } = useContext(AuthContext);
-  return <div>{currentUser ? <NavigationAuth user={currentUser}/> : <NavigationNonAuth />}</div>;
+  return <div>{currentUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>;
 };
 
-const NavigationAuth = (props) => {
+const NavigationAuth = () => {
 
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
