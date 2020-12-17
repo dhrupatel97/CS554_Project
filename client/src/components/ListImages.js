@@ -109,32 +109,36 @@ function ListImages(props) {
     handleDownload(id, image, e.target.value)
 }
   return (
-    <div class='container'>
-    <Search/>
-      {imgData.map(re => {
-        return (
-          <div class='card'>
-             <a className="modalButton" onClick={() => modal(re)} >
-               <img class='gallery-img' src={re.url} />
-              </a>
-              <MyVerticallyCenteredModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              image={modalImage}
-              />
-              <div class='like-count'>
-                { re.no_of_likes }
-              </div>
-              <div class='like-button'>
-               <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
-              </div>
-              <div class='download-button'>
-                <i class='material-icons md-48' >arrow_circle_down</i>
-              </div>
-              <div class='overlay'>@{re.posted_by}</div>
-          </div>
-        )
-      })}
+    <div>
+        <div class='search'>
+          <Search/>
+        </div>
+      <div class='container-list'>
+        {imgData.map(re => {
+          return (
+            <div class='card'>
+              <a className="modalButton" onClick={() => modal(re)} >
+                <img class='gallery-img' src={re.url} />
+                </a>
+                <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                image={modalImage}
+                />
+                <div class='like-count'>
+                  { re.no_of_likes }
+                </div>
+                <div class='like-button'>
+                <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
+                </div>
+                <div class='download-button'>
+                  <i class='material-icons md-48' >arrow_circle_down</i>
+                </div>
+                <div class='overlay'>@{re.posted_by}</div>
+            </div>
+          )
+        })}
+      </div>
     </div>
      //           <button>
     //               <select  className="cat" name="category" id="category" onChange={ (e) => onChangeSize(e, re._id, re.image_name)} >

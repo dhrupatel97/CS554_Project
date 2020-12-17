@@ -11,7 +11,6 @@ function Search() {
   const [cate, setCate] = useState('all')
   
   const handleChangeSearchIp = e => {   
- 
       setSearchTerm(e.target.value);   
   };
  
@@ -45,49 +44,34 @@ function Search() {
     loadImages();  
   }, [searchTerm]); 
  return (
-  <div >
+  <div class='search-me'>
       <input
         type="text"
         placeholder="Search Backgrounds"
         value={searchTerm}
-        className="searchInput"
+        class="form-control me-2"
         onChange={handleChangeSearchIp}
-        style={{ textDecoration: 'none' }} 
-       
       />
       <label>
                     Category:
-                </label>
-              
                 <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
                     <option value="all">All</option>
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
                 </select>
+                </label>
+                
       <div className="search1">
-   
-    
-      
         {searchResults.map(item => (
           <div>
-          <Link to={`/search/${cate}/${item}`} style={{ textDecoration: 'none' }}>  
-            
-            <p className="searchResult">{item}</p>
+          <Link to={`/search/${cate}/${item}`} >  
+            <p className="search-result">{item}</p>
           </Link>
-          
           </div>  
-          
         ))}
-        
-      
         </div>
-        
-
-        
-
-      
-    </div>
+        </div>
   );
 }
 

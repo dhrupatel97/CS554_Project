@@ -4,6 +4,7 @@ import { AuthContext } from '../firebase/Auth';
 import SignOutButton from './SignOut';
 import '../App.css';
 import logo from '../imgs/logo.png'
+import Search from './Search';
 
 const Navigation = () => {
   const { currentUser } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Navigation = () => {
 
 const NavigationAuth = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,10 +55,11 @@ const NavigationAuth = () => {
               <SignOutButton/>
             </li>
           </ul>
-          <form class="d-flex">
+          {/* <form class="d-flex">
+            <Search/>
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
@@ -66,7 +68,7 @@ const NavigationAuth = () => {
 
 const NavigationNonAuth = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,10 +102,11 @@ const NavigationNonAuth = () => {
               </Link>
             </li>
           </ul>
-          <form class="d-flex">
+          {/* <form class="d-flex">
+            <Search/>
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
