@@ -112,45 +112,47 @@ function ListImages(props) {
   }
 
   return (
-    <div class='container'>
-    <Search/>
-      {imgData.map(re => {
-        return (
-          <div class='card'>
-             <a className="modalButton" onClick={() => modal(re)} >
-               <img class='gallery-img' src={re.url} />
-              </a>
-              <MyVerticallyCenteredModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              image={modalImage}
-              />
-              <div class='like-count'> 
-                { re.no_of_likes }
-              </div>
-              <div class='like-button'>
-               <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
-              </div>
-             
-              <div class = "overlay-top">
+    <div>
+        <div class='search'>
+          <Search/>
+        </div>
+      <div class='container-list'>
+        {imgData.map(re => {
+          return (
+            <div class='card'>
+              <a className="modalButton" onClick={() => modal(re)} >
+                <img class='gallery-img' src={re.url} />
+                </a>
+                <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                image={modalImage}
+                />
+                <div class='like-count'>
+                  { re.no_of_likes }
+                </div>
+                <div class='like-button'>
+                <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
+                </div>
+                <div class = "overlay-top">
+                  <DropdownButton
+                    alignRight
+                    title = "Download"
+                    variant="secondary"
+                    id="dropdown-menu-align-right"
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
+                  >
+                    <Dropdown.Item eventKey="small">Small</Dropdown.Item>
+                    <Dropdown.Item eventKey="default">Default</Dropdown.Item>
+                    <Dropdown.Item eventKey="large">Large</Dropdown.Item>
                 
-              <DropdownButton
-                alignRight
-                title = "Download"
-                variant="secondary"
-                id="dropdown-menu-align-right"
-                onSelect={(e) => handleSelect(e, re._id, re.image_name)}
-              >
-                <Dropdown.Item eventKey="small">Small</Dropdown.Item>
-                <Dropdown.Item eventKey="default">Default</Dropdown.Item>
-                <Dropdown.Item eventKey="large">Large</Dropdown.Item>
-            
-              </DropdownButton>
-              </div>
-              <div class='overlay'>@{re.posted_by}</div>
-          </div>
-        )
-      })}
+                  </DropdownButton>
+                </div>
+                <div class='overlay'>@{re.posted_by}</div>
+            </div>
+          )
+        })}
+      </div>
     </div>
                
   );}

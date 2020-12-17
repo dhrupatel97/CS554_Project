@@ -232,14 +232,12 @@ html {
   width:20px;
 } */
 
-.container {
+.container-list {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
 	grid-gap: 2rem;
 	margin: 2rem;
 }
-
-/* demo purposes only */
 
 * {
 	font-family: "Poppins", sans-serif;
@@ -361,3 +359,27 @@ html {
 	width:40%;
 	float: right;
 }
+
+.search{
+	height: 100%;
+	margin-top: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-me .search-result{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/* .search-result{
+	height: 50px;
+	padding: 10px;
+	border: none;
+	border-radius: 25px;
+	outline: none;
+	width: 600px;
+} */
