@@ -6,22 +6,15 @@ import Card from 'react-bootstrap/Card';
       return (
       <div>
         <h3>Comments</h3>
-        {props.data.map(re=>           
-      
-        <Card>
-        <Card.Header>@{re.name}</Card.Header>
-        <Card.Body>
-          
-          <Card.Text>
-            {re.comment}
-          </Card.Text>
-          
-        </Card.Body>
-      </Card>
+        {props.data.map(re=> {
+          return(
+            <div>
+              <p>@{re.name}</p>
+              <p>{re.comment}</p>
+            </div>
+  
+          )}           
       )}
-
-       
-        
       </div>
       );
     }
