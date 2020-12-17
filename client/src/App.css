@@ -269,6 +269,9 @@ html {
 	transform: scale(1.035, 1.035);
 	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
+.overlay-top {
+	opacity: 0;
+}
 
 .overlay {
 	color: black;
@@ -289,6 +292,10 @@ html {
 }
 
 .card:hover .overlay {
+	opacity: 1;
+}
+
+.card:hover .overlay-top {
 	opacity: 1;
 }
 
