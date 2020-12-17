@@ -1,71 +1,49 @@
 import React from 'react';
 import Images from '../ImageList';
 import { Link } from 'react-router-dom';
-
+import  { useState,useEffect, useCallback } from 'react';
 
 function Search() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
-  const [Imgs, setImages] = React.useState([]);
-  const [isNull, setNull] = React.useState(false);
-  const [cate, setCate] = React.useState('all')
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [Imgs, setImages] = useState([]);
+  const [isNull, setNull] = useState(false);
+  const [cate, setCate] = useState('all')
   
   const handleChangeSearchIp = e => {   
-      setSearchTerm(e.target.value);      
+ 
+      setSearchTerm(e.target.value);   
   };
-
+ 
   const onChangeCate = (e) => {
     setCate(e.target.value)
 }
 
-  React.useEffect(() => {
-
-    async function loadImages(){
-    
+  useEffect(() => {
+    async function loadImages(){ 
         fetch('/api/images', {
           accept: 'application/json',
         }).then(res => res.json())
           .then(pic => {
             setImages(pic)
-          }).catch(err => console.log(err));      
-      
-  }
-  loadImages();
- 
-  let list1=[];
-      
- 
-    
-    Imgs.map(re=>{
-      re.keywords.map(res=>
-        list1.push(res))
-    })
-  
- 
-    
-    const results = list1.filter(li =>
-      li.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-   
-    const uniqueResults = [...new Set(results)]
-    
-    if(searchTerm=== "")
-    {
-      setSearchResults([""])
-    }
-    else{
-      setSearchResults(uniqueResults);
-    }
-        
-   
-    
-   
-  
-    
-  }, [searchTerm]);
-
-  
+            let list1=[]; 
+            pic.map(re=>{
+              re.keywords.map(res=>
+              list1.push(res))
+            })  
+            const results = list1.filter(li =>
+                li.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            const uniqueResults = [...new Set(results)]   
+            if(searchTerm=== ""){
+              setSearchResults([""])
+            }else{
+              setSearchResults(uniqueResults);
+            } 
+          }).catch(err => console.log(err));          
+      }
+    loadImages();  
+  }, [searchTerm]); 
  return (
   <div >
       <input
@@ -74,8 +52,8 @@ function Search() {
         value={searchTerm}
         className="searchInput"
         onChange={handleChangeSearchIp}
-        style={{ textDecoration: 'none' }}      
-
+        style={{ textDecoration: 'none' }} 
+       
       />
       <label>
                     Category:
