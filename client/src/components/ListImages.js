@@ -136,7 +136,7 @@ function ListImages(props) {
                 
               <DropdownButton
                 alignRight
-                title = "Downlond"
+                title = "Download"
                 variant="secondary"
                 id="dropdown-menu-align-right"
                 onSelect={(e) => handleSelect(e, re._id, re.image_name)}

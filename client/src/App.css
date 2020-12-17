@@ -259,8 +259,9 @@ html {
 .gallery-img {
 	position: absolute;
 	top: 0;
-	height: 110%;
+	height: 100%;
 	width: 100%;
+	object-fit: cover;
 	transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
