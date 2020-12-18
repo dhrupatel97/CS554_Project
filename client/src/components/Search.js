@@ -43,40 +43,38 @@ function Search() {
       }
     loadImages();  
   }, [searchTerm]); 
-  console.log(searchResults.length);
  return (
-  <div class='search'>
-    <div class='search-wrap'>
-    <label for="search-box">Search: </label>
-      <div>
+  <div >
+  
+    
       <input
         type="text"
         placeholder="Search Backgrounds"
         value={searchTerm}
-        class="search-box-style"
+        class="search"
         id = "search-box"
+        aria-label="Search Box"
+        autocomplete="off"
         onChange={handleChangeSearchIp}
       />
-      </div>
-      <div>
+      
                 <select  className="catSearch" name="category" id="category"  value={cate} onChange={onChangeCate}>
                     <option value="all">All</option>
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
-                </select>   
-                </div>
-                </div>
-      {searchResults.length > 1 ?           
+                </select>
+                
+                
       <div className="search1">
         {searchResults.map(item => (
           <div>
-          <Link to={`/search/${cate}/${item}`} style={{ textDecoration: 'none' }} >  
+          <Link to={`/search/${cate}/${item}`} style={{ textDecoration: 'none' }}  aria-label="Search Result">  
             <p className="result">{item}</p>
           </Link>
           </div>  
         ))}
-        </div> : null }
+        </div>
         </div>
   );
 }

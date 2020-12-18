@@ -360,7 +360,7 @@ html {
 	float: right;
 }
 
-.search{
+/* .search{
 	height: 100%;
 	margin-top: 3rem;
 	display: flex;
@@ -368,13 +368,13 @@ html {
 	align-items: center;
 	display: inline;
 	padding: 5px;
-}
+} */
 
-.search .search-box-style {
+/* .search .search-box-style {
 	height: 50px;
 	padding: 7px;
 	width: 500px;
-}
+} */
 
 /* .search-me{
 	display: flex;
@@ -430,12 +430,12 @@ html {
 
 
 .search1{
-	/* z-index: 9; */
-	justify-content: center;
-	align-items: center;
-	/* position: absolute; */
+	z-index: 9; 
+	/* justify-content: center;
+	align-items: center; */
+	position: absolute; 
 	background-color: #fff;
-	margin-left: 14%;
+	margin-left: 33%;
 	width: 450px;
 	padding-left: 1px;
 	margin-top: 10px;
@@ -443,7 +443,7 @@ html {
 	
 }
 
-.search-wrap {
+/* .search-wrap {
 	display: flex; 
 	justify-content: space-around;
 	vertical-align: baseline;
@@ -452,7 +452,7 @@ html {
 .search-wrap label {
 	padding-top: 10px;
     padding-bottom: 10px;
-}
+} */
 
 .listImages{
 	position: relative;
@@ -544,23 +544,21 @@ html {
 	
 }
 
-@media screen and ( max-width: 1024px) {
-	.search{margin-left: 23%;}	
-	.search1{margin-left: 23%;}
-	.comments{height: 3rem;font-size: 0.7rem;}
-	.image{height:300px;width:400px;}
-	.commentBox{height: 60px;width:212px;}
-	.submit1{margin-left: 15%;}
-}
+
 
 @media screen and ( max-width: 1030px) {
-	.search{margin-left: 15%;}	
-	.search1{margin-left: 15%;}
+	.search{margin-left: 25%;}	
+	.search1{margin-left: 25%;}
 	.image{height:200px;width:200px;}
 	.commentBox{height: 60px;width:112px; font-size: 0.8rem;}
 	.submit1{margin-left: 5%; width: 80px; font-size: 0.8rem;}
 	.comTitle{font-size: 1rem;padding-top: 5%;}
 	
+}
+
+@media screen and ( max-width: 770px) {
+	.search{margin-left: 15%;}	
+	.search1{margin-left: 15%;}
 }
 
 @media screen and ( max-width: 430px) {
