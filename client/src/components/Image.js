@@ -79,8 +79,8 @@ function MyVerticallyCenteredModal(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            <p>{props.image.image_name} by @{props.image.posted_by}</p>
+          <Modal.Title id="example-modal-sizes-title-lg" >
+            <p className="modalTitle">{props.image.image_name} by @{props.image.posted_by}</p>
            
                   
             </Modal.Title>
@@ -93,12 +93,12 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
           <Container >
             <Row>
-              <Col xs={12} md={8}>
+              <Col xs={12} sm={12} md={8}>
                 <img className='image' alt="img" src={props.image.url} />
                 <p className="desc"><b>About:</b> {props.image.desc}</p>     
               </Col>
-              <Col xs={6} md={4} className="com">
-                <div><DisplayComments data={displayComments}/></div>
+              <Col xs={12} sm={12} md={4} className="com">
+                <DisplayComments data={displayComments}/>
                 <div className="subCom">
                 <SubmitComment id={props.image._id}  comments={setComments}/>
                 </div>

@@ -39,7 +39,7 @@ function Search() {
             }else{
               setSearchResults(uniqueResults);
             } 
-          }).catch(err => console.log(err));          
+            }).catch(err => console.log(err));          
       }
     loadImages();  
   }, [searchTerm]); 
@@ -64,7 +64,7 @@ function Search() {
       <div className="search1">
         {searchResults.map(item => (
           <div>
-          <Link to={`/search/${cate}/${item}`} >  
+          <Link to={`/search/${cate}/${item}`} style={{ textDecoration: 'none' }} >  
             <p className="result">{item}</p>
           </Link>
           </div>  

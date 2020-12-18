@@ -4,8 +4,8 @@ import React from 'react';
     
       return (
       <div >
-       <br></br>
-        <h4>Comments</h4>
+       
+        <h4 className="comTitle">Comments</h4>
         <hr></hr>
         <div class='comments'>
         {props.data.map(re=> {

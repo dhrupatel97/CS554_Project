@@ -37,7 +37,7 @@ form button.submit {
 	padding: 0.5em 0.5em;
 	-webkit-transition: all 0.25s;
 	transition: all 0.25s;
-	margin: 15px;
+	margin: 0px;
 }
 
 form button:hover,
@@ -419,9 +419,6 @@ html {
   
 }
 
-.catSearch option :hover{
-	text-decoration: none;
-}
 
 .search1{
 	z-index: 9;
@@ -444,7 +441,6 @@ html {
  background-color: #e7f1f1;
  padding-bottom: 4%;
  
- 
 }
 
 .result{
@@ -453,6 +449,10 @@ html {
 	padding-top: 0%;
 	text-decoration: none;
 	
+}
+
+.result:hover{
+	color:#88bdbc;
 }
 
 .search2{
@@ -475,8 +475,7 @@ html {
 
 .subCom{
 	width:400px;
-	margin-top: 0%;
-	position: relative;
+	margin-top: 0%;	
 	
 }
 
@@ -515,3 +514,61 @@ html {
 	margin-left:2%;
 	margin-top: 2%;
 }
+
+@media screen and ( max-width: 1440px) {
+	.comments{height: 4rem;font-size: 0.8rem;}
+	.image{height:300px;width:400px;}
+	.commentBox{height: 60px;width:330px;}
+	
+}
+
+@media screen and ( max-width: 1024px) {
+	.search{margin-left: 23%;}	
+	.search1{margin-left: 23%;}
+	.comments{height: 3rem;font-size: 0.7rem;}
+	.image{height:300px;width:400px;}
+	.commentBox{height: 60px;width:212px;}
+	.submit1{margin-left: 15%;}
+}
+
+@media screen and ( max-width: 1024px) {
+	.search{margin-left: 15%;}	
+	.search1{margin-left: 15%;}
+	.image{height:200px;width:200px;}
+	.commentBox{height: 60px;width:112px; font-size: 0.8rem;}
+	.submit1{margin-left: 5%; width: 80px; font-size: 0.8rem;}
+	.comTitle{font-size: 1rem;padding-top: 5%;}
+}
+
+@media screen and ( max-width: 430px) {
+	.search{margin-left: 10%;width: 250px;height: 40px;}	
+	.search1{margin-left:10%;width: 250px;}
+	.catSearch{height: 40px;}
+	.searchContent{padding-bottom: 1%;}
+	.image{height:200px;width:300px;padding-left: 15%;}
+	.desc{padding-left: 15%; width:295px;}
+	.commentBox{height: 40px;width:312px; font-size: 0.8rem;}
+	.submit1{margin-left: 25%; width: 100px; font-size: 0.8rem;}
+	.searchTitle{margin-left: 15%;}
+	
+	
+}
+@media screen and ( max-width: 380px) {
+	.search{width: 200px;height: 30px;}	
+	.search1{width: 200px;}
+	.catSearch{height: 30px;}
+	.image{height:200px;width:270px;padding-left: 10%;}
+	.commentBox{width:250px; }
+	.submit1{margin-left: 19%;}
+	.searchTitle{margin-left: 10%;}
+	}
+@media screen and ( max-width: 325px) {
+	.search{width: 160px; font-size: 0.9rem;padding-left: 0px;}	
+	.search1{width: 160px;}
+	.image{width:230px;height: 200px;padding-left: 5%;}
+	.desc{padding-left: 7%; width:200px; font-size: 0.8rem;}
+	.commentBox{width:200px; }
+	.submit1{margin-left: 13%;}
+	.modalTitle{font-size: 1rem; }
+	.searchTitle{margin-left: 10%;font-size: 1.5rem;}
+	}

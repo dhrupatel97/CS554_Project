@@ -46,7 +46,7 @@ import firebaseApp from '../firebase/Firebase';
   
       return (
       <div >
-        <form className="subcom1" onSubmit={addComment}>
+        <form  onSubmit={addComment}>
      
           
           <textarea className="commentBox" type='text' name='comment' value={comment} onChange={onChangeComment} placeholder=' Add comment'/>

@@ -41,6 +41,12 @@ const NavigationAuth = () => {
               
                 </DropdownButton>
             </li>
+
+            <li class="nav-item">
+              <Link exact to="/hottest" class='nav-link' >
+                Hottest
+              </Link>
+            </li>
             <li class="nav-item">
               <Link exact to="/uploads" class='nav-link' >
                 My Photos
@@ -101,7 +107,13 @@ const NavigationNonAuth = () => {
               
                 </DropdownButton>
                 </li>
+                <li class="nav-item">
+                <Link exact to="/hottest" class='nav-link' >
+                  Hottest
+                </Link>
+              </li>
           </ul>
+         
           <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
               <Link exact to="/signup" class='nav-link' >
