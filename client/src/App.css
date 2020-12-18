@@ -277,7 +277,7 @@ html {
 	font-size: 16px;
 	letter-spacing: 0.5px;
 	transition: .5s ease;
-	opacity: 0;
+	visibility: hidden;
 	bottom: 0.1rem;
 	left: 3.2rem;
 	position: absolute;
@@ -290,7 +290,7 @@ html {
 }
 
 .card:hover .overlay {
-	opacity: 1;
+	visibility: visible;
 }
 
 .card:hover .overlay-top {
