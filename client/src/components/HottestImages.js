@@ -4,11 +4,15 @@ import MyVerticallyCenteredModal from './Image';
 import firebaseApp from '../firebase/Firebase';
 import axios from 'axios';
 import FooterPage from './FooterPage';
+import Search from './Search';
 const FileDownload = require( 'js-file-download');
 
 
-function SearchImages(props) {
+
+function HottestImages(props) {
   const [liked, setLike] = React.useState(false);
+  const [Images, setImages] = React.useState([])
+  const[Img, setImg]= React.useState([])
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
     const token = user && (await user.getIdToken());
@@ -19,48 +23,30 @@ function SearchImages(props) {
     };
     return payloadHeader;
   }
-// let temp=window.location.pathname.split("/");
-// let keyword=temp[3]  
 
-const [img, setImg] = React.useState([])
-const [Images, setImages] = React.useState([])
-const [key, setKey] = React.useState([])
 
 
 
 React.useEffect(() =>{
-  let temp=window.location.pathname.split("/");
-  const catTemp = temp[2]
-  const  keyTemp = temp[3]
-  setKey(keyTemp)
-  async function loadImages(keyTemp, catTemp){
-    
+  
+  async function loadImages(){
+ 
       fetch('/api/images', {
         accept: 'application/json',
       }).then(res => res.json())
         .then(pic => {
-          setImg(pic)
-
-        if(catTemp==="all")
-        {
-          const image =  pic.filter(re =>{            
-              return re.keywords.includes(keyTemp)             
-           })           
-           setImages(image)
-        }else{
-          const temp_list =  pic.filter(re =>{            
-              return re.keywords.includes(keyTemp)             
-           })
- 
-          const image = temp_list.filter(re=>{
-            
-            return re.category.includes(catTemp)
-          })
-          setImages(image)          
-        }       
+          setImages(pic)
+          pic.sort(function (a, b) {
+            return a.no_of_likes - b.no_of_likes;
+          });
+          const revImgData= pic.reverse();
+          console.log(revImgData)
+          setImg(revImgData)
+        
+     
         }).catch(err => console.log(err));    
       }
-  loadImages(keyTemp, catTemp )
+  loadImages()
 },[props, liked])
 
 const handleDownload = (id, name, size) => {
@@ -104,10 +90,12 @@ const handleLike = async (id) => {
   }
 
   return (
-    <div> 
-    <h2 className="searchTitle">{key} Backgrounds</h2>
-    <div class='container-list'>
-        {Images && Images.map(re => {
+    <div class="listImages">
+    <div className="searchContent">
+          <Search/>
+        </div>
+      <div class='container-list'>
+        {Img && Img.map(re => {
           return (
             <div class='card'>
               <a className="modalButton" onClick={() => modal(re)} >
@@ -124,22 +112,17 @@ const handleLike = async (id) => {
                 <div class='like-button'>
                 <i class='material-icons' onClick={ () => handleLike(re._id) }>favorite</i>
                 </div>
-                {/* <div class='download-button'>
-                  <i class='material-icons md-48' >arrow_circle_down</i>
-                </div> */}
                 <div class = "overlay-top">
-                
                   <DropdownButton
                     alignRight
                     title = "Download"
                     variant="secondary"
                     id="dropdown-menu-align-right"
-                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}                    
                   >
                     <Dropdown.Item eventKey="small">Small</Dropdown.Item>
                     <Dropdown.Item eventKey="default">Default</Dropdown.Item>
                     <Dropdown.Item eventKey="large">Large</Dropdown.Item>
-                
                   </DropdownButton>
                 </div>
                 <div class='overlay'>@{re.posted_by}</div>
@@ -148,7 +131,7 @@ const handleLike = async (id) => {
         })}
       </div>
       
-    </div>
+    </div>              
   );}
 
-export default SearchImages;
+export default HottestImages;

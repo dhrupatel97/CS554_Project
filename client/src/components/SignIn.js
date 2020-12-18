@@ -8,6 +8,7 @@ import {
 } from '../firebase/FirebaseFunctions';
 import firebaseApp from '../firebase/Firebase'
 import logo from '../imgs/logo.png'
+import FooterPage from './FooterPage';
 
 function SignIn() {
   const { currentUser } = useContext(AuthContext);
@@ -84,6 +85,7 @@ function SignIn() {
           <SocialSignIn/>
         </div>
       </form>
+      
     </div>
   );
 }
