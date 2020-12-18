@@ -38,8 +38,20 @@ const NavigationAuth = () => {
                   <Dropdown.Item ><Link exact to="/office">
                 Office
               </Link></Dropdown.Item>
+              <Dropdown.Item ><Link exact to="/abstract">
+               Abstract
+              </Link></Dropdown.Item>
+              <Dropdown.Item ><Link exact to="/other">
+                Other
+              </Link></Dropdown.Item>
               
                 </DropdownButton>
+            </li>
+
+            <li class="nav-item">
+              <Link exact to="/hottest" class='nav-link' >
+                Hottest Background
+              </Link>
             </li>
             <li class="nav-item">
               <Link exact to="/uploads" class='nav-link' >
@@ -98,10 +110,22 @@ const NavigationNonAuth = () => {
                   <Dropdown.Item ><Link exact to="/office">
                 Office
               </Link></Dropdown.Item>
+              <Dropdown.Item ><Link exact to="/abstract">
+              Abstract
+            </Link></Dropdown.Item>
+            <Dropdown.Item ><Link exact to="/other">
+            Other
+          </Link></Dropdown.Item>
               
                 </DropdownButton>
                 </li>
+                <li class="nav-item">
+                <Link exact to="/hottest" class='nav-link' >
+                  Hottest
+                </Link>
+              </li>
           </ul>
+         
           <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
               <Link exact to="/signup" class='nav-link' >

@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import ListImages from './components/ListImages';
 import SearchImages from './components/SearchImages';
+import HottestImages from './components/HottestImages';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import FooterPage from './components/FooterPage';
@@ -37,11 +38,20 @@ function App() {
             <Route path="/outdoor">
             <ListImages imageType={"Outdoor"}/>
             </Route>
+            <Route path="/abstract">
+            <ListImages imageType={"Abstract"}/>
+            </Route>
+            <Route path="/other">
+            <ListImages imageType={"Other"}/>
+            </Route>
             <Route path="/uploads">
             <ListImages imageType={"User-Uploaded"}/>
             </Route>
             <Route path="/search/:category/:keyword">
             <SearchImages/>
+            </Route>
+            <Route path="/hottest">
+            <HottestImages/>
             </Route>
             
             

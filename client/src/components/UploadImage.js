@@ -92,6 +92,8 @@ const UploadImage = () => {
                         <option value="Office" selected>Office</option>
                         <option value="Home">Home</option>
                         <option value="Outdoor">Outdoor</option>
+                        <option value="Abstract">Abstract</option>
+                        <option value="Other">Other</option>
                     </select>
                 </label>
                 <br></br>
