@@ -97,7 +97,7 @@ const NavigationAuth = () => {
 const NavigationNonAuth = () => {
   return (
     <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark color">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,7 @@ const NavigationNonAuth = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <DropdownButton
+            {/*<DropdownButton
                   alignRight
                   title = "Category"
                   variant="secondary"
@@ -129,7 +129,7 @@ const NavigationNonAuth = () => {
             Other
           </Link></Dropdown.Item>
               
-                </DropdownButton>
+            </DropdownButton>*/}
                 </li>
                 <li class="nav-item">
                 <Link exact to="/hottest" class='nav-link' >
