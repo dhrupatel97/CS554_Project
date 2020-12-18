@@ -20,7 +20,6 @@ export class Users {
           });
         }
       })
-     
     });
 
     app.route('/api/users').get((req: Request, res: Response) => {

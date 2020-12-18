@@ -15,8 +15,6 @@ export class Images {
     const userDataAccess = new UserDataAccess();
 
     app.route('/api/images/:id/download').get((req: Request, res: Response) => {
-      
-        // imageDataAccess.deletePublicFiles();
         ImageData.findById(req.params.id, (err: any, images: any) => {
           if (err) {
             res.status(500).send(err);
@@ -49,15 +47,19 @@ export class Images {
       }, function (err, user) {
         if (err) {
           res.status(500).send(err);
-        }
-        const imageIds = user.postedImages;
-      imageDataAccess.getImagesByImageIds(imageIds, (err: any, images: any) => {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-          res.json(images);
-        }
-      });
+          
+        }else if(user === null){
+          res.status(404).send("user not found")     
+        }else{
+          const imageIds = user.postedImages;
+          imageDataAccess.getImagesByImageIds(imageIds, (err: any, images: any) => {
+            if (err) {
+              res.status(500).send(err);
+            } else {
+              res.json(images);
+            }
+          });
+        }    
     });
     });
 
@@ -66,7 +68,11 @@ export class Images {
         if (err) {
           res.status(500).send(err);
         } else {
-          res.json(images);
+          if (images === null) {
+            res.status(404).send("Image for given id not found")
+          }else{
+            res.json(images);
+          }       
         }
       });
     });
@@ -84,7 +90,11 @@ export class Images {
           console.log( err );
           res.status(500).send(err);
         } else {
-          res.json(images);
+          if (images === null) {
+            res.status(404).send("Image for given id not found")
+          }else{
+            res.json(images);
+          } 
         }
       });
     });
@@ -98,31 +108,36 @@ export class Images {
       }, function (err, user) {
         if (err) {
           res.status(500).send(err);
-        }
-        userDataAccess.hasUserLiked(user._id, id, (data: any) => {
-          imageDataAccess.updateLike(id, data, (err: any, images: any) => {
-            if (err) {
-              res.status(500).send(err);
-            } else {
-              userDataAccess.updateLikedImage(user._id, id, data);
-
-              ImageData.findById(id, (err: any, images: any) => {
-                if (err) {
-                  res.status(500).send(err);
-                } else {
-                  res.json(images);
-                }
-              })
-            }
-          });
-        })
+        }else if(user === null){
+          res.status(404).send("user not found")     
+        }else{
+          userDataAccess.hasUserLiked(user._id, id, (data: any) => {
+            imageDataAccess.updateLike(id, data, (err: any, images: any) => {
+              if (err) {
+                res.status(500).send(err);
+              } else {
+                userDataAccess.updateLikedImage(user._id, id, data);
+                ImageData.findById(id, (err: any, images: any) => {
+                  if (err) {
+                    res.status(500).send(err);
+                  } else {
+                    if (images === null) {
+                      res.status(404).send("Image for given id not found")
+                    }else{
+                      res.json(images);
+                    }
+                  }
+                })
+              }
+            });
+          })
+        }  
       })
     })
 
     app.route('/api/images').post(
       multer({ dest: 'temp/', limits: { fileSize: 8 * 1024 * 1024 } }).single('image'),
       (req: Request, res: Response) => {
-
         try {
           const mReq = req as MulterRequest
           if (mReq && mReq.file) {
@@ -150,27 +165,30 @@ export class Images {
         }, function (err, user) {
           if (err) {
             res.status(500).send(err);
-          }
-          ImageData.findById(req.params.id, (err: any, images: any) => {
-            if (err) {
-              res.status(500).send(err);
-            } else {
-              if (images === null) {
-                res.status(404).send("Image for given id not found")
+          }else if(user === null){
+            res.status(404).send("user not found");
+          }else{
+            ImageData.findById(req.params.id, (err: any, images: any) => {
+              if (err) {
+                res.status(500).send(err);
               } else {
-                let commentBody = req.body;
-                commentBody.name = user.firstName;
-                images.comments.push(commentBody)
-                images.save((err: any) => {
-                  if (err) {
-                    res.status(400).send(err.message);
-                  } else {
-                    res.json(images);
-                  }
-                });
+                if (images === null) {
+                  res.status(404).send("Image for given id not found")
+                } else {
+                  let commentBody = req.body;
+                  commentBody.name = user.firstName;
+                  images.comments.push(commentBody)
+                  images.save((err: any) => {
+                    if (err) {
+                      res.status(400).send(err.message);
+                    } else {
+                      res.json(images);
+                    }
+                  });
+                }
               }
-            }
-          });
+            });
+          }       
         });
       } catch (err) {
         res.status(500).send(err);
@@ -179,7 +197,6 @@ export class Images {
 
     app.route("/api/images/:imageId/:commentId").delete(async (req: Request, res: Response) => {
       try {
-
         ImageData.findById(req.params.imageId, (err: any, images: any) => {
           if (err) {
             res.status(500).send(err);
@@ -187,7 +204,6 @@ export class Images {
             if (images === null) {
               res.status(404).send("Image for given id not found")
             } else {
-
               let comments = images.comments.filter(comment => {
                 if (comment && comment._id) {
                   return comment._id.toString() !== req.params.commentId
