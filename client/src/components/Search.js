@@ -63,6 +63,8 @@ function Search() {
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
+                    <option value="Abstract">Abstract</option>
+                    <option value="Other">Other</option>
                 </select>
                 
                 
