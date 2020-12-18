@@ -366,13 +366,21 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	display: inline;
+	padding: 5px;
 }
 
-.search-me .search-result{
+.search .search-box-style {
+	height: 50px;
+	padding: 7px;
+}
+
+/* .search-me{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
+	
+} */
 
 .comments{
 	overflow: auto;
@@ -421,10 +429,12 @@ html {
 
 
 .search1{
-	z-index: 9;
-	position: absolute;
+	/* z-index: 9; */
+	justify-content: center;
+	align-items: center;
+	/* position: absolute; */
 	background-color: #fff;
-	margin-left: 33%;
+	margin-left: 14%;
 	width: 450px;
 	padding-left: 1px;
 	margin-top: 10px;
