@@ -46,7 +46,9 @@ function Search() {
   console.log(searchResults.length);
  return (
   <div class='search'>
+    <div class='search-wrap'>
     <label for="search-box">Search: </label>
+      <div>
       <input
         type="text"
         placeholder="Search Backgrounds"
@@ -55,14 +57,16 @@ function Search() {
         id = "search-box"
         onChange={handleChangeSearchIp}
       />
-      
+      </div>
+      <div>
                 <select  className="catSearch" name="category" id="category"  value={cate} onChange={onChangeCate}>
                     <option value="all">All</option>
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
-                </select>
-                
+                </select>   
+                </div>
+                </div>
       {searchResults.length > 1 ?           
       <div className="search1">
         {searchResults.map(item => (
