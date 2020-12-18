@@ -5,6 +5,7 @@ import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
 import '../App.css';
+import FooterPage from './FooterPage';
 const FileDownload = require( 'js-file-download');
 
 function ListImages(props) {
@@ -91,8 +92,8 @@ function ListImages(props) {
   }
   
   return (
-    <div>
-        <div class='search'>
+    <div class="listImages">
+    <div className="searchContent">
           <Search/>
         </div>
       <div class='container-list'>
@@ -131,6 +132,7 @@ function ListImages(props) {
           )
         })}
       </div>
+      
     </div>              
 );}
 

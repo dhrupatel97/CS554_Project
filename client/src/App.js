@@ -12,6 +12,7 @@ import ListImages from './components/ListImages';
 import SearchImages from './components/SearchImages';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import FooterPage from './components/FooterPage';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Router>
         
             <Navigation />
+            
             <Switch>
             <Route exact path="/">
             <ListImages imageType={"All"}/>
@@ -49,6 +51,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             </Switch>
             <Redirect to="/"/>
+          
         
       </Router>
     </AuthProvider>

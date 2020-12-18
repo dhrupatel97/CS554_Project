@@ -49,24 +49,23 @@ function Search() {
         type="text"
         placeholder="Search Backgrounds"
         value={searchTerm}
-        class="form-control me-2"
+        class="search"
         onChange={handleChangeSearchIp}
       />
-      <label>
-                    Category:
-                <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
+      
+                <select  className="catSearch" name="category" id="category"  value={cate} onChange={onChangeCate}>
                     <option value="all">All</option>
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
                 </select>
-                </label>
+                
                 
       <div className="search1">
         {searchResults.map(item => (
           <div>
           <Link to={`/search/${cate}/${item}`} >  
-            <p className="search-result">{item}</p>
+            <p className="result">{item}</p>
           </Link>
           </div>  
         ))}

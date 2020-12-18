@@ -3,6 +3,7 @@ import  {DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
 import firebaseApp from '../firebase/Firebase';
 import axios from 'axios';
+import FooterPage from './FooterPage';
 const FileDownload = require( 'js-file-download');
 
 
@@ -146,6 +147,7 @@ const handleLike = async (id) => {
           )
         })}
       </div>
+      
     </div>
   );}
 

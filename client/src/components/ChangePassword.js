@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../firebase/Auth';
 import { doChangePassword } from '../firebase/FirebaseFunctions';
 import '../App.css';
+import FooterPage from './FooterPage';
 
 function ChangePassword() {
   const { currentUser } = useContext(AuthContext);
@@ -91,6 +92,7 @@ function ChangePassword() {
           </div>
         </form>
         <br />
+     
       </div>
     );
   } else {
@@ -100,6 +102,7 @@ function ChangePassword() {
           You are signed in using a Social Media Provider, You cannot change
           your password
         </h2>
+       
       </div>
     );
   }

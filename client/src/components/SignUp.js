@@ -4,6 +4,7 @@ import { doCreateUserWithEmailAndPassword } from '../firebase/FirebaseFunctions'
 import { AuthContext } from '../firebase/Auth';
 import SocialSignIn from './SocialSignIn';
 import logo from '../imgs/logo.png'
+import FooterPage from './FooterPage';
 
 function SignUp() {
   const { currentUser } = useContext(AuthContext);
@@ -110,6 +111,7 @@ function SignUp() {
           <SocialSignIn/>
         </div>
       </form>
+    
     </div>
   );
 }

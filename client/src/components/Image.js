@@ -74,30 +74,41 @@ function MyVerticallyCenteredModal(props) {
     return (
       <Modal
         {...props}
-        size="lg"
+        size="xl"
         aria-labelledby="example-modal-sizes-title-lg"
         centered
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
-            <p>{props.image.image_name}</p>
-          </Modal.Title>
+            <p>{props.image.image_name} by @{props.image.posted_by}</p>
+           
+                  
+            </Modal.Title>
+            
+            
+            
+            
+              
         </Modal.Header>
         <Modal.Body>
-          <Container>
+          <Container >
             <Row>
               <Col xs={12} md={8}>
-                <img class='img-fluid' alt="img" src={props.image.url} />  
+                <img className='image' alt="img" src={props.image.url} />
+                <p className="desc"><b>About:</b> {props.image.desc}</p>     
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4} className="com">
                 <div><DisplayComments data={displayComments}/></div>
+                <div className="subCom">
+                <SubmitComment id={props.image._id}  comments={setComments}/>
+                </div>
               </Col>
-              <SubmitComment id={props.image._id}  comments={setComments}/>
+              
             </Row>
           </Container>
         </Modal.Body>
         <Modal.Footer>
-        <DropdownButton
+         <DropdownButton
                   alignRight
                   title = "Download"
                   variant="secondary"

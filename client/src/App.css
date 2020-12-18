@@ -375,15 +375,24 @@ html {
 }
 
 .comments{
-	overflow: scroll;
-	height: 15rem;
+	overflow: auto;
+	height: 10rem;
 }
 
 .modal-image{
 	height: 15rem;
 }
 
+.desc{
+	padding-top: 2%;
+	padding-left: 2px;
+	
+}
 
+.posted{
+	font-size: 1rem;
+	padding: 0px;
+}
 /* .search-result{
 	height: 50px;
 	padding: 10px;
@@ -392,3 +401,116 @@ html {
 	outline: none;
 	width: 600px;
 } */
+
+.search{
+	margin-left: 33%;
+	display: inline-block;
+	width: 450px;
+	height: 50px;
+	opacity: 100%;
+	margin-top: 2%;
+	padding-left: 10px;
+	
+}
+
+.catSearch{
+   display: inline-block;
+   height: 50px;
+  
+}
+
+.catSearch option :hover{
+	text-decoration: none;
+}
+
+.search1{
+	z-index: 9;
+	position: absolute;
+	background-color: #fff;
+	margin-left: 33%;
+	width: 450px;
+	padding-left: 1px;
+	margin-top: 10px;
+	padding-top: 10px;
+	
+}
+
+.listImages{
+	position: relative;
+}
+
+.searchContent{
+ background-color: #e7f1f1;
+ padding-bottom: 4%;
+ 
+ 
+}
+
+.result{
+	color: #112d32;
+	padding-left:5%;
+	padding-top: 0%;
+	text-decoration: none;
+	
+}
+
+.search2{
+	display: none;
+}
+
+.dropdown{
+	margin-left: 20px;
+}
+
+.image{
+	height:400px;
+	width:500px;
+
+}
+.com{
+	border: 1px solid black;
+
+}
+
+.subCom{
+	width:400px;
+	margin-top: 0%;
+	position: relative;
+	
+}
+
+.submit1{
+	margin-left: 30%;
+	margin-bottom: 2%;
+	width:100px;
+}
+.commentBox{
+
+	height: 100px;
+	width:330px;
+	
+}
+
+.each-comment p{
+	padding-left: 5%;
+}
+.fo{
+	background-color: #112d32;
+	padding-bottom: 1%;
+	padding-top: 1%;
+	padding-left: 45%;
+	
+}
+.foo{
+	color:#fff;
+}
+
+.color{
+	background-color:#112d32 ;
+	
+}
+
+.searchTitle{
+	margin-left:2%;
+	margin-top: 2%;
+}

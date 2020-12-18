@@ -3,6 +3,7 @@ import {Alert} from 'react-bootstrap'
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase'
 import '../App.css';
+import FooterPage from './FooterPage';
 
 const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
@@ -108,6 +109,7 @@ const UploadImage = () => {
                     <button type='submit' class='submit'>Upload</button>
                 </div>
             </form>
+         
         </div>
       
     );
