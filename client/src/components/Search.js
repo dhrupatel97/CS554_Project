@@ -43,6 +43,7 @@ function Search() {
       }
     loadImages();  
   }, [searchTerm]); 
+  console.log(searchResults.length);
  return (
   <div class='search'>
     <label for="search-box">Search: </label>
@@ -62,7 +63,7 @@ function Search() {
                     <option value="Outdoor">Outdoor</option>
                 </select>
                 
-                
+      {searchResults.length > 1 ?           
       <div className="search1">
         {searchResults.map(item => (
           <div>
@@ -71,7 +72,7 @@ function Search() {
           </Link>
           </div>  
         ))}
-        </div>
+        </div> : null }
         </div>
   );
 }
