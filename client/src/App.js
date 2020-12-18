@@ -38,6 +38,12 @@ function App() {
             <Route path="/outdoor">
             <ListImages imageType={"Outdoor"}/>
             </Route>
+            <Route path="/abstract">
+            <ListImages imageType={"Abstract"}/>
+            </Route>
+            <Route path="/other">
+            <ListImages imageType={"Other"}/>
+            </Route>
             <Route path="/uploads">
             <ListImages imageType={"User-Uploaded"}/>
             </Route>

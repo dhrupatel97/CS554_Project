@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import  { DropdownButton, Dropdown} from 'react-bootstrap';
+import React from 'react';
+import  {DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
-import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
-import Search from './Search';
-import '../App.css';
+import axios from 'axios';
 import FooterPage from './FooterPage';
+import Search from './Search';
 const FileDownload = require( 'js-file-download');
 
+
+
 function HottestImages(props) {
-  const [imgData, setImgData] = useState([])
-  const [liked, setLike] = useState(false);
+  const [liked, setLike] = React.useState(false);
   const [Images, setImages] = React.useState([])
+  const[Img, setImg]= React.useState([])
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
     const token = user && (await user.getIdToken());
@@ -22,68 +23,79 @@ function HottestImages(props) {
     };
     return payloadHeader;
   }
-  useEffect(() =>{
-    async function loadImages(){
+
+
+
+
+React.useEffect(() =>{
+  
+  async function loadImages(){
+ 
+      fetch('/api/images', {
+        accept: 'application/json',
+      }).then(res => res.json())
+        .then(pic => {
+          setImages(pic)
+          pic.sort(function (a, b) {
+            return a.no_of_likes - b.no_of_likes;
+          });
+          const revImgData= pic.reverse();
+          console.log(revImgData)
+          setImg(revImgData)
+        
      
-        fetch('/api/images', {
-          accept: 'application/json',
-        }).then(res => res.json())
-          .then(pic => {
-            setImgData(pic)
+        }).catch(err => console.log(err));    
+      }
+  loadImages()
+},[props, liked])
 
-            imgData.sort(function (a, b) {
-              return a.no_of_likes - b.no_of_likes;
-            });
-            let revImgData= imgData.reverse();
-            setImages(revImgData)
-          
-          }).catch(err => console.log(err));
-      
-     }
-  loadImages();
-  }, [props, liked])
+const handleDownload = (id, name, size) => {
+  axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+    const fileName = "artsy-" + name + "-" + size + ".jpg"
+    FileDownload( response.data, fileName);
+  } )
+}
+const handleSelect = ( e, id, image) => {
+  console.log( "Selected , " , e );
+  handleDownload(id, image, e)
+}
 
-  const [modalShow, setModalShow] = useState(false);
-  const [modalImage, setModalImage] = useState('');  
+const handleLike = async (id) => {
+  let header = await createToken();
+  header.headers['Content-Type'] = 'application/json'
+  console.log(id)
+
+  axios.patch(`/api/images/${id}/like`, {}, header)
+  .then((res) => {
+      console.log(res.data)
+      setLike( !liked )
+  })
+  .catch((err) => {
+      // TODO Can redirect to login page 
+      // TODO Dhruv
+      alert( "Please Sign In" );
+      console.log(err)
+  })
+ 
+}
+
+  
+  
+  const [modalShow, setModalShow] = React.useState(false);
+  const [modalImage, setModalImage] = React.useState('');
+  
   function modal(image){
     setModalShow(true)
     setModalImage(image)
   }
 
-  const handleDownload = (id, name, size) => {
-    axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
-      const fileName = "artsy-" + name + "-" + size + ".jpg"
-      FileDownload( response.data, fileName);
-    } )
-  }
-
-  const handleLike = async (id) => {
-    let header = await createToken();
-    header.headers['Content-Type'] = 'application/json'
-    console.log(id)
-    axios.patch(`/api/images/${id}/like`, {}, header)
-    .then((res) => {
-        console.log(res.data)
-        setLike( !liked )
-    })
-    .catch((err) => {
-        alert( "Please Sign In" );
-        console.log(err)
-    })   
-  }
-
-  const handleSelect = ( e, id, image) => {
-    console.log( "Selected , " , e );
-    handleDownload(id, image, e)
-  }
-  
   return (
     <div class="listImages">
     <div className="searchContent">
           <Search/>
         </div>
       <div class='container-list'>
-        {Images.map(re => {
+        {Img && Img.map(re => {
           return (
             <div class='card'>
               <a className="modalButton" onClick={() => modal(re)} >
@@ -120,6 +132,6 @@ function HottestImages(props) {
       </div>
       
     </div>              
-);}
+  );}
 
 export default HottestImages;
