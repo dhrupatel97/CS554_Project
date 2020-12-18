@@ -1,18 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
-import Images from '../ImageList';
-import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
+import  { DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
-import download from '../imgs/download.png';
-import like from '../imgs/notfill.svg';
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
-import fill from '../imgs/fill.svg'
 import '../App.css';
 const FileDownload = require( 'js-file-download');
-
 
 function ListImages(props) {
   const [imgData, setImgData] = useState([])
@@ -38,18 +31,12 @@ function ListImages(props) {
           }).catch(err => console.log(err));
       }else if( props.imageType === 'User-Uploaded') {
         let header = await createToken();
-        header.headers['Content-Type'] = 'application/json'
-       /* axios.post(`/api/images/${id}/comments`,data, header).then((res)=>{
-        })*/
-
-        
+        header.headers['Content-Type'] = 'application/json'      
         axios.get('/api/imagesByUser', header)
           .then((res) => {
             setImgData(res.data)
         })
         .catch((err) => {
-          // TODO Can redirect to login page 
-          // TODO Dhruv
           alert( "Please sign in" );
           console.log(err)
         })
@@ -70,8 +57,7 @@ function ListImages(props) {
   }, [props, liked])
 
   const [modalShow, setModalShow] = useState(false);
-  const [modalImage, setModalImage] = useState('');
-  
+  const [modalImage, setModalImage] = useState('');  
   function modal(image){
     setModalShow(true)
     setModalImage(image)
@@ -83,31 +69,27 @@ function ListImages(props) {
       FileDownload( response.data, fileName);
     } )
   }
- 
 
   const handleLike = async (id) => {
     let header = await createToken();
     header.headers['Content-Type'] = 'application/json'
     console.log(id)
-
     axios.patch(`/api/images/${id}/like`, {}, header)
     .then((res) => {
         console.log(res.data)
         setLike( !liked )
     })
     .catch((err) => {
-        // TODO Can redirect to login page 
-        // TODO Dhruv
         alert( "Please Sign In" );
         console.log(err)
-    })
-   
+    })   
   }
+
   const handleSelect = ( e, id, image) => {
     console.log( "Selected , " , e );
     handleDownload(id, image, e)
   }
-
+  
   return (
     <div>
         <div class='search'>
@@ -137,8 +119,7 @@ function ListImages(props) {
                     title = "Download"
                     variant="secondary"
                     id="dropdown-menu-align-right"
-                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
-                    
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}                    
                   >
                     <Dropdown.Item eventKey="small">Small</Dropdown.Item>
                     <Dropdown.Item eventKey="default">Default</Dropdown.Item>
@@ -150,8 +131,7 @@ function ListImages(props) {
           )
         })}
       </div>
-    </div>
-               
-  );}
+    </div>              
+);}
 
 export default ListImages;
