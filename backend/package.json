@@ -4,6 +4,7 @@
   "description": "Backend of Artsy",
   "main": "app.js",
   "scripts": {
+    "seed": "mongorestore -d Artsy db/Artsy",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "client-install": "npm install --prefix ../client",
