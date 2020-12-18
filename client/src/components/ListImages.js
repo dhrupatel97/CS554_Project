@@ -15,7 +15,6 @@ const FileDownload = require( 'js-file-download');
 
 
 function ListImages(props) {
-
   const [imgData, setImgData] = useState([])
   const [liked, setLike] = useState(false);
   const createToken = async () => {
@@ -28,7 +27,6 @@ function ListImages(props) {
     };
     return payloadHeader;
   }
-
   useEffect(() =>{
     async function loadImages(){
       if( props.imageType === "All") {
@@ -63,8 +61,6 @@ function ListImages(props) {
             setImgData(res.data)
         })
         .catch((err) => {
-          // TODO Can redirect to login page 
-          // TODO Dhruv
           alert( "Please sign in" );
           console.log(err)
       })
@@ -88,6 +84,7 @@ function ListImages(props) {
     } )
   }
  
+
   const handleLike = async (id) => {
     let header = await createToken();
     header.headers['Content-Type'] = 'application/json'
@@ -141,11 +138,11 @@ function ListImages(props) {
                     variant="secondary"
                     id="dropdown-menu-align-right"
                     onSelect={(e) => handleSelect(e, re._id, re.image_name)}
+                    
                   >
                     <Dropdown.Item eventKey="small">Small</Dropdown.Item>
                     <Dropdown.Item eventKey="default">Default</Dropdown.Item>
                     <Dropdown.Item eventKey="large">Large</Dropdown.Item>
-                
                   </DropdownButton>
                 </div>
                 <div class='overlay'>@{re.posted_by}</div>

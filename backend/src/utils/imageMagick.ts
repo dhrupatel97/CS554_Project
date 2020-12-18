@@ -17,6 +17,11 @@ async function imageResize(images, req, callback) {
     let wandh = req.query.size;
     let saveFinal = 'public/' + name + '-default.jpg'
     let downloadName = 'public/' + name + '.jpg'
+    if(process.platform == 'win32')
+    {
+      im.identify.path = 'C:/Program Files/ImageMagick-7.0.10-Q16-HDRI/identify'
+      im.convert.path = 'C:/Program Files/ImageMagick-7.0.10-Q16-HDRI/convert'
+    }
     download(url, downloadName, function () {
       let width = 0
       let height = 0

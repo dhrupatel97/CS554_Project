@@ -5,13 +5,22 @@ export class Users {
   public routes(app): void {
     app.route('/api/users').post((req: Request, res: Response) => {
       let user = new UserData(req.body);
-      user.save((err: any) => {
-        if (err) {
-          res.status(400).send(err.message);
-        } else {
-          res.json(user);
+      UserData.findOne({
+        email: user.email
+      }, function (err, userRes) {
+        if (userRes) {
+          res.json(userRes)
+        }else{
+          user.save((err: any) => {
+            if (err) {
+              res.status(400).send(err.message);
+            } else {
+              res.json(user);
+            }
+          });
         }
-      });
+      })
+     
     });
 
     app.route('/api/users').get((req: Request, res: Response) => {
@@ -21,10 +30,10 @@ export class Users {
       }, function (err, user) {
         if (err) {
           res.status(500).send(err);
-        }else{
+        } else {
           res.status(200).send(user)
-        }       
+        }
       });
     });
-    }
+  }
 }

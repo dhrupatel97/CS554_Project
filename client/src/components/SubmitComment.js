@@ -5,7 +5,6 @@ import firebaseApp from '../firebase/Firebase';
 
   function SubmitComment (props) {
       console.log("id",props.id)
-    const[commentList, setCommentList]=React.useState([]);
     const createToken = async () => {
         const user = firebaseApp.auth().currentUser;
         const token = user && (await user.getIdToken());
@@ -19,27 +18,22 @@ import firebaseApp from '../firebase/Firebase';
       }
   
         const [comment, setComment] = React.useState('')
-        const [name, setName] = React.useState('')
         const onChangeComment = (e) => {
             setComment(e.target.value)
         }
         
 
-        const onUpload = async (e) => {
-            
-            //e.preventDefault()
+        const addComment = async (e) => {
+            e.preventDefault();
             let header = await createToken();
             header.headers['Content-Type'] = 'application/json'
             let data= {
-              //"name" : name,
               "comment" : comment
             }
-           /* let data = new FormData() 
-            data.append('name',name)
-            data.append('comment', comment)*/
             axios.post(`/api/images/${props.id}/comments`, data, header)
             .then((res) => {
                 console.log(res.data)
+                props.comments( res.data.comments )
             })
             .catch((err) => {
                 console.log(err)
@@ -52,16 +46,13 @@ import firebaseApp from '../firebase/Firebase';
   
       return (
       <div>
-      <form onSubmit={onUpload}>
-      <br></br>
-      <label >
-          Add Comment
-      </label>
-      <textarea className="commentBox" type='text' name='comment' value={comment} onChange={onChangeComment} placeholder='Add comment'/>
-      <br></br>
-      <button type='submit' className="uploadImage">Submit</button>
-      </form>
-        
+        <form class="registration-form" onSubmit={addComment}>
+          <br/>
+          <label >
+          <textarea className="commentBox" type='text' name='comment' value={comment} onChange={onChangeComment} placeholder=' Add comment'/>
+          </label>
+          <button type='submit' className="submit">Submit</button>
+        </form>
       </div>
       );
     }
