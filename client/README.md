@@ -1,4 +1,4 @@
-Instructions
+Setup and Instructions
 
 1. Install TypeScript - npm install -g typescript
 
@@ -21,3 +21,23 @@ Example -
 This will create the js files from ts files and then brings up both the servers.
 Backend server is deployed in localhost:/4000
 Frontend server is deployed in localhost:/3000
+
+
+
+Components used in our project
+
+1. CSS and bootstrap used for styling.
+
+2. React framework used for frontend.
+
+3. Typescript used for backend.
+
+4. Express is the backend server.
+
+5. Aws s3 bucket is used to store all the images uploaded.
+
+6. Mongoose is used for data layer.
+
+7. Imagemagick is used to convert the image size while download.
+
+8. xss-clean and helmet libraries are used for secuarity purposes. 
