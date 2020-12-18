@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Images from '../ImageList';
 import {Alert} from 'react-bootstrap'
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase'
