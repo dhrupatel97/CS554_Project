@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import SignOutButton from './SignOut';
 import {DropdownButton, Dropdown} from 'react-bootstrap'
 import '../App.css';
-import logo from '../imgs/logo.png'
-import Search from './Search';
 
 const Navigation = () => {
   const { currentUser } = useContext(AuthContext);
@@ -13,7 +11,7 @@ const Navigation = () => {
 };
 
 const NavigationAuth = () => {
-
+  const { currentUser } = useContext(AuthContext);
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -56,7 +54,7 @@ const NavigationAuth = () => {
           </ul>
           <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
-                  <p class='nav-link'>Welcome</p>
+                  <p class='nav-link'>Welcome {currentUser.displayName}!</p>
               </li>
               <li class="nav-item">
                 <Link exact to="/account" class='nav-link' >
