@@ -44,13 +44,13 @@ function Search() {
     loadImages();  
   }, [searchTerm]); 
  return (
-  <div class='search'>
-    <label for="search-box">Search: </label>
+  <div >
+    
       <input
         type="text"
         placeholder="Search Backgrounds"
         value={searchTerm}
-        class="search-box-style"
+        class="search"
         id = "search-box"
         onChange={handleChangeSearchIp}
       />
