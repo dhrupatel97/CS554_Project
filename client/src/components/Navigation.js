@@ -11,7 +11,6 @@ const Navigation = () => {
 };
 
 const NavigationAuth = () => {
-  const { currentUser } = useContext(AuthContext);
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -54,7 +53,7 @@ const NavigationAuth = () => {
           </ul>
           <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
-                  <p class='nav-link'>Welcome {currentUser.displayName}!</p>
+                  <p class='nav-link'>Welcome!</p>
               </li>
               <li class="nav-item">
                 <Link exact to="/account" class='nav-link' >

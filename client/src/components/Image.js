@@ -2,10 +2,6 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import {Container, Row, Col} from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Images from '../ImageList';
-import download from '../imgs/download.png';
-import like from '../imgs/notfill.svg';
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import DisplayComments from './DisplayComments';
