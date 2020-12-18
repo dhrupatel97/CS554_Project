@@ -23,16 +23,16 @@ function SearchImages(props) {
 
 const [img, setImg] = React.useState([])
 const [Images, setImages] = React.useState([])
+const [key, setKey] = React.useState([])
 
 
-  const [key, setKey]= React.useState('')
 
 React.useEffect(() =>{
   let temp=window.location.pathname.split("/");
+  const catTemp = temp[2]
   const  keyTemp = temp[3]
-// let keyword=temp[3]  
-setKey(keyTemp)
-  async function loadImages(keyTemp){
+  setKey(keyTemp)
+  async function loadImages(keyTemp, catTemp){
     
       fetch('/api/images', {
         accept: 'application/json',
@@ -40,14 +40,26 @@ setKey(keyTemp)
         .then(pic => {
           setImg(pic)
 
-         const image =  pic.filter(re =>{
-           console.log(re.keywords)
-            return re.keywords.includes(keyTemp)
+        if(catTemp==="all")
+        {
+          const image =  pic.filter(re =>{            
+              return re.keywords.includes(keyTemp)             
+           })           
+           setImages(image)
+        }else{
+          const temp_list =  pic.filter(re =>{            
+              return re.keywords.includes(keyTemp)             
+           })
+ 
+          const image = temp_list.filter(re=>{
+            
+            return re.category.includes(catTemp)
           })
-        setImages(image)
+          setImages(image)          
+        }       
         }).catch(err => console.log(err));    
       }
-  loadImages(keyTemp)
+  loadImages(keyTemp, catTemp )
 },[props, liked])
 
 const handleDownload = (id, name, size) => {
