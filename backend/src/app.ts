@@ -5,7 +5,8 @@ import mongoConnection from "./config/mongoConnection";
 import bodyParser = require('body-parser');
 import { decodeIDToken } from './config/authenticateToken';
 import * as cors from  'cors'
-// import * as dotenv from 'dotenv';
+const helmet = require('helmet');
+const xss = require('xss-clean')
 
 class App {
 	public app: express.Application;
@@ -28,7 +29,10 @@ class App {
 		this.app.use(express.urlencoded({ extended: false }));
 		this.app.use(express.static('public'));
 		this.app.use(decodeIDToken);
-		
+		//Helmet helps to secure express apps by setting various http headers
+		this.app.use(helmet())
+		//xss-clean sanitizes user inpit coming from post body, get queries and url params
+		this.app.use(xss())
 	}
 }
 
