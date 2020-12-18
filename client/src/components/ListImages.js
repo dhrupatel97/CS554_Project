@@ -101,7 +101,7 @@ function ListImages(props) {
           return (
             <div class='card'>
               <a className="modalButton" onClick={() => modal(re)} >
-                <img class='gallery-img' src={re.url} />
+                <img class='gallery-img' src={re.url} alt="Image not found" />
                 </a>
                 <MyVerticallyCenteredModal
                 show={modalShow}
