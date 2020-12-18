@@ -25,7 +25,7 @@ function SearchImages(props) {
 const [img, setImg] = React.useState([])
 const [Images, setImages] = React.useState([])
 const [key, setKey] = React.useState([])
-
+const [refresh, setRefresh ] = React.useState({})
 
 
 React.useEffect(() =>{
@@ -61,8 +61,10 @@ React.useEffect(() =>{
         }).catch(err => console.log(err));    
       }
   loadImages(keyTemp, catTemp )
-},[props, liked])
-
+},[props, liked, refresh ])
+const refreshList = (data ) => {
+  setRefresh( data )
+}
 const handleDownload = (id, name, size) => {
   axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
     const fileName = "artsy-" + name + "-" + size + ".jpg"
@@ -85,8 +87,6 @@ const handleLike = async (id) => {
       setLike( !liked )
   })
   .catch((err) => {
-      // TODO Can redirect to login page 
-      // TODO Dhruv
       alert( "Please Sign In" );
       console.log(err)
   })
@@ -117,6 +117,7 @@ const handleLike = async (id) => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 image={modalImage}
+                refresh={refreshList}
                 />
                 <div class='like-count'>
                   { re.no_of_likes }

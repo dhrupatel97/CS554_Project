@@ -11,6 +11,7 @@ const FileDownload = require( 'js-file-download');
 function ListImages(props) {
   const [imgData, setImgData] = useState([])
   const [liked, setLike] = useState(false);
+  const [refresh, setRefresh ] = useState({})
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
     const token = user && (await user.getIdToken());
@@ -21,6 +22,7 @@ function ListImages(props) {
     };
     return payloadHeader;
   }
+
   useEffect(() =>{
     async function loadImages(){
       if( props.imageType === "All") {
@@ -55,7 +57,7 @@ function ListImages(props) {
     }
   }
   loadImages();
-  }, [props, liked])
+  }, [props, liked, refresh])
 
   const [modalShow, setModalShow] = useState(false);
   const [modalImage, setModalImage] = useState('');  
@@ -86,6 +88,10 @@ function ListImages(props) {
     })   
   }
 
+  const refreshList = (data ) => {
+    setRefresh( data )
+  }
+
   const handleSelect = ( e, id, image) => {
     console.log( "Selected , " , e );
     handleDownload(id, image, e)
@@ -107,6 +113,7 @@ function ListImages(props) {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 image={modalImage}
+                refresh={refreshList}
                 />
                 <div class='like-count'>
                   { re.no_of_likes }
