@@ -20,7 +20,7 @@ function MyVerticallyCenteredModal(props) {
     if( props.image && Array.isArray( props.image.comments)) {
       setDisplayComments( props.image.comments )
     }
-  }, [ props ]);
+  }, [ props.image ]);
 
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
@@ -43,8 +43,9 @@ function MyVerticallyCenteredModal(props) {
     axios.patch(`/api/images/${id}/like`, {}, header)
     .then((res) => {
         console.log(res.data)
+        props.refresh( res.data );
         setLikeCount( res.data.no_of_likes );
-
+        
     })
     .catch((err) => {
         // TODO Can redirect to login page 
@@ -68,7 +69,9 @@ function MyVerticallyCenteredModal(props) {
 
   
   const setComments = ( comments ) => {
+    props.refresh( comments );
     setDisplayComments( comments );
+    
   }
 
     return (

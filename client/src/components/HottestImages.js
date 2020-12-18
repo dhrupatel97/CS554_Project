@@ -12,6 +12,7 @@ const FileDownload = require( 'js-file-download');
 function HottestImages(props) {
   const [liked, setLike] = React.useState(false);
   const [Images, setImages] = React.useState([])
+  const [refresh, setRefresh ] = React.useState({})
   const[Img, setImg]= React.useState([])
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
@@ -47,7 +48,7 @@ React.useEffect(() =>{
         }).catch(err => console.log(err));    
       }
   loadImages()
-},[props, liked])
+},[props, liked,refresh])
 
 const handleDownload = (id, name, size) => {
   axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
@@ -78,7 +79,9 @@ const handleLike = async (id) => {
   })
  
 }
-
+const refreshList = (data ) => {
+  setRefresh( data )
+}
   
   
   const [modalShow, setModalShow] = React.useState(false);
@@ -105,6 +108,7 @@ const handleLike = async (id) => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 image={modalImage}
+                refresh={refreshList}
                 />
                 <div class='like-count'>
                   { re.no_of_likes }

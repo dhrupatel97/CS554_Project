@@ -26,7 +26,7 @@ Frontend server is deployed in localhost:/3000
 
 Components used in our project
 
-1. CSS and bootstrap used for styling.
+1. CSS3 and bootstrap used for styling.
 
 2. React framework used for frontend.
 
