@@ -16,7 +16,9 @@ Setup and Instructions
 
 8. To seed the database, navigate to the "backend" folder and run the command - npm run seed
 
-9. To start the application, navigate to "backend" folder and run the command - npm run prod
+9. Make sure you have MongoDB Database Tools installed and the installed path set to the PATH environment variable for running windows.
+
+10. To start the application, navigate to "backend" folder and run the command - npm run prod
 This will create the js files from ts files and then brings up both the servers(Backend and Frontend)
 Backend server is deployed in localhost:/4000
 Frontend server is deployed in localhost:/3000
