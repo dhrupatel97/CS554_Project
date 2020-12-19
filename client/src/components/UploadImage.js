@@ -104,7 +104,7 @@ const UploadImage = () => {
                 <br></br>
                 <label>
                     <span class="label-text">Set Keywords</span>
-                    <input class="inputFields"  type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Add Image Keywords'/>
+                    <input class="inputFields"  type='text' name='keywords' value={keywords} onChange={onChangeKeywords} placeholder='Please add comma sepearated single words'/>
                 </label>
                 <br></br>
                 <div class='text-centre'>
