@@ -1,22 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
-import Images from '../ImageList';
-import  {Button, DropdownButton, Dropdown} from 'react-bootstrap';
+import  { DropdownButton, Dropdown} from 'react-bootstrap';
 import MyVerticallyCenteredModal from './Image';
-import download from '../imgs/download.png';
-import like from '../imgs/notfill.svg';
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase';
 import Search from './Search';
-import fill from '../imgs/fill.svg'
 import '../App.css';
+import FooterPage from './FooterPage';
 const FileDownload = require( 'js-file-download');
-
 
 function ListImages(props) {
   const [imgData, setImgData] = useState([])
   const [liked, setLike] = useState(false);
+  const [refresh, setRefresh ] = useState({})
   const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
     const token = user && (await user.getIdToken());
@@ -27,6 +22,7 @@ function ListImages(props) {
     };
     return payloadHeader;
   }
+
   useEffect(() =>{
     async function loadImages(){
       if( props.imageType === "All") {
@@ -38,18 +34,12 @@ function ListImages(props) {
           }).catch(err => console.log(err));
       }else if( props.imageType === 'User-Uploaded') {
         let header = await createToken();
-        header.headers['Content-Type'] = 'application/json'
-       /* axios.post(`/api/images/${id}/comments`,data, header).then((res)=>{
-        })*/
-
-        
+        header.headers['Content-Type'] = 'application/json'      
         axios.get('/api/imagesByUser', header)
           .then((res) => {
             setImgData(res.data)
         })
         .catch((err) => {
-          // TODO Can redirect to login page 
-          // TODO Dhruv
           alert( "Please sign in" );
           console.log(err)
         })
@@ -67,11 +57,10 @@ function ListImages(props) {
     }
   }
   loadImages();
-  }, [props, liked])
+  }, [props, liked, refresh])
 
   const [modalShow, setModalShow] = useState(false);
-  const [modalImage, setModalImage] = useState('');
-  
+  const [modalImage, setModalImage] = useState('');  
   function modal(image){
     setModalShow(true)
     setModalImage(image)
@@ -83,34 +72,34 @@ function ListImages(props) {
       FileDownload( response.data, fileName);
     } )
   }
- 
 
   const handleLike = async (id) => {
     let header = await createToken();
     header.headers['Content-Type'] = 'application/json'
     console.log(id)
-
     axios.patch(`/api/images/${id}/like`, {}, header)
     .then((res) => {
         console.log(res.data)
         setLike( !liked )
     })
     .catch((err) => {
-        // TODO Can redirect to login page 
-        // TODO Dhruv
         alert( "Please Sign In" );
         console.log(err)
-    })
-   
+    })   
   }
+
+  const refreshList = (data ) => {
+    setRefresh( data )
+  }
+
   const handleSelect = ( e, id, image) => {
     console.log( "Selected , " , e );
     handleDownload(id, image, e)
   }
-
+  
   return (
-    <div>
-        <div class='search'>
+    <div class="listImages">
+    <div className="searchContent">
           <Search/>
         </div>
       <div class='container-list'>
@@ -118,12 +107,13 @@ function ListImages(props) {
           return (
             <div class='card'>
               <a className="modalButton" onClick={() => modal(re)} >
-                <img class='gallery-img' src={re.url} />
+                <img class='gallery-img' src={re.url} alt="Image not found" />
                 </a>
                 <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 image={modalImage}
+                refresh={refreshList}
                 />
                 <div class='like-count'>
                   { re.no_of_likes }
@@ -137,8 +127,7 @@ function ListImages(props) {
                     title = "Download"
                     variant="secondary"
                     id="dropdown-menu-align-right"
-                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}
-                    
+                    onSelect={(e) => handleSelect(e, re._id, re.image_name)}                    
                   >
                     <Dropdown.Item eventKey="small">Small</Dropdown.Item>
                     <Dropdown.Item eventKey="default">Default</Dropdown.Item>
@@ -150,8 +139,8 @@ function ListImages(props) {
           )
         })}
       </div>
-    </div>
-               
-  );}
+      
+    </div>              
+);}
 
 export default ListImages;

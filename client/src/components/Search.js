@@ -39,34 +39,40 @@ function Search() {
             }else{
               setSearchResults(uniqueResults);
             } 
-          }).catch(err => console.log(err));          
+            }).catch(err => console.log(err));          
       }
     loadImages();  
   }, [searchTerm]); 
  return (
-  <div class='search-me'>
+  <div >
+  
+    
       <input
         type="text"
         placeholder="Search Backgrounds"
         value={searchTerm}
-        class="form-control me-2"
+        class="search"
+        id = "search-box"
+        aria-label="Search Box"
+        autocomplete="off"
         onChange={handleChangeSearchIp}
       />
-      <label>
-                    Category:
-                <select  className="cat" name="category" id="category"  value={cate} onChange={onChangeCate}>
+      
+                <select  className="catSearch" name="category" id="category"  value={cate} onChange={onChangeCate}>
                     <option value="all">All</option>
                     <option value="Office">Office</option>
                     <option value="Home">Home</option>
                     <option value="Outdoor">Outdoor</option>
+                    <option value="Abstract">Abstract</option>
+                    <option value="Other">Other</option>
                 </select>
-                </label>
+                
                 
       <div className="search1">
         {searchResults.map(item => (
           <div>
-          <Link to={`/search/${cate}/${item}`} >  
-            <p className="search-result">{item}</p>
+          <Link to={`/search/${cate}/${item}`} style={{ textDecoration: 'none' }}  aria-label="Search Result">  
+            <p className="result">{item}</p>
           </Link>
           </div>  
         ))}

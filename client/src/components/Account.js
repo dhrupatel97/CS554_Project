@@ -2,6 +2,7 @@ import React from 'react';
 import SignOutButton from './SignOut';
 import '../App.css';
 import ChangePassword from './ChangePassword';
+import FooterPage from './FooterPage';
 
 function Account() {
   return (
@@ -9,7 +10,9 @@ function Account() {
   
       <ChangePassword />
       {/* <SignOutButton /> */}
+     
     </div>
+    
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import SignOutButton from './SignOut';
 import {DropdownButton, Dropdown} from 'react-bootstrap'
@@ -11,9 +11,9 @@ const Navigation = () => {
 };
 
 const NavigationAuth = () => {
-  const { currentUser } = useContext(AuthContext);
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div>
+    <nav class="navbar navbar-expand-lg navbar-dark color">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,24 +22,37 @@ const NavigationAuth = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <DropdownButton
-                  alignRight
-                  title = "Category"
-                  variant="secondary"
-                  id="dropdown-menu-align-right"
+            {/*</li> <DropdownButton
+            //       alignRight
+            //       title = "Category"
+            //       variant="secondary"
+            //       id="dropdown-menu-align-right"
                   
-                >
-                  <Dropdown.Item ><Link exact to="/home">
-                Home
-              </Link></Dropdown.Item>
-                  <Dropdown.Item ><Link exact to="/outdoor">
-                Outdoor
-              </Link></Dropdown.Item>
-                  <Dropdown.Item ><Link exact to="/office">
-                Office
-              </Link></Dropdown.Item>
+                  
+            //     >
+            //       <Dropdown.Item ><Link exact to="/home">
+            //     Home
+            //   </Link></Dropdown.Item>
+            //       <Dropdown.Item ><Link exact to="/outdoor">
+            //     Outdoor
+            //   </Link></Dropdown.Item>
+            //       <Dropdown.Item ><Link exact to="/office">
+            //     Office
+            //   </Link></Dropdown.Item>
+            //   <Dropdown.Item ><Link exact to="/abstract">
+            //    Abstract
+            //   </Link></Dropdown.Item>
+            //   <Dropdown.Item ><Link exact to="/other">
+            //     Other
+            //   </Link></Dropdown.Item>
               
-                </DropdownButton>
+            //     </DropdownButton> */}
+            </li>
+
+            <li class="nav-item">
+              <Link exact to="/hottest" class='nav-link' >
+                Hottest Backgrounds
+              </Link>
             </li>
             <li class="nav-item">
               <Link exact to="/uploads" class='nav-link' >
@@ -54,7 +67,7 @@ const NavigationAuth = () => {
           </ul>
           <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
-                  <p class='nav-link'>Welcome {currentUser.displayName}!</p>
+                  <p class='nav-link'>Welcome!</p>
               </li>
               <li class="nav-item">
                 <Link exact to="/account" class='nav-link' >
@@ -68,12 +81,23 @@ const NavigationAuth = () => {
         </div>
       </div>
     </nav>
+    <ul class="topnav">
+  <li><NavLink exact to="/home" activeClassName={"selected"}> Home Backgrounds</NavLink></li>
+  <li><NavLink exact to="/outdoor" activeClassName={"selected"}> Outdoor Backgrounds</NavLink></li>
+  <li><NavLink exact to="/office" activeClassName={"selected"}>Office Backgrounds</NavLink></li>
+  <li><NavLink exact to="/abstract" activeClassName={"selected"}>Abstract Backgrounds</NavLink></li>
+  <li><NavLink exact to="/other" activeClassName={"selected"}>Other Backgrounds</NavLink></li>
+ 
+</ul>
+
+    </div>
   );
 };
 
 const NavigationNonAuth = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div>
+    <nav class="navbar navbar-expand-lg navbar-dark color">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +106,7 @@ const NavigationNonAuth = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <DropdownButton
+            {/*<DropdownButton
                   alignRight
                   title = "Category"
                   variant="secondary"
@@ -98,10 +122,22 @@ const NavigationNonAuth = () => {
                   <Dropdown.Item ><Link exact to="/office">
                 Office
               </Link></Dropdown.Item>
+              <Dropdown.Item ><Link exact to="/abstract">
+              Abstract
+            </Link></Dropdown.Item>
+            <Dropdown.Item ><Link exact to="/other">
+            Other
+          </Link></Dropdown.Item>
               
-                </DropdownButton>
+            </DropdownButton>*/}
                 </li>
+                <li class="nav-item">
+                <Link exact to="/hottest" class='nav-link' >
+                  Hottest
+                </Link>
+              </li>
           </ul>
+         
           <ul class='navbar-nav nav justify-content-end'>
             <li class="nav-item">
               <Link exact to="/signup" class='nav-link' >
@@ -117,6 +153,15 @@ const NavigationNonAuth = () => {
         </div>
       </div>
     </nav>
+    <ul class="topnav">
+  <li><NavLink exact to="/home" activeClassName={"selected"}> Home Backgrounds</NavLink></li>
+  <li><NavLink exact to="/outdoor" activeClassName={"selected"}> Outdoor Backgrounds</NavLink></li>
+  <li><NavLink exact to="/office" activeClassName={"selected"}>Office Backgrounds</NavLink></li>
+  <li><NavLink exact to="/abstract" activeClassName={"selected"}>Abstract Backgrounds</NavLink></li>
+  <li><NavLink exact to="/other" activeClassName={"selected"}>Other Backgrounds</NavLink></li>
+ 
+</ul>
+    </div>
   );
 };
 

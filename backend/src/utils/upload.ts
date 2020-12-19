@@ -4,17 +4,19 @@ import ImageData from '../schema/imageschema'
 import UserData from '../schema/userschema';
 import { ObjectId } from 'mongodb';
 
+
 async function s3Upload(mReq, req, callback) {
   AWS.config.update({
     accessKeyId: process.env.AWS_ID,
     secretAccessKey: process.env.AWS_SECRETKEY,
     region: process.env.AWS_REGION
   });
+  const newId = new ObjectId();
   let params = {
     ACL: 'public-read',
     Bucket: process.env.AWS_BUCKET_NAME,
     Body: fs.createReadStream(mReq.file.path),
-    Key: `useArtsy/${mReq.file.originalname}`
+    Key: `useArtsy/${mReq.file.originalname}-${newId}`
   };
   const s3 = new AWS.S3();
   const currentUser = req['currentUser'];

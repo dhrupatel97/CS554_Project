@@ -4,6 +4,7 @@
   "description": "Backend of Artsy",
   "main": "app.js",
   "scripts": {
+    "seed": "mongorestore -d Artsy db/Artsy",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "client-install": "npm install --prefix ../client",
@@ -33,6 +34,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^9.4.2",
     "fs": "0.0.1-security",
+    "helmet": "^4.2.0",
     "image-size": "^0.9.3",
     "imagemagick": "^0.1.3",
     "jsonwebtoken": "^8.5.1",
@@ -46,6 +48,7 @@
     "request": "^2.88.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.2",
-    "upscaler": "^0.7.4"
+    "upscaler": "^0.7.4",
+    "xss-clean": "^0.1.1"
   }
 }

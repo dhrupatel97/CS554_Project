@@ -3,6 +3,7 @@ import {Alert} from 'react-bootstrap'
 import axios from 'axios'
 import firebaseApp from '../firebase/Firebase'
 import '../App.css';
+import FooterPage from './FooterPage';
 
 const createToken = async () => {
     const user = firebaseApp.auth().currentUser;
@@ -91,6 +92,8 @@ const UploadImage = () => {
                         <option value="Office" selected>Office</option>
                         <option value="Home">Home</option>
                         <option value="Outdoor">Outdoor</option>
+                        <option value="Abstract">Abstract</option>
+                        <option value="Other">Other</option>
                     </select>
                 </label>
                 <br></br>
@@ -108,6 +111,7 @@ const UploadImage = () => {
                     <button type='submit' class='submit'>Upload</button>
                 </div>
             </form>
+         
         </div>
       
     );
