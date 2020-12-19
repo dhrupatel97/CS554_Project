@@ -42,6 +42,7 @@ export class Images {
 
     app.route('/api/imagesByUser').get((req: Request, res: Response) => {
       const currentUser = req['currentUser'];
+      currentUser.email = currentUser.email.toLowerCase();
       UserData.findOne({
         email: currentUser.email
       }, function (err, user) {
@@ -103,6 +104,8 @@ export class Images {
     app.route('/api/images/:id/like').patch((req: Request, res: Response) => {
       const id = req.params.id;
       const currentUser = req['currentUser'];
+      currentUser.email = currentUser.email.toLowerCase();
+      console.log("Current User : --------------> " , currentUser )
       UserData.findOne({
         email: currentUser.email
       }, function (err, user) {
@@ -160,6 +163,7 @@ export class Images {
     app.route("/api/images/:id/comments").post(async (req: Request, res: Response) => {
       try {
         const currentUser = req['currentUser'];
+        currentUser.email = currentUser.email.toLowerCase();
         UserData.findOne({
           email: currentUser.email
         }, function (err, user) {
