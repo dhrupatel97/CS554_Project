@@ -73,7 +73,7 @@ const UploadImage = () => {
     return (
         <div className="container-box">
             {alert ? <Alert variant='success'>Successfully Uploaded</Alert> : null}
-            <h3 className="text-center">Welcome to Upload Images page</h3>
+            <h3 className="text-center">Upload Image </h3>
             <form onSubmit={onUpload} class="registration-form">
                 <label>
                     <span class="label-text">Add Image Name</span>
