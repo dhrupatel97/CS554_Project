@@ -3,6 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import SignOutButton from './SignOut';
 import {DropdownButton, Dropdown} from 'react-bootstrap'
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import '../App.css';
 
 const Navigation = () => {
@@ -13,7 +16,7 @@ const Navigation = () => {
 const NavigationAuth = () => {
   return (
     <div>
-    <nav class="navbar navbar-expand-lg navbar-dark color">
+    {/*<nav class="navbar navbar-expand-lg navbar-dark color">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +49,7 @@ const NavigationAuth = () => {
             //     Other
             //   </Link></Dropdown.Item>
               
-            //     </DropdownButton> */}
+            //     </DropdownButton> */}{/*
             </li>
 
             <li class="nav-item">
@@ -80,7 +83,27 @@ const NavigationAuth = () => {
             </ul>
         </div>
       </div>
-    </nav>
+            </nav> */}
+
+
+  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href="/">ARTSY</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+    <Nav.Link href=""><Link exact to="/hottest" class='nav-link' >Hottest Backgrounds</Link></Nav.Link>
+    <Nav.Link href=""><Link exact to="/uploads" class='nav-link' >My Photos</Link></Nav.Link>
+    <Nav.Link href=""><Link exact to="/uploadimage" class='nav-link'  >Upload Image</Link></Nav.Link>     
+    </Nav>
+    <Nav>
+    <Nav.Link href=""><p class='nav-link'>Welcome!</p></Nav.Link>
+    <Nav.Link href=""><Link exact to="/account" class='nav-link' >Account</Link></Nav.Link>    
+    <Nav.Link href=""><SignOutButton/></Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+  </Navbar>
+
+  
     <ul class="topnav">
   <li><NavLink exact to="/home" activeClassName={"selected"}> Home Backgrounds</NavLink></li>
   <li><NavLink exact to="/outdoor" activeClassName={"selected"}> Outdoor Backgrounds</NavLink></li>
@@ -97,6 +120,7 @@ const NavigationAuth = () => {
 const NavigationNonAuth = () => {
   return (
     <div>
+    {/*
     <nav class="navbar navbar-expand-lg navbar-dark color">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">ARTSY</a>
@@ -129,7 +153,7 @@ const NavigationNonAuth = () => {
             Other
           </Link></Dropdown.Item>
               
-            </DropdownButton>*/}
+            </DropdownButton>*/}{/*
                 </li>
                 <li class="nav-item">
                 <Link exact to="/hottest" class='nav-link' >
@@ -152,7 +176,21 @@ const NavigationNonAuth = () => {
           </ul>
         </div>
       </div>
-    </nav>
+            </nav> */}
+            
+  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+  <Navbar.Brand href="/">Artsy</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+    <Nav.Link href=""><Link exact to="/hottest" class='nav-link' >Hottest Backgrounds</Link></Nav.Link>       
+    </Nav>
+    <Nav>
+    <Nav.Link href=""><Link exact to="/signup" class='nav-link' >Sign Up</Link></Nav.Link>
+    <Nav.Link eventKey={2} href=""><Link exact to="/signin" class='nav-link'>Sign In</Link></Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+  </Navbar>
     <ul class="topnav">
   <li><NavLink exact to="/home" activeClassName={"selected"}> Home Backgrounds</NavLink></li>
   <li><NavLink exact to="/outdoor" activeClassName={"selected"}> Outdoor Backgrounds</NavLink></li>
