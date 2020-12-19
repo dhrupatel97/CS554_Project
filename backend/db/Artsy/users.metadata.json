@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"Artsy.users"}],"uuid":"72485fd6839b4078926c8643a87494ac"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"Artsy.users"}],"uuid":"3de67f04820b47259338bfd2be1c439e"}
