@@ -66,7 +66,7 @@ const refreshList = (data ) => {
   setRefresh( data )
 }
 const handleDownload = (id, name, size) => {
-  axios.get( `api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
+  axios.get( `/api/images/${id}/download?size=${size}`, { responseType: 'blob' } ).then( (response) =>{
     const fileName = "artsy-" + name + "-" + size + ".jpg"
     FileDownload( response.data, fileName);
   } )

@@ -5,6 +5,7 @@ export class Users {
   public routes(app): void {
     app.route('/api/users').post((req: Request, res: Response) => {
       let user = new UserData(req.body);
+      user.email = user.email.toLowerCase();
       UserData.findOne({
         email: user.email
       }, function (err, userRes) {
@@ -24,6 +25,7 @@ export class Users {
 
     app.route('/api/users').get((req: Request, res: Response) => {
       const currentUser = req['currentUser'];
+      currentUser.email = currentUser.email.toLowerCase();
       UserData.findOne({
         email: currentUser.email
       }, function (err, user) {
