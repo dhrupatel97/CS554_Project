@@ -1,4 +1,8 @@
 # ARTSY
+CS 554 Final Project
+
+Motivate - 
+Artsy provides you with an enormous library of photos and background to meet every kind of meeting: casual meetups, business meetings or birthdays whatever you wish. Artsy is a platform where any user can share their photos with the rest of the world and any user can use them.
 
 # Team Members:
 1. Dhruv Patel
