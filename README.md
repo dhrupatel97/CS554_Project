@@ -1,3 +1,12 @@
+# ARTSY
+
+# Team Members:
+1. Dhruv Patel
+2. Meghana Bhat Manikal
+3. Akhil Manchikanti
+4. Meghana Bhat Manikal
+
+
 Setup and Instructions
 
 1. Install TypeScript - npm install -g typescript
